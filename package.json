@@ -1,0 +1,10 @@
+{
+  "name": "An-two-nee",
+  "version": "0.0.1",
+  "description": "Based.",
+  "main": "bot.js",
+  "author": "Anthony Lachhman",
+  "dependencies": {
+    "discord.io": "https://github.com/woor/discord.io/tarball/gateway_v6"
+  }
+}
