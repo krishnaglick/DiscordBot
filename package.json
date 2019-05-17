@@ -6,6 +6,7 @@
   "author": "Anthony Lachhman",
   "dependencies": {
     "discord.io": "https://github.com/woor/discord.io/tarball/gateway_v6",
+    "enmap": "^4.8.7",
     "winston": "^3.2.1"
   }
 }
