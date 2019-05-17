@@ -30,4 +30,4 @@ client.on('message', message => {
 		message.reply('Cannot run command!');
 	}
 });
-client.login(token);
+
