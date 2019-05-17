@@ -12,6 +12,7 @@ var bot = new Discord.Client({
     token: auth.token,
     autorun: true
 });
+
 bot.on('ready', function (evt) {
     logger.info('Connected');
     logger.info('Logged in as: ');
@@ -20,20 +21,31 @@ bot.on('ready', function (evt) {
 bot.on('message', function (user, userID, channelID, message, evt) {
     // Our bot needs to know if it will execute a command
     // It will listen for messages that will start with `!`
-    if (message.substring(0, 1) == '!') {
+    if (message.substring(0, 1) === auth.prefix) {
         var args = message.substring(1).split(' ');
         var cmd = args[0];
-
+        for(x in args){
+            logger.info(x.toString() + " ")
+        }
         args = args.splice(1);
         switch(cmd) {
             // !ping
-            case 'ping':
+            case 'say':
                 bot.sendMessage({
                     to: channelID,
                     message: 'Pong!'
                 });
                 break;
             // Just add any case commands if you want to..
+            case 'ping':
+                //const m = await message.channel.send("Ping?");
+                bot.sendMessage({
+                    to: channelID,
+                    message: `Latency is ${message.createdTimestamp - message.createdTimestamp}ms. API Latency is ${Math.round(bot.ping)}ms`
+                });
+                break;
+            case 'penis':
+
         }
     }
 });
