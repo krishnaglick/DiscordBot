@@ -12,13 +12,28 @@ for (const file of commandFiles) {
 	client.commands.set(command.name, command);
 }
 
+const responseObject = {
+    ":^)": "(^:",
+    "based": "and redpilled",
+    "ascii": "][_ {[]} ][_",
+    "gay": "SHUT THE FUCK UP JARL"
+};
+
 client.once('ready', () => {
 	console.log('Bot is running');
 });
 
-client.on('message', message => {
-	if (!message.content.startsWith(prefix) || message.author.bot) return;
+const squint = client.emojis.find(emoji => emoji.name === "squint");
 
+client.on('message', message => {
+    if(responseObject[message.content]) {
+        message.channel.send(responseObject[message.content]);
+    }
+    if(Math.floor(Math.random() * 100) > 99){
+        message.react(client.emojis.find(emoji => emoji.name === "squint").id);
+    }
+
+	if (!message.content.startsWith(prefix) || message.author.bot) return;
 	const args = message.content.slice(prefix.length).split(/ +/);
 	const command = args.shift().toLowerCase();
 
