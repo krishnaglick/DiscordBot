@@ -14,6 +14,7 @@ module.exports = {
             case 8: message.channel.send(`Mario`); break;
             case 9: message.channel.send(`Try again`); break;
             default: message.channel.send(`You die a horrible death by the hands of ${message.guild.members.random().user.username}`); break;
+            //Todo: come up with 90 more fortune possibilities.
         }
     },
 };
