@@ -6,6 +6,3 @@ module.exports = {
         message.channel.send("sent.");
     },
 };
-function battle(attacker, defender, atkATK, defDEF) {
-
-}
