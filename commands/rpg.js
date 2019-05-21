@@ -2,6 +2,10 @@ module.exports = {
     name: 'rpg',
     description: 'Conduct an RPG battle',
     execute(message, args) {
+        if(args[0] === "?"){
+            message.channel.send("Syntax is: >rpg player1name player1ATK player1DEF player2Name player2ATK player2DEF");
+            return;
+        }
         var comb1 = [args[0],args[1],args[2]];
         var comb2 = [args[3],args[4],args[5]];
         battle(comb1[0],comb2[0],comb1[1],comb1[2],comb2[1],comb2[2],100,100,message,1);
@@ -26,6 +30,7 @@ function battle(attacker, defender, atkATK, atkDEF, defATK, defDEF, atkHP, defHP
     else{
         turnEndText = "Now it's " + defender +"\'s turn";
         message.channel.send(turnLabel +"\n"+ hpdisp +"\n"+ attackText +"\n"+ resultText +"\n"+ turnEndText);
+        if(turnCount === 50){return;}
         battle(defender,attacker, defATK, defDEF, atkATK, atkDEF, (defHP - (atkATK - defDEF)), atkHP, message, turnCount+1);
     }
 }
