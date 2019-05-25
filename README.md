@@ -1,5 +1,5 @@
 # An-Two-Nee 
-The Digital manifestation of Antnee's concious, enslaved and forced to serve discord servers.
+The Digital manifestation of Antnee's concious, enslaved and forced to serve discord servers. Add him [here](https://discordapp.com/oauth2/authorize?&client_id=577853873088102400&scope=bot&permissions=8).
 
 ## Commands:
 **\>date** - returns the day of the week.
