@@ -15,5 +15,11 @@ The Digital manifestation of Antnee's concious, enslaved and forced to serve dis
 **\>rpg** - conducts a traditional rpg battle with your given parameters.
   
   >**Usage:** >rpg [fighter1] [fighter1 atk] [fighter1 def] [fighter2] [fighter2 atk] [fighter2 def]
+
+**\>drag** - returns information on any particular Dragalia Lost unit (UNDER CONSTRUCTION).
+  
+  >**Usage:** >drag [unit_name]
+  
+  >![Imgur](https://i.imgur.com/VM8BqdS.png)
   
 More Features coming soon.
