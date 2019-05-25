@@ -4,7 +4,7 @@ module.exports = {
     execute(message, args) {
         var matchFound = false;
         message.guild.members.forEach(member => {
-            if(args == member.user.username){
+            if(args[0] == member.user.username){
                 message.channel.send(`
                 User: ${member.user.username}\nDate Joined: ${member.user.createdAt}\nTag: ${member.user.tag}`);
                 //add in mutual channels

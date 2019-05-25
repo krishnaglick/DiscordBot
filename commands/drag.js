@@ -1,6 +1,7 @@
 const cheerio = require('cheerio')
 const request = require('request')
 const Discord = require('discord.js');
+const cheerioTableparser = require('cheerio-tableparser')
 module.exports = {
     name: 'drag',
     description: 'view the drag wiki',
@@ -31,25 +32,33 @@ module.exports = {
                 //get unit portrait
                 const image = body.find($('.adv-portrait')).children().find($('img')).attr('src');
                 //get unit info array
-                const strength = body.find($('.dd-description')).each(function (i, elem) {
+                const info = body.find($('.dd-description')).each(function (i, elem) {
                     infoArr[i] = $(this).text()
                 })
                 //get unit type
-                const type = body.find($('.dd-description')).find($('img')).attr('src');
+                const title = body.find($('.panel-heading div[style]')).text();
                 //get unit rarity
                 const rarity = body.find($('.dd-description div[style]')).find($('img')).last().attr('src');
+
+                cheerioTableparser($);
+                const unitTable = $('table')
+                const data = $(unitTable).parsetable(true,true,true);
+                var s1 = ["**" + data[0][0] + ": **", data[0][1].substring(data[0][1].indexOf('Lv. 3'),data[0][1].length).replace('Lv. 3','')];
+                var s2 = ["**" + data[0][2] + ": **", data[0][3].substring(data[0][3].indexOf('Lv. 2'),data[0][3].length).replace('Lv. 2','')];
+                var coab = ["**" + data[0][4] + "**", data[0][5].substring(data[0][5].lastIndexOf('\n')+1)];
+                var p1 = ["**" + data[0][6] + ": **", data[0][7].substring(data[0][7].lastIndexOf('\t')+1)];
+                var p2 = ["**" + data[0][8] + ": **", data[0][9].substring(data[0][9].lastIndexOf('\t')+1)];
+                var p3 = ["**" + data[0][10] + ": **", data[0][11].substring(data[0][11].lastIndexOf('\t')+1)];
                 const embed = new Discord.RichEmbed()
                     .setColor(elementColor)
-                    .setAuthor(unitName, elem)
+                    .setAuthor(unitName + ": " + title, elem)
                     .setImage(image)
                     .setThumbnail(rarity)
-                    .addField("Base HP",infoArr[0],true)
-                    .addField("Base STR",infoArr[1],true)
-                    .addField("Base DEF",infoArr[2],true)
-                    .addField("Availability",infoArr[13],true)
-                    .addField("Showcase",infoArr[11])
                     .addField("ENG VA",infoArr[9],true)
                     .addField("JP VA",infoArr[10],true)
+                    .addField("---Co-Ability:---", coab)
+                    .addField("-----Skills:-----",s1[0]+s1[1]+"\n"+s2[0]+s2[1])
+                    .addField("-----Ability:-----",p1[0]+p1[1]+"\n"+p2[0]+p2[1]+"\n"+p3[0]+p3[1])
                 message.channel.send({embed})
             }
         })
