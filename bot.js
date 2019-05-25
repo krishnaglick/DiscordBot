@@ -16,7 +16,7 @@ const responseObject = {
     ":^)": "(^:",
     "based": "and redpilled",
     "ascii": "][_ {[]} ][_",
-    "gay": "SHUT THE FUCK UP JARL"
+    "gay": "SHUT THE FUCK UP"
 };
 
 client.once('ready', () => {
@@ -27,7 +27,7 @@ const squint = client.emojis.find(emoji => emoji.name === "squint");
 
 client.on('message', message => {
     if(responseObject[message.content]) {
-        message.channel.send(responseObject[message.content]);
+        message.reply(responseObject[message.content]);
     }
     if(Math.floor(Math.random() * 100) > 99){
         message.react(client.emojis.find(emoji => emoji.name === "squint").id);
