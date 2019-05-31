@@ -28,7 +28,7 @@ request(url, (error, response, html) => {
         console.log(labelArr[6]);
         const embed = new Discord.RichEmbed()
             .addField("Some bullshit",valueArr[1],true)
-            .addField("Another bullshit",labelArr[2],true)
+            .addField("Another bullshit",labelArr[1],true)
         message.channel.send({embed})
 
     }
