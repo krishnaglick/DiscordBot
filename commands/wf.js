@@ -10,13 +10,13 @@ module.exports = {
     description: 'Find weapons',
     execute(message, args) {
         function searchString (str, array1, array2) {
-            var labelValueArray = new Array();
             for (var j=0; j<array1.length; j++) {
-                if (array1[j].match(str))
-                    labelValueArray[0] = array1[j] + " " + array2[j];
-                    return labelValueArray[0];
+                if (array1[j].match(str)) {
+                    return array[j], array[j];
+                } else {
+                    return -1;
+                }
             }
-            return j;
         }
 
 
