@@ -27,8 +27,8 @@ request(url, (error, response, html) => {
         })
         console.log("WF command is running and being tested on");
         const embed = new Discord.RichEmbed()
-            .addField("Label",labelArr[0]+" "+labelArr[1]+" "+labelArr[2]+" "+labelArr[3]+" "+labelArr[4]+" "+labelArr[5]+" "+labelArr[6]+" "+labelArr[7]+" "+labelArr[8]+" "+labelArr[9],true)
-            .addField("Value",valueArr[0]+" "+valueArr[1]+" "+valueArr[2]+" "+valueArr[3]+" "+valueArr[4]+" "+valueArr[5]+" "+valueArr[6]+" "+valueArr[7]+" "+valueArr[8]+" "+valueArr[9],true)
+            .addField("Label",labelArr[0]+" -"+labelArr[1]+"-"+labelArr[2]+" -"+labelArr[3]+" -"+labelArr[4]+" -"+labelArr[5]+" -"+labelArr[6]+" -"+labelArr[7]+" -"+labelArr[8]+" -"+labelArr[9],true)
+            .addField("Value",valueArr[0]+" -"+valueArr[1]+" -"+valueArr[2]+" -"+valueArr[3]+" -"+valueArr[4]+" -"+valueArr[5]+" -"+valueArr[6]+" -"+valueArr[7]+" -"+valueArr[8]+" -"+valueArr[9],true)
         message.channel.send({embed})
 
     }
