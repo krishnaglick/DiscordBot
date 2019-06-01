@@ -9,13 +9,15 @@ module.exports = {
     name: 'wf',
     description: 'Find weapons',
     execute(message, args) {
+        //this is supposed to string match labels later so that I don't have to guess and check what position in an array a label is in
+        //It's not working right now of course
         function searchString (str, array1, array2) {
             for (var j=0; j<array1.length; j++) {
                 if (array1[j].match(str)) {
                     return console.log(array1[j].toString(), array2[j].toString());
                 }
             }
-            return console.log(array1[j].toString(), array2[j].toString());
+            return j;
         }
 
 
@@ -51,6 +53,7 @@ request(url, (error, response, html) => {
         const embed = new Discord.RichEmbed()
             .setImage(image)
             .addField(searchString('Disposition', 'labelArr[i]', 'valueArr[i]'))
+            .addField(valueArr)
             //.addField("Label","MR"+"\n"+"Slot"+"\n"+"Type"+"\n"+labelArr[3]+"\n"+labelArr[4]+"\n"+labelArr[5]+"\n"+labelArr[6]+"\n"+labelArr[7]+"\n"+labelArr[8]+"\n"+labelArr[9]+"\n"+labelArr[10]+"\n"+labelArr[11]+"\n"+labelArr[12],true)
             //.addField("Value",valueArr[1]+"\n"+valueArr[2]+"\n"+valueArr[3]+"\n"+valueArr[4]+"\n"+valueArr[5]+"\n"+valueArr[6]+"\n"+valueArr[7]+"\n"+valueArr[8]+"\n"+valueArr[9]+"\n"+valueArr[10]+"\n"+valueArr[11]+"\n"+valueArr[12]+"\n",true)
         message.channel.send({embed})
