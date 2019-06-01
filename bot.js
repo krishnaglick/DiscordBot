@@ -21,6 +21,7 @@ const responseObject = {
 
 client.once('ready', () => {
 	console.log('Bot is running');
+	client.user.setActivity('Mario');
 });
 
 const squint = client.emojis.find(emoji => emoji.name === "squint");

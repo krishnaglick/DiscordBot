@@ -6,7 +6,7 @@ module.exports = {
         let date = new Date().getDay()
         console.log(date)
         // 0 is Sunday, 1 is monday, and so on
-        if(date == 0)
+        if (date == 0)
             message.channel.send("https://imgur.com/JcsIYJs")
         if (date == 1)
              message.channel.send("https://imgur.com/q1J8xO5")
