@@ -52,8 +52,11 @@ request(url, (error, response, html) => {
 
         const embed = new Discord.RichEmbed()
             .setImage(image)
-            .addField(searchString('Disposition', 'labelArr[i]', 'valueArr[i]'))
-            .addField(valueArr)
+        //This is another attempt at array matching, I'll work on this in two days when I'm not fasting
+        const neededLabeles = ["Trigger Type","Ammo Type","Fire Rate","Magazine Size","Max Ammo","Reload Time"];
+        for (var j=0; j<array1.length; j++) {
+            if (array1[j].match(str)) {
+
             //.addField("Label","MR"+"\n"+"Slot"+"\n"+"Type"+"\n"+labelArr[3]+"\n"+labelArr[4]+"\n"+labelArr[5]+"\n"+labelArr[6]+"\n"+labelArr[7]+"\n"+labelArr[8]+"\n"+labelArr[9]+"\n"+labelArr[10]+"\n"+labelArr[11]+"\n"+labelArr[12],true)
             //.addField("Value",valueArr[1]+"\n"+valueArr[2]+"\n"+valueArr[3]+"\n"+valueArr[4]+"\n"+valueArr[5]+"\n"+valueArr[6]+"\n"+valueArr[7]+"\n"+valueArr[8]+"\n"+valueArr[9]+"\n"+valueArr[10]+"\n"+valueArr[11]+"\n"+valueArr[12]+"\n",true)
         message.channel.send({embed})
