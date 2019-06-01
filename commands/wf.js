@@ -13,7 +13,7 @@ module.exports = {
             for (var j=0; j<array1.length; j++) {
                 if (array1[j].match(str)) return array1[j], array2[j];
             }
-            return j;
+            return [array1[j], array2[j]];
         }
 
 
