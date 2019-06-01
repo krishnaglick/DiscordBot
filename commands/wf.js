@@ -28,7 +28,7 @@ request(url, (error, response, html) => {
         console.log("WF command is running and being tested on");
         const embed = new Discord.RichEmbed()
             .addField("Label",labelArr[3]+"\n"+labelArr[4]+"\n"+labelArr[5]+"\n"+labelArr[6]+"\n"+labelArr[7]+"\n"+labelArr[8]+"\n"+labelArr[9],true)
-            .addField("Value","\n"value[0]+valueArr[1]+"\n"+valueArr[2]+"\n"+valueArr[3]+"\n"+valueArr[4]+"\n"+valueArr[5]+"\n"+valueArr[6]+"\n"+valueArr[7]+"\n"+valueArr[8]+"\n"+valueArr[9],true)
+            .addField("Value",value[0]+valueArr[1]+"\n"+valueArr[2]+"\n"+valueArr[3]+"\n"+valueArr[4]+"\n"+valueArr[5]+"\n"+valueArr[6]+"\n"+valueArr[7]+"\n"+valueArr[8]+"\n"+valueArr[9],true)
         message.channel.send({embed})
 /*the first element (labelArr[0]) seems to be the image of the gun
 * */
