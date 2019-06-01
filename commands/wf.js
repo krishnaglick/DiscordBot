@@ -14,7 +14,7 @@ module.exports = {
                 if (array1[j].match(str)) {
                     return array1[j].toString(), array2[j].toString();
                 } else {
-                    return -1;
+                    return array1[j].toString();
                 }
             }
         }
