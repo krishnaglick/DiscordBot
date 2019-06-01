@@ -16,7 +16,7 @@ module.exports = {
                     labelValueArray[0] = array1[j] + " " + array2[j];
                     return labelValueArray[0];
             }
-            return j, labelValueArray[0];
+            return j;
         }
 
 
