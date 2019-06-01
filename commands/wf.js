@@ -13,7 +13,7 @@ module.exports = {
             var labelValueArray = new Array();
             for (var j=0; j<array1.length; j++) {
                 if (array1[j].match(str))
-                    labelValueArray[0] = array1[j] + ' ' + array2[j]
+                    labelValueArray[0] = array1[j] + " " + array2[j];
                     return labelValueArray;
             }
             return j, labelValueArray;
