@@ -14,7 +14,7 @@ module.exports = {
             for (var j=0; j<array1.length; j++) {
                 if (array1[j].match(str))
                     labelValueArray[0] =
-                    return [array1[j], array2[j]];
+                    return array1[j], array2[j];
             }
             return j, array1[j], array2[j];
         }
