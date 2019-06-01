@@ -15,14 +15,19 @@ module.exports = {
             }
             return -1;
         }
-    var url = 'https://warframe.fandom.com/wiki/'+ args[x];
-        var append = "";
-        for(var x = 0; x < args.length; x++){
-            if(x !== 0){
-                append += "_";
+
+        function argFinder (args[x]) {
+            var append = "";
+            for(var x = 0; x < args.length; x++){
+                if(x !== 0){
+                    append += "_";
+                    return args[x];
+                }
+                return -1;
             }
-            append += args[x].charAt(0).toUpperCase() + args[x].slice(1);
         }
+        
+        var url = 'https://warframe.fandom.com/wiki/'+ args[x];
 
 request(url, (error, response, html) => {
     if (!error && response.statusCode == 200) {
