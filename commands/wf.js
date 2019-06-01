@@ -25,7 +25,7 @@ request(url, (error, response, html) => {
         const label = body.find($('.pi-data-label')).each(function (i, elem) {
             labelArr[i] = $(this).text()
         })
-        var image = body.find($('.image.image-thumbnail')).attr('src');
+        var image = body.find($('img.lzyPlcHld.lzyTrns.lzyLoaded')).attr('src');
 
         const embed = new Discord.RichEmbed()
             .setImage(image)
