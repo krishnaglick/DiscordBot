@@ -17,6 +17,7 @@ request(url, (error, response, html) => {
         const $ = cheerio.load(html);
         const gunName = $('h1').html()
         const body = $('body')
+        const imageLocation = $('div.floatnone')
         const labelArr = {}
         const valueArr = {}
         const value = body.find($('.pi-data-value')).each(function (i, elem) {
@@ -25,7 +26,7 @@ request(url, (error, response, html) => {
         const label = body.find($('.pi-data-label')).each(function (i, elem) {
             labelArr[i] = $(this).text()
         })
-        var image = body.find($('a.image.image-thumbnail')).attr('href');
+        var image = imageLocation.find($('a.image.image-thumbnail')).attr('href');
 
         const embed = new Discord.RichEmbed()
             .setImage(image)
