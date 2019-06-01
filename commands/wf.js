@@ -10,10 +10,18 @@ module.exports = {
     description: 'Find weapons',
     execute(message, args) {
 
-    const url = 'https://warframe.fandom.com/wiki/'+ args[0];
+    var url = 'https://warframe.fandom.com/wiki/'+ args[x];
+        for(var x = 0; x < args.length; x++){
+            if(x !== 0){
+                append += "_";
+            }
+            append += args[x].charAt(0).toUpperCase() + args[x].slice(1);
+        }
 
 request(url, (error, response, html) => {
     if (!error && response.statusCode == 200) {
+
+
         const $ = cheerio.load(html);
         const gunName = $('h1').html()
         const body = $('body')
