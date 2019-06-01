@@ -16,7 +16,7 @@ module.exports = {
             return -1;
         }
 
-        function argFinder (args[x]) {
+        function argFinder (args){
             var append = "";
             for(var x = 0; x < args.length; x++){
                 if(x !== 0){
@@ -26,8 +26,8 @@ module.exports = {
                 return -1;
             }
         }
-        
-        var url = 'https://warframe.fandom.com/wiki/'+ args[x];
+
+        var url = 'https://warframe.fandom.com/wiki/'+ argFinder();
 
 request(url, (error, response, html) => {
     if (!error && response.statusCode == 200) {
