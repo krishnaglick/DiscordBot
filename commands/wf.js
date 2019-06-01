@@ -6,7 +6,7 @@ const Discord = require('discord.js');
 
 //So the discord wrapper runs without problems which is nice. Nothing happens of course because I think it has to be ran on the server
 module.exports = {
-    name: 'Warframe Weapons, maybe frames?',
+    name: 'wf',
     description: 'Find weapons',
     execute(message, args) {
 
