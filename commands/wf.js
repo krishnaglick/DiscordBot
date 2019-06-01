@@ -16,18 +16,16 @@ module.exports = {
             return -1;
         }
 
-        function argFinder (args){
-            var append = "";
-            for(var x = 0; x < args.length; x++){
-                if(x !== 0){
-                    append += "_";
-                    return args[x];
-                }
-                return -1;
+
+        var append = "";
+        for(var x = 0; x < args.length; x++){
+            if(x !== 0){
+                append += "_";
             }
+            append += args[x].charAt(0).toUpperCase() + args[x].slice(1);
         }
 
-        var url = 'https://warframe.fandom.com/wiki/'+ argFinder();
+        var url = 'https://warframe.fandom.com/wiki/'+ arg[x];
 
 request(url, (error, response, html) => {
     if (!error && response.statusCode == 200) {
