@@ -12,10 +12,10 @@ module.exports = {
         function searchString (str, array1, array2) {
             for (var j=0; j<array1.length; j++) {
                 if (array1[j].match(str)) {
-                    return array1[j].toString(), array2[j].toString();
+                    return console.log(array1[j].toString(), array2[j].toString());
                 }
             }
-            return array1[j].toString(), array2[j].toString();
+            return console.log(array1[j].toString(), array2[j].toString());
         }
 
 
