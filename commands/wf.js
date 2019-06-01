@@ -11,7 +11,7 @@ module.exports = {
     execute(message, args) {
         function searchString (str, array) {
             for (var j=0; j<array.length; j++) {
-                if (array[j].match(str)) return [labelArr[j], valueArr[j]];
+                if (array[j].match(str)) return [labelArr[j]];
             }
             return -1;
         }
