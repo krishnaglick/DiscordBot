@@ -16,12 +16,13 @@ module.exports = {
             for (var j = 0; j < array1.length; j++) {
                 console.log(j);
                 console.log(str);
+                //uh wtf?
                 console.log(array1[j]);
                 if (array1[j].match(str)) {
                     return j;
                 }
             }
-            return parseInt(j);
+            return j;
         }
 
 
