@@ -54,20 +54,26 @@ request(url, (error, response, html) => {
             labelArr[i] = $(this).text()
         })
         console.log(labelArr);
-
-        function searchString (str, array1) {
-            for (var j = 0; j < array1.length; j++) {
+/*
+        function searchString (str, array) {
+            for (var j = 0; j < array.length; j++) {
                 console.log(j);
                 console.log(str);
                 //uh wtf?
-                console.log(array1[j]);
-                if (array1[j].match(str)) {
+                console.log(array[j]);
+                if (array[j].match(str)) {
                     return j;
                 }
             }
             return j;
         }
-
+*/
+        function searchString (str, array) {
+            var arrayTemp = array;
+            var indexAquire = arrayTemp.indexOf(str);
+            return indexAquire;
+        }
+        
         const y = searchString("Fire Rate", labelArr);
         console.log(y);
 
