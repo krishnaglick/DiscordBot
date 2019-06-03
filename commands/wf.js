@@ -60,6 +60,7 @@ request(url, (error, response, html) => {
         }
 
         x = searchString('Disposition', labelTemp);
+        console.log(x);
 
 
         var image = imageLocation.find($('a.image.image-thumbnail')).attr('href');
