@@ -14,8 +14,7 @@ module.exports = {
 
         function searchString (str, array1) {
             for (var j = 0; j < array1.length; j++) {
-                var g = 0;
-                console.log(g += 1)
+                console.log(j)
                 if (array1[j].match(str)) {
                     return j;
                 }
