@@ -72,8 +72,8 @@ request(url, (error, response, html) => {
         const critD = finalConvertedLabel.indexOf('Crit Multiplier')
         const statusC = finalConvertedLabel.indexOf('Status Chance');
         const fireRate = finalConvertedLabel.indexOf('Fire Rate');
-        console.log(labelArr);
-        console.log(convert2D);
+        const dispo = finalConvertedLabel.indexOf('Disposition');
+
 
         //var image = imageLocation.find($('a.image.image-thumbnail')).attr('href');
         var image = imageLocation.find($('img.lzyPlcHld')).attr('data-src');
@@ -87,6 +87,7 @@ request(url, (error, response, html) => {
         console.log(finalConvertedValue);
         */
         const embed = new Discord.RichEmbed()
+            .setAuthor(gunName + "Disposition: " + valueArr[dispo+1], elem)
             .setImage(image)
             .addField(labelArr[ammoType], " " + valueArr[ammoType+1])
             .addField(labelArr[fireRate], " " + valueArr[fireRate+1])
