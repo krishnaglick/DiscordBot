@@ -56,7 +56,7 @@ request(url, (error, response, html) => {
                     return j;
                 }
             }
-            return parseInt(j)
+            return j;
         }
 
         x = searchString('Disposition', labelTemp);
