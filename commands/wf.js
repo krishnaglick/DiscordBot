@@ -48,19 +48,16 @@ request(url, (error, response, html) => {
         const label = body.find($('.pi-data-label')).each(function (i, elem) {
             labelArr[i] = $(this).text()
         })
-        const labelTemp = labelArr;
-        const valueTemp = valueArr;
+
         function searchString (str, array1) {
-            var y = 0;
             for (var j = 0; j < array1.length; j++) {
                 if (array1[j].match(str)) {
-                 y = j;
-                 return y;
+                 return j;
                 }
             }
         }
 
-        const x = searchString('Disposition', labelTemp);
+        const x = searchString('Disposition', label);
         console.log(x);
 
 
