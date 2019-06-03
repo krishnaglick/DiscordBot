@@ -63,7 +63,7 @@ request(url, (error, response, html) => {
         }
 */
 
-        const y = searchString("Critical Chance", 'labelArr');
+        const y = searchString("Ammo Type", 'labelArr');
 
 
         var image = imageLocation.find($('a.image.image-thumbnail')).attr('href');
