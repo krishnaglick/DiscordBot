@@ -86,74 +86,19 @@ request(url, (error, response, html) => {
         console.log('==============================================' + '\n');
         console.log('==============================================' + '\n');
         console.log(finalConvertedValue);
-        
-        const embed = new Discord.RichEmbed()
-            .setAuthor(gunName + "    " + valueArr[dispo+1], gunIcon)
-            .setImage(image)
-            .addField(labelArr[ammoType], " " + valueArr[ammoType+1])
-            .addField(labelArr[fireRate], " " + valueArr[fireRate+1])
-            .addField(labelArr[critC], " " + valueArr[critC+1])
-            .addField(labelArr[critD], " " + valueArr[critD+1])
-            .addField(labelArr[statusC], " " + valueArr[statusC+1])
-        message.channel.send({embed})
+
+               const embed = new Discord.RichEmbed()
+                    .setAuthor(gunName + "    " + valueArr[dispo + 1], gunIcon)
+                    .setImage(image)
+                    .addField(labelArr[ammoType], " " + valueArr[ammoType + 1])
+                    .addField(labelArr[fireRate], " " + valueArr[fireRate + 1])
+                    .addField(labelArr[critC], " " + valueArr[critC + 1])
+                    .addField(labelArr[critD], " " + valueArr[critD + 1])
+                    .addField(labelArr[statusC], " " + valueArr[statusC + 1])
+                message.channel.send({embed})
 
 
     }
 })
 },
 };
-
-
-//Trial and error lies below
-
-
-
-/* function searchString (str, array1) {
-        const x = array1.indexOf(str);
-        return x;
-       }*/
-
-/*
-       function searchString (str, array1) {
-            for (var j = 0; j < array1.length; j++) {
-                var k = 0;
-                if (array1[j].match(str)) {
-                    k = j;
-                    return k;
-                }
-            }
-            return k;
-        }
-
-*/
-
-/*
-        function searchString (str, array1) {
-            for (var j = 0; j < array1.length; j++) {
-                console.log(j);
-                console.log(str);
-                //uh wtf?
-                console.log(array1[j]);
-                if (array1[j].match(str)) {
-                    return j;
-                }
-            }
-            return j;
-        }
-*/
-
-
-/*
-        function searchString (str, array) {
-            for (var j = 0; j < array.length; j++) {
-                console.log(j);
-                console.log(str);
-                //uh wtf?
-                console.log(array[j]);
-                if (array[j].match(str)) {
-                    return j;
-                }
-            }
-            return j;
-        }
-*/
