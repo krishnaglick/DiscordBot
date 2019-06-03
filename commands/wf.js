@@ -69,11 +69,9 @@ request(url, (error, response, html) => {
         }
 */
         function searchString (str, array) {
-            var arrayTemp = array;
-            var indexAquire = arrayTemp.indexOf(str);
-            return indexAquire;
+            return array.indexOf(str);
         }
-        
+
         const y = searchString("Fire Rate", labelArr);
         console.log(y);
 
