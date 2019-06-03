@@ -69,7 +69,7 @@ request(url, (error, response, html) => {
         }
 
         const y = searchString("Fire Rate", labelArr);
-
+        console.log(y);
 
         var image = imageLocation.find($('a.image.image-thumbnail')).attr('href');
 
