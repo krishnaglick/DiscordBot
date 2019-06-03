@@ -16,6 +16,7 @@ module.exports = {
             for (var j = 0; j < array1.length; j++) {
                 console.log(j);
                 console.log(str);
+                console.log(array1[j]);
                 if (array1[j].match(str)) {
                     return j;
                 }
