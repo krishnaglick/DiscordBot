@@ -40,7 +40,6 @@ request(url, (error, response, html) => {
         const label = body.find($('.pi-data-label')).each(function (i, elem) {
             labelArr[i] = $(this).text()
         })
-        console.log(labelArr);
 
         var convertedLabelArr = [];
 
@@ -48,7 +47,7 @@ request(url, (error, response, html) => {
             var convert2D = Object.keys(array1).map(function (key) {
                 return [array1[key]];
             });
-            
+
 
             for (i = 0; i < convert2D.length; i++) {
                 array2 = array2.concat(convert2D[i]);
