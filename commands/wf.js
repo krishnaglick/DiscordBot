@@ -18,7 +18,6 @@ module.exports = {
                     return j;
                 }
                 return parseInt(j);
-                j = 0;
             }
         }
 
