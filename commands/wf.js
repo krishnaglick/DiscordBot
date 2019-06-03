@@ -54,7 +54,7 @@ request(url, (error, response, html) => {
         function searchString (str, array1, array2) {
             for (var j=0; j<array1.length; j++) {
                 if (array1[j].match(str)) {
-                    console.long(array1[j]);
+                    console.long(array1[j] + array2[j]);
                     return array1[j];
                 }
             }
