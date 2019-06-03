@@ -58,8 +58,8 @@ request(url, (error, response, html) => {
             return j;
         }
 
-        const y = searchString('Disposition', labelArr);
-        console.log(searchString('Disposition', labelArr));
+        const y = searchString('Disposition', 'labelArr');
+        console.log(searchString('Disposition', 'LabelArr'));
         console.log(y);
 
 
