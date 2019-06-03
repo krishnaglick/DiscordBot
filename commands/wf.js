@@ -11,7 +11,7 @@ module.exports = {
     execute(message, args) {
         //this is supposed to string match labels later so that I don't have to guess and check what position in an array a label is in
         //It's not working right now of course
-
+/*
         function searchString (str, array1) {
             for (var j = 0; j < array1.length; j++) {
                 if (array1[j].match(str)) {
@@ -20,7 +20,7 @@ module.exports = {
             }
             return parseInt(j)
         }
-var y = 0
+*/
 
         var append = "";
         for(var x = 0; x < args.length; x++){
@@ -50,8 +50,16 @@ request(url, (error, response, html) => {
         })
         const labelTemp = labelArr;
         const valueTemp = valueArr;
+        function searchString (str, array1) {
+            for (var j = 0; j < array1.length; j++) {
+                if (array1[j].match(str)) {
+                    return j;
+                }
+            }
+            return parseInt(j)
+        }
 
-        y = searchString('Disposition', 'labelArr[i]');
+        x = searchString('Disposition', labelTemp);
 
 
         var image = imageLocation.find($('a.image.image-thumbnail')).attr('href');
