@@ -30,6 +30,7 @@ request(url, (error, response, html) => {
 
         const $ = cheerio.load(html);
         const gunName = $('h1').html()
+        const gunIcon = body.find($('a.image.image-thumbnail.link-internal')).children().find($('img')).attr('data-src');
         const body = $('body')
         const imageLocation = $('div.floatnone')
         const labelArr = {}
@@ -87,7 +88,7 @@ request(url, (error, response, html) => {
         console.log(finalConvertedValue);
         */
         const embed = new Discord.RichEmbed()
-            .setAuthor(gunName + "Disposition: " + valueArr[dispo+1], elem)
+            .setAuthor(gunName + "Disposition: " + valueArr[dispo+1], gunIcon)
             .setImage(image)
             .addField(labelArr[ammoType], " " + valueArr[ammoType+1])
             .addField(labelArr[fireRate], " " + valueArr[fireRate+1])
