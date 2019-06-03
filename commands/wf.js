@@ -12,13 +12,14 @@ module.exports = {
         //this is supposed to string match labels later so that I don't have to guess and check what position in an array a label is in
         //It's not working right now of course
 
-        function searchString (str, array1, array2) {
-            for (var j=0; j<array1.length; j++) {
+        function searchString (str, array1) {
+            for (var j = 0; j < array1.length; j++) {
                 if (array1[j].match(str)) {
                     return j;
                 }
+                return parseInt(j);
+                j = 0;
             }
-            return parseInt(j);
         }
 
 
@@ -48,7 +49,9 @@ request(url, (error, response, html) => {
         const label = body.find($('.pi-data-label')).each(function (i, elem) {
             labelArr[i] = $(this).text()
         })
-        var x, y, z = 0;
+        const labelTemp = labelArr;
+        const valueTemp = valueArr;
+
         x = searchString('Disposition', 'labelArr[i]');
 
 
