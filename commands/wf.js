@@ -48,17 +48,12 @@ request(url, (error, response, html) => {
         const label = body.find($('.pi-data-label')).each(function (i, elem) {
             labelArr[i] = $(this).text()
         })
-        console.log(searchString('Reload Time', 'labelArr[i]'));
+        var x, y, z = 0;
         x = searchString('Reload Time', 'labelArr[i]');
         y = searchString('Disposition', 'labelArr[i]');
         z = searchString('Critical Chance', 'labelArr[i]');
 
         var image = imageLocation.find($('a.image.image-thumbnail')).attr('href');
-
-       /* function searchString (str, array1) {
-         const x = array1.indexOf(str);
-         return x;
-        }*/
 
         const embed = new Discord.RichEmbed()
             .setImage(image)
@@ -69,13 +64,21 @@ request(url, (error, response, html) => {
             //.addField("Value",valueArr[1]+"\n"+valueArr[2]+"\n"+valueArr[3]+"\n"+valueArr[4]+"\n"+valueArr[5]+"\n"+valueArr[6]+"\n"+valueArr[7]+"\n"+valueArr[8]+"\n"+valueArr[9]+"\n"+valueArr[10]+"\n"+valueArr[11]+"\n"+valueArr[12]+"\n",true)
         message.channel.send({embed})
         //console.log(image);
-/*the first element (labelArr[0]) seems to be the image of the gun
-* */
 
     }
 })
 },
 };
+
+
+
+
+
+
+/* function searchString (str, array1) {
+        const x = array1.indexOf(str);
+        return x;
+       }*/
 
 
 
