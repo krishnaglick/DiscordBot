@@ -38,20 +38,9 @@ module.exports = {
 
 request(url, (error, response, html) => {
     if (!error && response.statusCode == 200) {
-        /*
-        function searchString (str, array1) {
-            for (var j = 0; j < array1.length; j++) {
-                console.log(j);
-                console.log(str);
-                //uh wtf?
-                console.log(array1[j]);
-                if (array1[j].match(str)) {
-                    return j;
-                }
-            }
-            return j;
-        }
-*/
+
+
+
         const $ = cheerio.load(html);
         const gunName = $('h1').html()
         const body = $('body')
@@ -65,7 +54,20 @@ request(url, (error, response, html) => {
             labelArr[i] = $(this).text()
         })
         console.log(labelArr);
-
+        
+        function searchString (str, array1) {
+            for (var j = 0; j < array1.length; j++) {
+                console.log(j);
+                console.log(str);
+                //uh wtf?
+                console.log(array1[j]);
+                if (array1[j].match(str)) {
+                    return j;
+                }
+            }
+            return j;
+        }
+/*
        function searchString (str, array1) {
             for (var j = 0; j < array1.length; j++) {
                 var k = 0;
@@ -77,7 +79,7 @@ request(url, (error, response, html) => {
             return k;
         }
 
-
+*/
         const y = searchString("Fire Rate", 'labelArr');
 
 
