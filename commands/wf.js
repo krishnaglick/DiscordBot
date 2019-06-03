@@ -51,12 +51,13 @@ request(url, (error, response, html) => {
         const labelTemp = labelArr;
         const valueTemp = valueArr;
         function searchString (str, array1) {
+            var y = 0;
             for (var j = 0; j < array1.length; j++) {
                 if (array1[j].match(str)) {
-                    return j;
+                 y = j;
+                 return y;
                 }
             }
-            return j;
         }
 
         const x = searchString('Disposition', labelTemp);
