@@ -58,7 +58,7 @@ request(url, (error, response, html) => {
                     return -1;
                 }
             }
-            return array1[j], array1[j];
+            return array1[j];
 
         }
 
