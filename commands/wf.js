@@ -57,7 +57,7 @@ request(url, (error, response, html) => {
             }
         }
 
-        const x = searchString('Disposition', label);
+        const x = searchString('Disposition', labelArr);
         console.log(x);
 
 
