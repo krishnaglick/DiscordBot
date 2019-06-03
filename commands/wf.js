@@ -51,18 +51,19 @@ request(url, (error, response, html) => {
             finalConverted = finalConverted.concat(convert2D[i]);
         }
 
-        const y = finalConverted.indexOf('Ammo Type');
-        const x = finalConverted.indexOf('Crit Chance');
-        const z = finalConverted.indexOf('Fire Rate');
-        console.log(finalConverted);
+        const ammoType = finalConverted.indexOf('Ammo Type');
+        const critC = finalConverted.indexOf('Crit Chance');
+        const statusC = finalConverted.indexOf('Status Chance');
+        const fireRate = finalConverted.indexOf('Fire Rate');
         console.log(y);
 
         var image = imageLocation.find($('a.image.image-thumbnail')).attr('href');
 
         const embed = new Discord.RichEmbed()
             .setImage(image)
-            .addField(labelArr[y], " " + valueArr[y+1])
-            .addField(labelArr[z], " " + valueArr[z+1])
+            .addField(labelArr[ammoType], " " + valueArr[ammoType+1])
+            .addField(labelArr[fireRate], " " + valueArr[fireRate+1])
+            .addField(labelArr[statusC], " " + valueArr[statusC+1])
             //.addField(labelArr[y] + "  " + valueArr[y])
             //.addField(labelArr[z] + "  " + valueArr[z])
             //.addField("Label","MR"+"\n"+"Slot"+"\n"+"Type"+"\n"+labelArr[3]+"\n"+labelArr[4]+"\n"+labelArr[5]+"\n"+labelArr[6]+"\n"+labelArr[7]+"\n"+labelArr[8]+"\n"+labelArr[9]+"\n"+labelArr[10]+"\n"+labelArr[11]+"\n"+labelArr[12],true)
