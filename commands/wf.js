@@ -49,17 +49,20 @@ request(url, (error, response, html) => {
             labelArr[i] = $(this).text()
         })
 
-        function searchString (str, array1) {
+    /*    function searchString (str, array1) {
             for (var j = 0; j < array1.length; j++) {
                 var k = 0;
                 if (array1[j].match(str)) {
                     k = j;
-                 return k;
                 }
             }
-            return k;
         }
-
+*/
+        function searchString (str, array1) {
+            const x = array1.indexOf(str);
+            return x;
+        }
+        
         const y = searchString('Disposition', 'labelArr');
         console.log(searchString('Disposition', 'LabelArr'));
         console.log(y);
