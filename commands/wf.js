@@ -51,8 +51,8 @@ request(url, (error, response, html) => {
             finalConvertedLabel = finalConvertedLabel.concat(convert2D[i]);
         }
 
-        var convert2D = Object.keys(labelArr).map(function (key) {
-            return[labelArr[key]];
+        var convert2D = Object.keys(valueArrArr).map(function (key) {
+            return[valueArrArr[key]];
         });
 
         var finalConvertedValue = [];
