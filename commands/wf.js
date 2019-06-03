@@ -58,14 +58,13 @@ request(url, (error, response, html) => {
             }
         }
 */
-    const labelTemp = labelArr;
         function searchString (str, array1) {
             const x = array1.indexOf(str);
             return x;
         }
 
-        const y = searchString('Disposition', 'labeltemp');
-        console.log(searchString('Disposition', 'labeltemp'));
+        const y = searchString('Disposition', 'labelArr');
+        console.log(searchString('Disposition', 'labelArr'));
         console.log(y);
 
 
