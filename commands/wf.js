@@ -80,13 +80,13 @@ request(url, (error, response, html) => {
         var image = imageLocation.find($('img.lzyPlcHld')).attr('data-src');
 
         //This is going to be for testing in case I fuck something up and need to check stuff
-        /*
+
         console.log(finalConvertedLabel);
         console.log('==============================================' + '\n');
         console.log('==============================================' + '\n');
         console.log('==============================================' + '\n');
         console.log(finalConvertedValue);
-        */
+        
         const embed = new Discord.RichEmbed()
             .setAuthor(gunName + "    " + valueArr[dispo+1], gunIcon)
             .setImage(image)
