@@ -11,6 +11,7 @@ module.exports = {
     execute(message, args) {
         //this is supposed to string match labels later so that I don't have to guess and check what position in an array a label is in
         //It's not working right now of course
+        /*
         function searchString (str, array1, array2) {
             for (var j=0; j<array1.length; j++) {
                 if (array1[j].match(str)) {
@@ -18,7 +19,7 @@ module.exports = {
                 }
             }
             return j;
-        }
+        }*/
 
 
         var append = "";
@@ -49,6 +50,15 @@ request(url, (error, response, html) => {
         })
         console.log(searchString('Reload Time', 'labelArr[i]'));
         var image = imageLocation.find($('a.image.image-thumbnail')).attr('href');
+
+        function searchString (str, array1, array2) {
+            for (var j=0; j<array1.length; j++) {
+                if (array1[j].match(str)) {
+                    return array1[j], array2[j];
+                }
+            }
+            return j;
+        }
 
         const embed = new Discord.RichEmbed()
             .setImage(image)
