@@ -20,7 +20,7 @@ module.exports = {
             }
             return parseInt(j)
         }
-
+var y = 0
 
         var append = "";
         for(var x = 0; x < args.length; x++){
@@ -51,7 +51,7 @@ request(url, (error, response, html) => {
         const labelTemp = labelArr;
         const valueTemp = valueArr;
 
-        x = searchString('Disposition', 'labelArr[i]');
+        y = searchString('Disposition', 'labelArr[i]');
 
 
         var image = imageLocation.find($('a.image.image-thumbnail')).attr('href');
