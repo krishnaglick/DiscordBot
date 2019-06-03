@@ -69,7 +69,7 @@ request(url, (error, response, html) => {
         }
 */
         function searchString (str, array) {
-            var found = array.find(str);
+            var found = array.find(item => item.value === str);
             if(found){
                 var position = found.label;
                 return position;
