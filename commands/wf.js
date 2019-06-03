@@ -58,6 +58,7 @@ request(url, (error, response, html) => {
                     return j;
                 }
             }
+            return j;
         }
 
         const embed = new Discord.RichEmbed()
