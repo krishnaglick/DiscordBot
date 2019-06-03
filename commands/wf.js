@@ -68,7 +68,7 @@ request(url, (error, response, html) => {
         const fireRate = finalConvertedLabel.indexOf('Fire Rate');
 
         //var image = imageLocation.find($('a.image.image-thumbnail')).attr('href');
-        var image = imageLocation.find($('img.lzyPlcHld.lzyTrns.lzyLoaded')).attr('data-src');
+        var image = imageLocation.find($('img.lzyPlcHld')).attr('data-src');
         console.log(finalConvertedLabel);
         console.log('==============================================' + '\n');
         console.log('==============================================' + '\n');
