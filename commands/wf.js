@@ -54,11 +54,11 @@ request(url, (error, response, html) => {
         function searchString (str, array1, array2) {
             for (var j=0; j<array1.length; j++) {
                 if (array1[j].match(str)) {
-                    console.long(array1[j] + array2[j]);
-                    return j;
+                    console.log(array1[j] + array2[j]);
+                    return j + 1;
                 }
             }
-            return j;
+            return j + 1;
         }
 
         const embed = new Discord.RichEmbed()
