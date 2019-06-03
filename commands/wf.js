@@ -55,11 +55,9 @@ request(url, (error, response, html) => {
             for (var j=0; j<array1.length; j++) {
                 if (array1[j].match(str)) {
                     console.long(array1[j]);
-                    return -1;
+                    return array1[j];
                 }
             }
-            return array1[j];
-
         }
 
         const embed = new Discord.RichEmbed()
