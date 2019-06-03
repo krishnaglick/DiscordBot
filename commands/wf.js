@@ -55,7 +55,6 @@ request(url, (error, response, html) => {
         const critC = finalConverted.indexOf('Crit Chance');
         const statusC = finalConverted.indexOf('Status Chance');
         const fireRate = finalConverted.indexOf('Fire Rate');
-        console.log(y);
 
         var image = imageLocation.find($('a.image.image-thumbnail')).attr('href');
 
