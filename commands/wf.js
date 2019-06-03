@@ -78,6 +78,7 @@ request(url, (error, response, html) => {
             .addField(labelArr[ammoType], " " + valueArr[ammoType+1])
             .addField(labelArr[fireRate], " " + valueArr[fireRate+1])
             .addField(labelArr[statusC], " " + valueArr[statusC+1])
+            .addField(labelArr[statusC], " " + valueArr[critC+1])
             //.addField(labelArr[y] + "  " + valueArr[y])
             //.addField(labelArr[z] + "  " + valueArr[z])
             //.addField("Label","MR"+"\n"+"Slot"+"\n"+"Type"+"\n"+labelArr[3]+"\n"+labelArr[4]+"\n"+labelArr[5]+"\n"+labelArr[6]+"\n"+labelArr[7]+"\n"+labelArr[8]+"\n"+labelArr[9]+"\n"+labelArr[10]+"\n"+labelArr[11]+"\n"+labelArr[12],true)
