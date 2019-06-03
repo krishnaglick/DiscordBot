@@ -17,7 +17,6 @@ module.exports = {
                 if (array1[j].match(str)) {
                     return j;
                 }
-                return parseInt(j);
             }
             return parseInt(j)
         }
