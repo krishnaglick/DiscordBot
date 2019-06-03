@@ -11,7 +11,7 @@ module.exports = {
     execute(message, args) {
         //this is supposed to string match labels later so that I don't have to guess and check what position in an array a label is in
         //It's not working right now of course
-
+/*
         function searchString (str, array1) {
             for (var j = 0; j < array1.length; j++) {
                 console.log(j);
@@ -24,7 +24,7 @@ module.exports = {
             }
             return j;
         }
-
+*/
 
         var append = "";
         for(var x = 0; x < args.length; x++){
@@ -38,7 +38,18 @@ module.exports = {
 
 request(url, (error, response, html) => {
     if (!error && response.statusCode == 200) {
-
+        function searchString (str, array1) {
+            for (var j = 0; j < array1.length; j++) {
+                console.log(j);
+                console.log(str);
+                //uh wtf?
+                console.log(array1[j]);
+                if (array1[j].match(str)) {
+                    return j;
+                }
+            }
+            return j;
+        }
 
         const $ = cheerio.load(html);
         const gunName = $('h1').html()
