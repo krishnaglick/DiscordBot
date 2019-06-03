@@ -61,7 +61,6 @@ request(url, (error, response, html) => {
         const embed = new Discord.RichEmbed()
             .setImage(image)
             .addField(labelArr[y] + "  " + valueArr[y+1])
-            .addField(labelArr[x] + "  " + valueArr[x+1])
             .addField(labelArr[z] + "  " + valueArr[z+1])
             //.addField(labelArr[y] + "  " + valueArr[y])
             //.addField(labelArr[z] + "  " + valueArr[z])
