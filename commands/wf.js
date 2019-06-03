@@ -69,7 +69,12 @@ request(url, (error, response, html) => {
         }
 */
         function searchString (str, array) {
-            return array.indexOf(str);
+            var found = array.find(str);
+            if(found){
+                var position = found.label;
+                return position;
+            }else
+            return -1;
         }
 
         const y = searchString("Fire Rate", labelArr);
