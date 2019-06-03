@@ -55,6 +55,7 @@ request(url, (error, response, html) => {
                 if (array1[j].match(str)) {
                     return j;
                 }
+                return j;
             }
             return j;
         }
