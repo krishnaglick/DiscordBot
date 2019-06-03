@@ -63,7 +63,7 @@ request(url, (error, response, html) => {
 */
 
         var y = 0;
-        y = searchString('Critical Chance', 'labelArr');
+        y = searchString("Critical Chance", 'labelArr');
 
 
 
