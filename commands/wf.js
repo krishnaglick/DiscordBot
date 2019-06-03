@@ -14,7 +14,8 @@ module.exports = {
 
         function searchString (str, array1) {
             for (var j = 0; j < array1.length; j++) {
-                console.log(j)
+                console.log(j);
+                console.log(str);
                 if (array1[j].match(str)) {
                     return j;
                 }
@@ -62,9 +63,7 @@ request(url, (error, response, html) => {
         }
 */
 
-        var y = 0;
-        y = searchString("Critical Chance", 'labelArr');
-
+        const y = searchString("Critical Chance", 'labelArr');
 
 
         var image = imageLocation.find($('a.image.image-thumbnail')).attr('href');
