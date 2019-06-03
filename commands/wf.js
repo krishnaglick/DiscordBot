@@ -54,7 +54,7 @@ request(url, (error, response, html) => {
             labelArr[i] = $(this).text()
         })
         console.log(labelArr);
-        
+
         function searchString (str, array1) {
             for (var j = 0; j < array1.length; j++) {
                 console.log(j);
@@ -67,20 +67,8 @@ request(url, (error, response, html) => {
             }
             return j;
         }
-/*
-       function searchString (str, array1) {
-            for (var j = 0; j < array1.length; j++) {
-                var k = 0;
-                if (array1[j].match(str)) {
-                    k = j;
-                    return k;
-                }
-            }
-            return k;
-        }
 
-*/
-        const y = searchString("Fire Rate", 'labelArr');
+        const y = searchString("Fire Rate", labelArr);
 
 
         var image = imageLocation.find($('a.image.image-thumbnail')).attr('href');
@@ -111,5 +99,18 @@ request(url, (error, response, html) => {
         return x;
        }*/
 
+/*
+       function searchString (str, array1) {
+            for (var j = 0; j < array1.length; j++) {
+                var k = 0;
+                if (array1[j].match(str)) {
+                    k = j;
+                    return k;
+                }
+            }
+            return k;
+        }
+
+*/
 
 
