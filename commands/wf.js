@@ -52,7 +52,7 @@ request(url, (error, response, html) => {
         var image = imageLocation.find($('a.image.image-thumbnail')).attr('href');
 
         function searchString (str, array1) {
-         const x = array1.indexOf(str);
+         const x = from(array1).indexOf(str);
          return x;
         }
 
