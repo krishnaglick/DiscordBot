@@ -66,7 +66,7 @@ request(url, (error, response, html) => {
         })
         console.log(labelArr);
 
-  /*      function searchString (str, array1) {
+       function searchString (str, array1) {
             for (var j = 0; j < array1.length; j++) {
                 var k = 0;
                 if (array1[j].match(str)) {
@@ -76,16 +76,16 @@ request(url, (error, response, html) => {
             }
             return k;
         }
-*/
 
-        //const y = searchString("Ammo Type", 'labelArr');
+
+        const y = searchString("Fire Rate", 'labelArr');
 
 
         var image = imageLocation.find($('a.image.image-thumbnail')).attr('href');
 
         const embed = new Discord.RichEmbed()
             .setImage(image)
-            //.addField(labelArr[y] + "  " + valueArr[y])
+            .addField(labelArr[y] + "  " + valueArr[y])
             //.addField(labelArr[y] + "  " + valueArr[y])
             //.addField(labelArr[z] + "  " + valueArr[z])
             //.addField("Label","MR"+"\n"+"Slot"+"\n"+"Type"+"\n"+labelArr[3]+"\n"+labelArr[4]+"\n"+labelArr[5]+"\n"+labelArr[6]+"\n"+labelArr[7]+"\n"+labelArr[8]+"\n"+labelArr[9]+"\n"+labelArr[10]+"\n"+labelArr[11]+"\n"+labelArr[12],true)
