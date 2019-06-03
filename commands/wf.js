@@ -11,16 +11,16 @@ module.exports = {
     execute(message, args) {
         //this is supposed to string match labels later so that I don't have to guess and check what position in an array a label is in
         //It's not working right now of course
-/*
+
         function searchString (str, array1) {
             for (var j = 0; j < array1.length; j++) {
                 if (array1[j].match(str)) {
                     return j;
                 }
             }
-            return parseInt(j)
+            return parseInt(j);
         }
-*/
+
 
         var append = "";
         for(var x = 0; x < args.length; x++){
@@ -49,19 +49,18 @@ request(url, (error, response, html) => {
             labelArr[i] = $(this).text()
         })
 
-    /*    function searchString (str, array1) {
+  /*      function searchString (str, array1) {
             for (var j = 0; j < array1.length; j++) {
                 var k = 0;
                 if (array1[j].match(str)) {
                     k = j;
+                    return k;
                 }
             }
+            return k;
         }
 */
-        function searchString (str, array1) {
-            const x = array1.indexOf(str);
-            return x;
-        }
+
 
         const y = searchString('Disposition', 'labelArr');
         console.log(searchString('Disposition', 'labelArr'));
