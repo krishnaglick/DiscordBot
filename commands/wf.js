@@ -79,6 +79,7 @@ request(url, (error, response, html) => {
             .addField(labelArr[ammoType], " " + valueArr[ammoType+1])
             .addField(labelArr[fireRate], " " + valueArr[fireRate+1])
             .addField(labelArr[critC], " " + valueArr[critC+1])
+            .addField(labelArr[critD], " " + valueArr[critD+1])
             .addField(labelArr[statusC], " " + valueArr[statusC+1])
             //.addField(labelArr[y] + "  " + valueArr[y])
             //.addField(labelArr[z] + "  " + valueArr[z])
