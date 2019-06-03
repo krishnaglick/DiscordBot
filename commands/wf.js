@@ -52,12 +52,8 @@ request(url, (error, response, html) => {
         var image = imageLocation.find($('a.image.image-thumbnail')).attr('href');
 
         function searchString (str, array1, array2) {
-            for (var j=0; j<array1.length; j++) {
-                if (array1[j].match(str)) {
-                    return j + 1;
-                }
-                return j + 1;
-            }
+        var x = array1.indexOf(str);
+        return array1[x], array2[x];
         }
 
         const embed = new Discord.RichEmbed()
