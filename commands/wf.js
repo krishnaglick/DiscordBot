@@ -62,9 +62,8 @@ request(url, (error, response, html) => {
 */
 
 
-        const y = searchString('Disposition', 'labelArr');
-        console.log(searchString('Disposition', 'labelArr'));
-        console.log(y);
+        y = searchString('Critical Chance', 'labelArr');
+
 
 
         var image = imageLocation.find($('a.image.image-thumbnail')).attr('href');
