@@ -52,12 +52,9 @@ request(url, (error, response, html) => {
         const valueTemp = valueArr;
         function searchString (str, array1) {
             for (var j = 0; j < array1.length; j++) {
-                if (array1[j].match(str)) {
+                if (array1[j].match(str))
                     return j;
-                }
-                return j;
             }
-            return j;
         }
 
         x = searchString('Disposition', labelTemp);
