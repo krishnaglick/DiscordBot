@@ -34,6 +34,7 @@ request(url, (error, response, html) => {
         const imageLocation = $('div.floatnone')
         const labelArr = {}
         const valueArr = {}
+        //div for the value to minimize links appearing in your scrape.
         const value = body.find($('div.pi-data-value')).each(function (i, elem) {
             valueArr[i] = $(this).text()
         })
@@ -41,12 +42,17 @@ request(url, (error, response, html) => {
             labelArr[i] = $(this).text()
         })
 
+        //This shit converts the object array into a normal 2 dimensional array.
         var convert2D = Object.keys(labelArr).map(function (key) {
             return[labelArr[key]];
         });
 
         var finalConvertedLabel = [];
-
+        //This shit converts the 2 dimensional array into a 1 dimensional one. It took me 3 hours to figure out what I actually wanted to figure out
+        //and like 10 minutes to find a solution because I didn't know WTF was going on because initially, I was trying to just loop through the
+        //arrays like a normal human but not only do you not have to loop for anything because it's built into fucking javascript
+        //I didn't realize until way later that cheerio was spitting out object arrays at me and that was why I could just fucking
+        //index my way through.
         for(i = 0; i < convert2D.length; i++){
             finalConvertedLabel = finalConvertedLabel.concat(convert2D[i]);
         }
@@ -66,15 +72,19 @@ request(url, (error, response, html) => {
         const critD = finalConvertedLabel.indexOf('Crit Multiplier')
         const statusC = finalConvertedLabel.indexOf('Status Chance');
         const fireRate = finalConvertedLabel.indexOf('Fire Rate');
+        console.log(labelArr);
 
         //var image = imageLocation.find($('a.image.image-thumbnail')).attr('href');
         var image = imageLocation.find($('img.lzyPlcHld')).attr('data-src');
+
+        //This is going to be for testing in case I fuck something up and need to check stuff
+        /*
         console.log(finalConvertedLabel);
         console.log('==============================================' + '\n');
         console.log('==============================================' + '\n');
         console.log('==============================================' + '\n');
         console.log(finalConvertedValue);
-
+        */
         const embed = new Discord.RichEmbed()
             .setImage(image)
             .addField(labelArr[ammoType], " " + valueArr[ammoType+1])
@@ -82,13 +92,8 @@ request(url, (error, response, html) => {
             .addField(labelArr[critC], " " + valueArr[critC+1])
             .addField(labelArr[critD], " " + valueArr[critD+1])
             .addField(labelArr[statusC], " " + valueArr[statusC+1])
-            //.addField(labelArr[y] + "  " + valueArr[y])
-            //.addField(labelArr[z] + "  " + valueArr[z])
-            //.addField("Label","MR"+"\n"+"Slot"+"\n"+"Type"+"\n"+labelArr[3]+"\n"+labelArr[4]+"\n"+labelArr[5]+"\n"+labelArr[6]+"\n"+labelArr[7]+"\n"+labelArr[8]+"\n"+labelArr[9]+"\n"+labelArr[10]+"\n"+labelArr[11]+"\n"+labelArr[12],true)
-            //.addField("Value",valueArr[1]+"\n"+valueArr[2]+"\n"+valueArr[3]+"\n"+valueArr[4]+"\n"+valueArr[5]+"\n"+valueArr[6]+"\n"+valueArr[7]+"\n"+valueArr[8]+"\n"+valueArr[9]+"\n"+valueArr[10]+"\n"+valueArr[11]+"\n"+valueArr[12]+"\n",true)
         message.channel.send({embed})
 
-        //console.log(image);
 
     }
 })
@@ -96,7 +101,7 @@ request(url, (error, response, html) => {
 };
 
 
-
+//Trial and error lies below
 
 
 
