@@ -65,9 +65,8 @@ request(url, (error, response, html) => {
             labelArr[i] = $(this).text()
         })
 
-        for (var j = 0; j < labelArr.length; j++){
-            console.log(labelArr[j].text());
-        }
+console.log(labelArr.text());
+
   /*      function searchString (str, array1) {
             for (var j = 0; j < array1.length; j++) {
                 var k = 0;
