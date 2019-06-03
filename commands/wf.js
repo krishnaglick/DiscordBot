@@ -49,7 +49,7 @@ request(url, (error, response, html) => {
             labelArr[i] = $(this).text()
         })
         console.log(searchString('Reload Time', 'labelArr[i]'));
-        //x = searchString('Reload Time', 'labelArr[i]'));
+        x = searchString('Reload Time', 'labelArr[i]'));
 
         var image = imageLocation.find($('a.image.image-thumbnail')).attr('href');
 
