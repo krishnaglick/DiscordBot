@@ -57,7 +57,7 @@ request(url, (error, response, html) => {
                     return array1[j], array2[j];
                 }
             }
-            return j;
+            return array1[j], array1[j];
         }
 
         const embed = new Discord.RichEmbed()
