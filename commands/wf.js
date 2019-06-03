@@ -41,28 +41,24 @@ request(url, (error, response, html) => {
             labelArr[i] = $(this).text()
         })
 
-        var convertedLabelArr = [];
+        var convert2D = Object.keys(labelArr).map(function (key) {
+            return[labelArr[key]];
+        });
 
-        function searchString (str, array1, array2) {
-            var convert2D = Object.keys(array1).map(function (key) {
-                return [array1[key]];
-            });
+        var finalConverted = [];
 
-
-            for (i = 0; i < convert2D.length; i++) {
-                array2 = array2.concat(convert2D[i]);
-                return array2;
-            }
+        for(i = 0; i < convert2D.length; i++){
+            finalConverted = finalConverted.concat(convert2D[i]);
         }
 
-        const y = searchString("Fire Rate", labelArr, convertedLabelArr);
+        const y = finalConverted.indexOf('Ammo Type');
         console.log(y);
 
         var image = imageLocation.find($('a.image.image-thumbnail')).attr('href');
 
         const embed = new Discord.RichEmbed()
             .setImage(image)
-            //.addField(labelArr[y] + "  " + valueArr[y])
+            .addField(labelArr[y] + "  " + valueArr[y])
             //.addField(labelArr[y] + "  " + valueArr[y])
             //.addField(labelArr[z] + "  " + valueArr[z])
             //.addField("Label","MR"+"\n"+"Slot"+"\n"+"Type"+"\n"+labelArr[3]+"\n"+labelArr[4]+"\n"+labelArr[5]+"\n"+labelArr[6]+"\n"+labelArr[7]+"\n"+labelArr[8]+"\n"+labelArr[9]+"\n"+labelArr[10]+"\n"+labelArr[11]+"\n"+labelArr[12],true)
