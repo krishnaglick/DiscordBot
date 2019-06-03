@@ -37,7 +37,7 @@ request(url, (error, response, html) => {
         const value = body.find($('div.pi-data-value')).each(function (i, elem) {
             valueArr[i] = $(this).text()
         })
-        const label = body.find($('div.pi-data-label')).each(function (i, elem) {
+        const label = body.find($('.pi-data-label')).each(function (i, elem) {
             labelArr[i] = $(this).text()
         })
 
