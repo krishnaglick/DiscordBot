@@ -11,20 +11,7 @@ module.exports = {
     execute(message, args) {
         //this is supposed to string match labels later so that I don't have to guess and check what position in an array a label is in
         //It's not working right now of course
-/*
-        function searchString (str, array1) {
-            for (var j = 0; j < array1.length; j++) {
-                console.log(j);
-                console.log(str);
-                //uh wtf?
-                console.log(array1[j]);
-                if (array1[j].match(str)) {
-                    return j;
-                }
-            }
-            return j;
-        }
-*/
+
 
         var append = "";
         for(var x = 0; x < args.length; x++){
@@ -54,37 +41,29 @@ request(url, (error, response, html) => {
             labelArr[i] = $(this).text()
         })
         console.log(labelArr);
-/*
-        function searchString (str, array) {
-            for (var j = 0; j < array.length; j++) {
-                console.log(j);
-                console.log(str);
-                //uh wtf?
-                console.log(array[j]);
-                if (array[j].match(str)) {
-                    return j;
-                }
+
+        var convertedLabelArr = [];
+
+        function searchString (str, array1, array2) {
+            var convert2D = Object.keys(array1).map(function (key) {
+                return [array1[key]];
+            });
+            
+
+            for (i = 0; i < convert2D.length; i++) {
+                array2 = array2.concat(convert2D[i]);
+                return array2;
             }
-            return j;
-        }
-*/
-        function searchString (str, array) {
-            var found = array.find(item => item.value === str);
-            if(found){
-                var position = found.label;
-                return position;
-            }else
-            return -1;
         }
 
-        const y = searchString("Fire Rate", labelArr);
+        const y = searchString("Fire Rate", labelArr, convertedLabelArr);
         console.log(y);
 
         var image = imageLocation.find($('a.image.image-thumbnail')).attr('href');
 
         const embed = new Discord.RichEmbed()
             .setImage(image)
-            .addField(labelArr[y] + "  " + valueArr[y])
+            //.addField(labelArr[y] + "  " + valueArr[y])
             //.addField(labelArr[y] + "  " + valueArr[y])
             //.addField(labelArr[z] + "  " + valueArr[z])
             //.addField("Label","MR"+"\n"+"Slot"+"\n"+"Type"+"\n"+labelArr[3]+"\n"+labelArr[4]+"\n"+labelArr[5]+"\n"+labelArr[6]+"\n"+labelArr[7]+"\n"+labelArr[8]+"\n"+labelArr[9]+"\n"+labelArr[10]+"\n"+labelArr[11]+"\n"+labelArr[12],true)
@@ -122,4 +101,33 @@ request(url, (error, response, html) => {
 
 */
 
+/*
+        function searchString (str, array1) {
+            for (var j = 0; j < array1.length; j++) {
+                console.log(j);
+                console.log(str);
+                //uh wtf?
+                console.log(array1[j]);
+                if (array1[j].match(str)) {
+                    return j;
+                }
+            }
+            return j;
+        }
+*/
 
+
+/*
+        function searchString (str, array) {
+            for (var j = 0; j < array.length; j++) {
+                console.log(j);
+                console.log(str);
+                //uh wtf?
+                console.log(array[j]);
+                if (array[j].match(str)) {
+                    return j;
+                }
+            }
+            return j;
+        }
+*/
