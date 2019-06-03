@@ -66,7 +66,7 @@ request(url, (error, response, html) => {
         })
 
         for (var j = 0; j < labelArr.length; j++){
-            console.log(labelArr[j]);
+            console.log(labelArr[j].text());
         }
   /*      function searchString (str, array1) {
             for (var j = 0; j < array1.length; j++) {
