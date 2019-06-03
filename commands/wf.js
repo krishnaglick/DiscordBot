@@ -73,6 +73,7 @@ request(url, (error, response, html) => {
         const statusC = finalConvertedLabel.indexOf('Status Chance');
         const fireRate = finalConvertedLabel.indexOf('Fire Rate');
         console.log(labelArr);
+        console.log(convert2D);
 
         //var image = imageLocation.find($('a.image.image-thumbnail')).attr('href');
         var image = imageLocation.find($('img.lzyPlcHld')).attr('data-src');
