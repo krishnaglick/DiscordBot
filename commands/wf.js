@@ -45,18 +45,29 @@ request(url, (error, response, html) => {
             return[labelArr[key]];
         });
 
-        var finalConverted = [];
+        var finalConvertedLabel = [];
 
         for(i = 0; i < convert2D.length; i++){
-            finalConverted = finalConverted.concat(convert2D[i]);
+            finalConvertedLabel = finalConvertedLabel.concat(convert2D[i]);
         }
 
-        const ammoType = finalConverted.indexOf('Ammo Type');
-        const critC = finalConverted.indexOf('Crit Chance');
-        const statusC = finalConverted.indexOf('Status Chance');
-        const fireRate = finalConverted.indexOf('Fire Rate');
+        var convert2D = Object.keys(labelArr).map(function (key) {
+            return[labelArr[key]];
+        });
+
+        var finalConvertedValue = [];
+
+        for(i = 0; i < convert2D.length; i++){
+            finalConvertedValue = finalConvertedValue.concat(convert2D[i]);
+        }
+
+        const ammoType = finalConvertedLabel.indexOf('Ammo Type');
+        const critC = finalConvertedLabel.indexOf('Crit Chance');
+        const statusC = finalConvertedLabel.indexOf('Status Chance');
+        const fireRate = finalConvertedLabel.indexOf('Fire Rate');
 
         var image = imageLocation.find($('a.image.image-thumbnail')).attr('href');
+        console.log(finalConvertedValue);
 
         const embed = new Discord.RichEmbed()
             .setImage(image)
