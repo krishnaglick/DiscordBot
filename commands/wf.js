@@ -34,10 +34,10 @@ request(url, (error, response, html) => {
         const imageLocation = $('div.floatnone')
         const labelArr = {}
         const valueArr = {}
-        const value = body.find($('.pi-data-value')).each(function (i, elem) {
+        const value = body.find($('div.pi-data-value')).each(function (i, elem) {
             valueArr[i] = $(this).text()
         })
-        const label = body.find($('.pi-data-label')).each(function (i, elem) {
+        const label = body.find($('div.pi-data-label')).each(function (i, elem) {
             labelArr[i] = $(this).text()
         })
 
@@ -67,6 +67,10 @@ request(url, (error, response, html) => {
         const fireRate = finalConvertedLabel.indexOf('Fire Rate');
 
         var image = imageLocation.find($('a.image.image-thumbnail')).attr('href');
+        console.log(finalConvertedLabel);
+        console.log('==============================================' + '\n');
+        console.log('==============================================' + '\n');
+        console.log('==============================================' + '\n');
         console.log(finalConvertedValue);
 
         const embed = new Discord.RichEmbed()
