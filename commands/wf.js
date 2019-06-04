@@ -85,12 +85,12 @@ request(url, (error, response, html) => {
                 e = finalConvertedLabel.indexOf('Reload Time');
 
             }else if (finalConvertedLabel.includes('Health')) {
-                a = finalConvertedLabel.indexOf('MR');
+                a = finalConvertedLabel.indexOf('Mastery Rank');
                 b = finalConvertedLabel.indexOf('Health');
                 c = finalConvertedLabel.indexOf('Energy');
-                d = finalConvertedLabel.indexOf('Armor');
-                e = finalConvertedLabel.indexOf('Sprint Speed');
-                f = finalConvertedLabel.indexOf('Disposition');
+                d = finalConvertedLabel.indexOf('Shield');
+                e = finalConvertedLabel.indexOf('Armor');
+                f = finalConvertedLabel.indexOf('Sprint Speed');
             }else if (finalConvertedLabel.includes('Attack Speed')) {
                 a = finalConvertedLabel.indexOf('Attack Speed');
                 b = finalConvertedLabel.indexOf('Crit Chance');
