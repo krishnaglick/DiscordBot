@@ -120,7 +120,7 @@ request(url, (error, response, html) => {
         console.log(finalConvertedValue);
 
                const embed = new Discord.RichEmbed()
-                    .setAuthor(gunName + "    " + valueArr[dispo + 1], gunIcon)
+                    .setAuthor(gunName + "    " + valueArr[f + 1], gunIcon)
                     .setImage(image)
                     .addField(labelArr[a], " " + valueArr[a + 1])
                     .addField(labelArr[b], " " + valueArr[b + 1])
