@@ -124,7 +124,37 @@ request(url, (error, response, html) => {
 */
 
         var embed = new Discord.RichEmbed()
-
+        if (finalConvertedLabel.includes('Health')) {
+            embed = new Discord.RichEmbed()
+                .setAuthor(Name)
+                .setImage(imageWarframe)
+                .addField("**Stats**",labelArr[a] + " " + valueArr[a] + "\n" +labelArr[b] + " " + valueArr[b]+ "\n" +labelArr[c] + " " + valueArr[c]+ "\n" +labelArr[d] + " " + valueArr[d]+ "\n" +labelArr[e] + " " + valueArr[e] )
+                //.addField(labelArr[a], " " + valueArr[a])
+                //.addField(labelArr[b], " " + valueArr[b])
+                //.addField(labelArr[c], " " + valueArr[c])
+                //.addField(labelArr[d], " " + valueArr[d])
+                //.addField(labelArr[e], " " + valueArr[e])
+        }else if (finalConvertedLabel.includes('Attack Speed')){
+            embed = new Discord.RichEmbed()
+                .setAuthor(Name + "    " + valueArr[f + 1], gunIcon)
+                .setImage(imageGun)
+                .addField(labelArr[a], " " + valueArr[a + 1])
+                .addField(labelArr[b], " " + valueArr[b + 1])
+                .addField(labelArr[c], " " + valueArr[c + 1])
+                .addField(labelArr[d], " " + valueArr[d + 1])
+                .addField(labelArr[e], " " + valueArr[e + 1])
+                .addField(labelArr[g], " " + valueArr[g + 1])
+        }else {
+            embed = new Discord.RichEmbed()
+                .setAuthor(Name + "    " + valueArr[f + 1], gunIcon)
+                .setImage(imageGun)
+                .addField(labelArr[a], " " + valueArr[a + 1])
+                .addField(labelArr[b], " " + valueArr[b + 1])
+                .addField(labelArr[c], " " + valueArr[c + 1])
+                .addField(labelArr[d], " " + valueArr[d + 1])
+                .addField(labelArr[e], " " + valueArr[e + 1])
+        }
+/*
         if (finalConvertedLabel.includes('Health')) {
             embed = new Discord.RichEmbed()
                 .setAuthor(Name)
@@ -153,7 +183,7 @@ request(url, (error, response, html) => {
                 .addField(labelArr[c], " " + valueArr[c + 1])
                 .addField(labelArr[d], " " + valueArr[d + 1])
                 .addField(labelArr[e], " " + valueArr[e + 1])
-        }
+        }*/
                 message.channel.send({embed})
 
 
