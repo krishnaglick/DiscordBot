@@ -85,11 +85,11 @@ request(url, (error, response, html) => {
                 e = finalConvertedLabel.indexOf('Reload Time');
 
             }else if (finalConvertedLabel.includes('Health')) {
-                a = finalConvertedLabel.indexOf('Ammo Type');
-                b = finalConvertedLabel.indexOf('Crit Chance');
-                c = finalConvertedLabel.indexOf('Crit Multiplier');
-                d = finalConvertedLabel.indexOf('Status Chance');
-                e = finalConvertedLabel.indexOf('Fire Rate');
+                a = finalConvertedLabel.indexOf('MR');
+                b = finalConvertedLabel.indexOf('Health');
+                c = finalConvertedLabel.indexOf('Energy');
+                d = finalConvertedLabel.indexOf('Armor');
+                e = finalConvertedLabel.indexOf('Sprint Speed');
                 f = finalConvertedLabel.indexOf('Disposition');
             }else if (finalConvertedLabel.includes('Attack Speed')) {
                 a = finalConvertedLabel.indexOf('Attack Speed');
@@ -97,7 +97,6 @@ request(url, (error, response, html) => {
                 c = finalConvertedLabel.indexOf('Crit Multiplier');
                 d = finalConvertedLabel.indexOf('Status Chance');
                 e = finalConvertedLabel.indexOf('Slide Attack');
-                f = finalConvertedLabel.indexOf('Disposition');
             }else{
                 a = finalConvertedLabel.indexOf('Ammo Type');
                 b = finalConvertedLabel.indexOf('Crit Chance');
