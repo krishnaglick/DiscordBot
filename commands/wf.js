@@ -98,6 +98,7 @@ request(url, (error, response, html) => {
                 d = finalConvertedLabel.indexOf('Status Chance');
                 e = finalConvertedLabel.indexOf('Slide Attack');
                 f = finalConvertedLabel.indexOf('Disposition');
+                g = finalConvertedLabel.indexOf('Slam Attack');
             }else{
                 a = finalConvertedLabel.indexOf('Ammo Type');
                 b = finalConvertedLabel.indexOf('Crit Chance');
@@ -130,6 +131,16 @@ request(url, (error, response, html) => {
                 .addField(labelArr[c], " " + valueArr[c])
                 .addField(labelArr[d], " " + valueArr[d])
                 .addField(labelArr[e], " " + valueArr[e])
+        }else if (finalConvertedLabel.includes('Attack Speed')){
+            embed = new Discord.RichEmbed()
+                .setAuthor(Name + "    " + valueArr[f + 1], gunIcon)
+                .setImage(image)
+                .addField(labelArr[a], " " + valueArr[a + 1])
+                .addField(labelArr[b], " " + valueArr[b + 1])
+                .addField(labelArr[c], " " + valueArr[c + 1])
+                .addField(labelArr[d], " " + valueArr[d + 1])
+                .addField(labelArr[e], " " + valueArr[e + 1])
+                .addField(labelArr[g], " " + valueArr[g + 1])
         }else {
             embed = new Discord.RichEmbed()
                 .setAuthor(Name + "    " + valueArr[f + 1], gunIcon)
