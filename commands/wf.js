@@ -32,6 +32,7 @@ request(url, (error, response, html) => {
         const Name = $('h1').html()
         const body = $('body')
         const gunIcon = body.find($('a.image.image-thumbnail.link-internal')).children().find($('img')).attr('data-src');
+        const warframeIcon = body.find($('a.image.image-thumbnail.link-internal')).children().find($('img')).attr('srcset');
         const imageLocation = $('div.floatnone')
         const labelArr = {}
         const valueArr = {}
@@ -71,10 +72,11 @@ request(url, (error, response, html) => {
 
         var a = '';
         var b = '';
-        var c = '';
+        var c =  '';
         var d = '';
         var e = '';
         var f = '';
+        var g = '';
 
             if (finalConvertedValue.includes('Arch-Gun')){
                 a = finalConvertedLabel.indexOf('Crit Chance');
@@ -109,7 +111,8 @@ request(url, (error, response, html) => {
             }
 
         //var image = imageLocation.find($('a.image.image-thumbnail')).attr('href');
-        var image = imageLocation.find($('img.lzyPlcHld')).attr('data-src');
+        var imageGun = imageLocation.find($('img.lzyPlcHld')).attr('data-src');
+        var imageWarframe = imageLocation.find($('img.lzyPlcHld')).attr('data-src');
 
         //This is going to be for testing in case I fuck something up and need to check stuff
 /*
@@ -125,7 +128,7 @@ request(url, (error, response, html) => {
         if (finalConvertedLabel.includes('Health')) {
             embed = new Discord.RichEmbed()
                 .setAuthor(Name)
-                .setImage(image)
+                .setImage(imageWarframe)
                 .addField(labelArr[a], " " + valueArr[a])
                 .addField(labelArr[b], " " + valueArr[b])
                 .addField(labelArr[c], " " + valueArr[c])
@@ -134,7 +137,7 @@ request(url, (error, response, html) => {
         }else if (finalConvertedLabel.includes('Attack Speed')){
             embed = new Discord.RichEmbed()
                 .setAuthor(Name + "    " + valueArr[f + 1], gunIcon)
-                .setImage(image)
+                .setImage(imageGun)
                 .addField(labelArr[a], " " + valueArr[a + 1])
                 .addField(labelArr[b], " " + valueArr[b + 1])
                 .addField(labelArr[c], " " + valueArr[c + 1])
@@ -144,7 +147,7 @@ request(url, (error, response, html) => {
         }else {
             embed = new Discord.RichEmbed()
                 .setAuthor(Name + "    " + valueArr[f + 1], gunIcon)
-                .setImage(image)
+                .setImage(imageGun)
                 .addField(labelArr[a], " " + valueArr[a + 1])
                 .addField(labelArr[b], " " + valueArr[b + 1])
                 .addField(labelArr[c], " " + valueArr[c + 1])
