@@ -125,7 +125,7 @@ request(url, (error, response, html) => {
 
         if (finalConvertedValue.includes('Health')) {
             embed = new Discord.RichEmbed()
-                .setAuthor(gunName + "    " + gunIcon)
+                .setAuthor(gunName)
                 .setImage(image)
                 .addField(labelArr[a], " " + valueArr[a])
                 .addField(labelArr[b], " " + valueArr[b])
