@@ -68,12 +68,44 @@ request(url, (error, response, html) => {
             finalConvertedValue = finalConvertedValue.concat(convert2D[i]);
         }
 
-        const ammoType = finalConvertedLabel.indexOf('Ammo Type');
-        const critC = finalConvertedLabel.indexOf('Crit Chance');
-        const critD = finalConvertedLabel.indexOf('Crit Multiplier')
-        const statusC = finalConvertedLabel.indexOf('Status Chance');
-        const fireRate = finalConvertedLabel.indexOf('Fire Rate');
-        const dispo = finalConvertedLabel.indexOf('Disposition');
+
+        var a = '';
+        var b = '';
+        var c = '';
+        var d = '';
+        var e = '';
+        var f = '';
+
+            if (finalConvertedValue.find('Arch-Gun') !== 'undefined'){
+                const a = finalConvertedLabel.indexOf('Crit Chance');
+                const b = finalConvertedLabel.indexOf('Crit Multiplier')
+                const c = finalConvertedLabel.indexOf('Status Chance');
+                const d = finalConvertedLabel.indexOf('Fire Rate');
+                const f = finalConvertedLabel.indexOf('Disposition');
+                const e = finalConvertedLabel.indexOf('Reload Time');
+
+            }else if (finalConvertedLabel.find('Health') !== 'undefined') {
+                const a = finalConvertedLabel.indexOf('Ammo Type');
+                const b = finalConvertedLabel.indexOf('Crit Chance');
+                const c = finalConvertedLabel.indexOf('Crit Multiplier')
+                const d = finalConvertedLabel.indexOf('Status Chance');
+                const e = finalConvertedLabel.indexOf('Fire Rate');
+                const f = finalConvertedLabel.indexOf('Disposition');
+            }else if (finalConvertedLabel.find('Attack Speed') !== 'undefined') {
+                const a = finalConvertedLabel.indexOf('Ammo Type');
+                const b = finalConvertedLabel.indexOf('Crit Chance');
+                const c = finalConvertedLabel.indexOf('Crit Multiplier')
+                const d = finalConvertedLabel.indexOf('Status Chance');
+                const e = finalConvertedLabel.indexOf('Fire Rate');
+                const f = finalConvertedLabel.indexOf('Disposition');
+            }else{
+                const a = finalConvertedLabel.indexOf('Ammo Type');
+                const b = finalConvertedLabel.indexOf('Crit Chance');
+                const c = finalConvertedLabel.indexOf('Crit Multiplier')
+                const d = finalConvertedLabel.indexOf('Status Chance');
+                const e = finalConvertedLabel.indexOf('Fire Rate');
+                const f = finalConvertedLabel.indexOf('Disposition');
+            }
 
 
         //var image = imageLocation.find($('a.image.image-thumbnail')).attr('href');
@@ -90,11 +122,11 @@ request(url, (error, response, html) => {
                const embed = new Discord.RichEmbed()
                     .setAuthor(gunName + "    " + valueArr[dispo + 1], gunIcon)
                     .setImage(image)
-                    .addField(labelArr[ammoType], " " + valueArr[ammoType + 1])
-                    .addField(labelArr[fireRate], " " + valueArr[fireRate + 1])
-                    .addField(labelArr[critC], " " + valueArr[critC + 1])
-                    .addField(labelArr[critD], " " + valueArr[critD + 1])
-                    .addField(labelArr[statusC], " " + valueArr[statusC + 1])
+                    .addField(labelArr[a], " " + valueArr[a + 1])
+                    .addField(labelArr[b], " " + valueArr[b + 1])
+                    .addField(labelArr[c], " " + valueArr[c + 1])
+                    .addField(labelArr[d], " " + valueArr[d + 1])
+                    .addField(labelArr[e], " " + valueArr[e + 1])
                 message.channel.send({embed})
 
 
