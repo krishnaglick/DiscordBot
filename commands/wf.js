@@ -97,6 +97,7 @@ request(url, (error, response, html) => {
                 c = finalConvertedLabel.indexOf('Crit Multiplier');
                 d = finalConvertedLabel.indexOf('Status Chance');
                 e = finalConvertedLabel.indexOf('Slide Attack');
+                f = finalConvertedLabel.indexOf('Disposition');
             }else{
                 a = finalConvertedLabel.indexOf('Ammo Type');
                 b = finalConvertedLabel.indexOf('Crit Chance');
@@ -105,9 +106,6 @@ request(url, (error, response, html) => {
                 e = finalConvertedLabel.indexOf('Fire Rate');
                 f = finalConvertedLabel.indexOf('Disposition');
             }
-
-            console.log(finalConvertedValue);
-            console.log(finalConvertedLabel);
 
         //var image = imageLocation.find($('a.image.image-thumbnail')).attr('href');
         var image = imageLocation.find($('img.lzyPlcHld')).attr('data-src');
@@ -124,6 +122,7 @@ request(url, (error, response, html) => {
         var embed = new Discord.RichEmbed()
 
         if (finalConvertedValue.includes('Health')) {
+            console.log('pang');
             embed = new Discord.RichEmbed()
                 .setAuthor(gunName)
                 .setImage(image)
@@ -133,6 +132,7 @@ request(url, (error, response, html) => {
                 .addField(labelArr[d], " " + valueArr[d])
                 .addField(labelArr[e], " " + valueArr[e])
         }else {
+            console.log('pong');
             embed = new Discord.RichEmbed()
                 .setAuthor(gunName + "    " + valueArr[f + 1], gunIcon)
                 .setImage(image)
