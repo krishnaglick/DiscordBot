@@ -29,7 +29,7 @@ request(url, (error, response, html) => {
 
 
         const $ = cheerio.load(html);
-        const gunName = $('h1').html()
+        const Name = $('h1').html()
         const body = $('body')
         const gunIcon = body.find($('a.image.image-thumbnail.link-internal')).children().find($('img')).attr('data-src');
         const imageLocation = $('div.floatnone')
@@ -122,9 +122,8 @@ request(url, (error, response, html) => {
         var embed = new Discord.RichEmbed()
 
         if (finalConvertedLabel.includes('Health')) {
-            console.log('pang');
             embed = new Discord.RichEmbed()
-                .setAuthor(gunName)
+                .setAuthor(Name)
                 .setImage(image)
                 .addField(labelArr[a], " " + valueArr[a])
                 .addField(labelArr[b], " " + valueArr[b])
@@ -132,9 +131,8 @@ request(url, (error, response, html) => {
                 .addField(labelArr[d], " " + valueArr[d])
                 .addField(labelArr[e], " " + valueArr[e])
         }else {
-            console.log('pong');
             embed = new Discord.RichEmbed()
-                .setAuthor(gunName + "    " + valueArr[f + 1], gunIcon)
+                .setAuthor(Name + "    " + valueArr[f + 1], gunIcon)
                 .setImage(image)
                 .addField(labelArr[a], " " + valueArr[a + 1])
                 .addField(labelArr[b], " " + valueArr[b + 1])
