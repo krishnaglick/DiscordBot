@@ -120,14 +120,28 @@ request(url, (error, response, html) => {
         console.log('==============================================' + '\n');
         console.log(finalConvertedValue);
 */
-               const embed = new Discord.RichEmbed()
-                    .setAuthor(gunName + "    " + valueArr[f + 1], gunIcon)
-                    .setImage(image)
-                    .addField(labelArr[a], " " + valueArr[a + 1])
-                    .addField(labelArr[b], " " + valueArr[b + 1])
-                    .addField(labelArr[c], " " + valueArr[c + 1])
-                    .addField(labelArr[d], " " + valueArr[d + 1])
-                    .addField(labelArr[e], " " + valueArr[e + 1])
+
+        var embed = new Discord.RichEmbed()
+
+        if (finalConvertedValue.includes('Health')) {
+            embed = new Discord.RichEmbed()
+                .setAuthor(gunName + "    " + valueArr[f], gunIcon)
+                .setImage(image)
+                .addField(labelArr[a], " " + valueArr[a])
+                .addField(labelArr[b], " " + valueArr[b])
+                .addField(labelArr[c], " " + valueArr[c])
+                .addField(labelArr[d], " " + valueArr[d])
+                .addField(labelArr[e], " " + valueArr[e])
+        }else {
+            embed = new Discord.RichEmbed()
+                .setAuthor(gunName + "    " + valueArr[f + 1], gunIcon)
+                .setImage(image)
+                .addField(labelArr[a], " " + valueArr[a + 1])
+                .addField(labelArr[b], " " + valueArr[b + 1])
+                .addField(labelArr[c], " " + valueArr[c + 1])
+                .addField(labelArr[d], " " + valueArr[d + 1])
+                .addField(labelArr[e], " " + valueArr[e + 1])
+        }
                 message.channel.send({embed})
 
 
