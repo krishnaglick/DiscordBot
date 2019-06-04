@@ -126,7 +126,7 @@ request(url, (error, response, html) => {
         var embed = new Discord.RichEmbed()
         if (finalConvertedLabel.includes('Health')) {
             embed = new Discord.RichEmbed()
-                .setAuthor(Name)
+                .setAuthor("**" + Name + "**")
                 .setImage(imageWarframe)
                 .addField("--------Stats--------","**" + labelArr[a] + "**" + ":      " + valueArr[a] +"\n" +"**" +labelArr[b] +"**" + ":      " + valueArr[b] + "\n" +"**" +labelArr[c] +"**" + ":       " + valueArr[c] + "\n" +"**" +labelArr[d] +"**" + ":       " +valueArr[d] + "\n" +"**" +labelArr[e] +"**" + ":       " + valueArr[e]  )
                 //.addField(labelArr[a], " " + valueArr[a])
