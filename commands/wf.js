@@ -76,7 +76,7 @@ request(url, (error, response, html) => {
         var e = '';
         var f = '';
 
-            if (finalConvertedValue.find('Arch-Gun') !== 'undefined'){
+            if (finalConvertedValue.includes('Arch-Gun') !== 'undefined'){
                 const a = finalConvertedLabel.indexOf('Crit Chance');
                 const b = finalConvertedLabel.indexOf('Crit Multiplier')
                 const c = finalConvertedLabel.indexOf('Status Chance');
@@ -84,14 +84,14 @@ request(url, (error, response, html) => {
                 const f = finalConvertedLabel.indexOf('Disposition');
                 const e = finalConvertedLabel.indexOf('Reload Time');
 
-            }else if (finalConvertedLabel.find('Health') !== 'undefined') {
+            }else if (finalConvertedLabel.includes('Health') !== 'undefined') {
                 const a = finalConvertedLabel.indexOf('Ammo Type');
                 const b = finalConvertedLabel.indexOf('Crit Chance');
                 const c = finalConvertedLabel.indexOf('Crit Multiplier')
                 const d = finalConvertedLabel.indexOf('Status Chance');
                 const e = finalConvertedLabel.indexOf('Fire Rate');
                 const f = finalConvertedLabel.indexOf('Disposition');
-            }else if (finalConvertedLabel.find('Attack Speed') !== 'undefined') {
+            }else if (finalConvertedLabel.includes('Attack Speed') !== 'undefined') {
                 const a = finalConvertedLabel.indexOf('Ammo Type');
                 const b = finalConvertedLabel.indexOf('Crit Chance');
                 const c = finalConvertedLabel.indexOf('Crit Multiplier')
