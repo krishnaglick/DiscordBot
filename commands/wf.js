@@ -106,6 +106,8 @@ request(url, (error, response, html) => {
                 f = finalConvertedLabel.indexOf('Disposition');
             }
 
+            console.log(finalConvertedValue);
+            console.log(finalConvertedLabel);
 
         //var image = imageLocation.find($('a.image.image-thumbnail')).attr('href');
         var image = imageLocation.find($('img.lzyPlcHld')).attr('data-src');
