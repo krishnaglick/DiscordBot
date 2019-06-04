@@ -112,7 +112,7 @@ request(url, (error, response, html) => {
 
         //var image = imageLocation.find($('a.image.image-thumbnail')).attr('href');
         var imageGun = imageLocation.find($('img.lzyPlcHld')).attr('data-src');
-        var imageWarframe = imageLocationWarframe.find($('img.pi-image-thumbnail')).attr('srcset');
+        var imageWarframe = imageLocationWarframe.find($('img.pi-image-thumbnail')).attr('src');
 
         //This is going to be for testing in case I fuck something up and need to check stuff
 /*
