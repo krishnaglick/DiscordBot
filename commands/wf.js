@@ -121,7 +121,7 @@ request(url, (error, response, html) => {
 
         var embed = new Discord.RichEmbed()
 
-        if (finalConvertedValue.includes('Health')) {
+        if (finalConvertedLabel.includes('Health')) {
             console.log('pang');
             embed = new Discord.RichEmbed()
                 .setAuthor(gunName)
