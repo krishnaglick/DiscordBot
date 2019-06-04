@@ -92,11 +92,11 @@ request(url, (error, response, html) => {
                 e = finalConvertedLabel.indexOf('Fire Rate');
                 f = finalConvertedLabel.indexOf('Disposition');
             }else if (finalConvertedLabel.includes('Attack Speed')) {
-                a = finalConvertedLabel.indexOf('Ammo Type');
+                a = finalConvertedLabel.indexOf('Attack Speed');
                 b = finalConvertedLabel.indexOf('Crit Chance');
                 c = finalConvertedLabel.indexOf('Crit Multiplier');
                 d = finalConvertedLabel.indexOf('Status Chance');
-                e = finalConvertedLabel.indexOf('Fire Rate');
+                e = finalConvertedLabel.indexOf('Slide Attack');
                 f = finalConvertedLabel.indexOf('Disposition');
             }else{
                 a = finalConvertedLabel.indexOf('Ammo Type');
