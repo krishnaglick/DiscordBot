@@ -76,35 +76,35 @@ request(url, (error, response, html) => {
         var e = '';
         var f = '';
 
-            if (finalConvertedValue.includes('Arch-Gun') !== 'undefined'){
-                const a = finalConvertedLabel.indexOf('Crit Chance');
-                const b = finalConvertedLabel.indexOf('Crit Multiplier')
-                const c = finalConvertedLabel.indexOf('Status Chance');
-                const d = finalConvertedLabel.indexOf('Fire Rate');
-                const f = finalConvertedLabel.indexOf('Disposition');
-                const e = finalConvertedLabel.indexOf('Reload Time');
+            if (finalConvertedValue.includes('Arch-Gun')){
+                a = finalConvertedLabel.indexOf('Crit Chance');
+                b = finalConvertedLabel.indexOf('Crit Multiplier');
+                c = finalConvertedLabel.indexOf('Status Chance');
+                d = finalConvertedLabel.indexOf('Fire Rate');
+                f = finalConvertedLabel.indexOf('Disposition');
+                e = finalConvertedLabel.indexOf('Reload Time');
 
-            }else if (finalConvertedLabel.includes('Health') !== 'undefined') {
-                const a = finalConvertedLabel.indexOf('Ammo Type');
-                const b = finalConvertedLabel.indexOf('Crit Chance');
-                const c = finalConvertedLabel.indexOf('Crit Multiplier')
-                const d = finalConvertedLabel.indexOf('Status Chance');
-                const e = finalConvertedLabel.indexOf('Fire Rate');
-                const f = finalConvertedLabel.indexOf('Disposition');
-            }else if (finalConvertedLabel.includes('Attack Speed') !== 'undefined') {
-                const a = finalConvertedLabel.indexOf('Ammo Type');
-                const b = finalConvertedLabel.indexOf('Crit Chance');
-                const c = finalConvertedLabel.indexOf('Crit Multiplier')
-                const d = finalConvertedLabel.indexOf('Status Chance');
-                const e = finalConvertedLabel.indexOf('Fire Rate');
-                const f = finalConvertedLabel.indexOf('Disposition');
+            }else if (finalConvertedLabel.includes('Health')) {
+                a = finalConvertedLabel.indexOf('Ammo Type');
+                b = finalConvertedLabel.indexOf('Crit Chance');
+                c = finalConvertedLabel.indexOf('Crit Multiplier');
+                d = finalConvertedLabel.indexOf('Status Chance');
+                e = finalConvertedLabel.indexOf('Fire Rate');
+                f = finalConvertedLabel.indexOf('Disposition');
+            }else if (finalConvertedLabel.includes('Attack Speed')) {
+                a = finalConvertedLabel.indexOf('Ammo Type');
+                b = finalConvertedLabel.indexOf('Crit Chance');
+                c = finalConvertedLabel.indexOf('Crit Multiplier');
+                d = finalConvertedLabel.indexOf('Status Chance');
+                e = finalConvertedLabel.indexOf('Fire Rate');
+                f = finalConvertedLabel.indexOf('Disposition');
             }else{
-                const a = finalConvertedLabel.indexOf('Ammo Type');
-                const b = finalConvertedLabel.indexOf('Crit Chance');
-                const c = finalConvertedLabel.indexOf('Crit Multiplier')
-                const d = finalConvertedLabel.indexOf('Status Chance');
-                const e = finalConvertedLabel.indexOf('Fire Rate');
-                const f = finalConvertedLabel.indexOf('Disposition');
+                a = finalConvertedLabel.indexOf('Ammo Type');
+                b = finalConvertedLabel.indexOf('Crit Chance');
+                c = finalConvertedLabel.indexOf('Crit Multiplier');
+                d = finalConvertedLabel.indexOf('Status Chance');
+                e = finalConvertedLabel.indexOf('Fire Rate');
+                f = finalConvertedLabel.indexOf('Disposition');
             }
 
 
@@ -112,13 +112,13 @@ request(url, (error, response, html) => {
         var image = imageLocation.find($('img.lzyPlcHld')).attr('data-src');
 
         //This is going to be for testing in case I fuck something up and need to check stuff
-
+/*
         console.log(finalConvertedLabel);
         console.log('==============================================' + '\n');
         console.log('==============================================' + '\n');
         console.log('==============================================' + '\n');
         console.log(finalConvertedValue);
-
+*/
                const embed = new Discord.RichEmbed()
                     .setAuthor(gunName + "    " + valueArr[f + 1], gunIcon)
                     .setImage(image)
