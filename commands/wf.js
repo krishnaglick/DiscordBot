@@ -33,7 +33,7 @@ request(url, (error, response, html) => {
         const body = $('body')
         const gunIcon = body.find($('a.image.image-thumbnail.link-internal')).children().find($('img')).attr('data-src');
         const imageLocation = $('div.floatnone')
-        const imageLocationWarframe = $('div.tabbertab')
+        const imageLocationWarframe = $('figure.pi-item.pi-image')
         const labelArr = {}
         const valueArr = {}
         //div for the value to minimize links appearing in your scrape.
