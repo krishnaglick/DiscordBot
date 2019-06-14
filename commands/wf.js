@@ -1,6 +1,6 @@
 const cheerio = require('cheerio');
 const request = require('request');
-//const fetch = require('node-fetch');
+const fetch = require('node-fetch');
 const Discord = require('discord.js');
 //const cheerioTableparser = require('cheerio-tableparser')
 
