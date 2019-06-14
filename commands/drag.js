@@ -6,7 +6,16 @@ module.exports = {
     name: 'drag',
     description: 'view the drag wiki',
     execute(message, args) {
+        var isDragon = false;
         if(args[0] == null){
+
+            //
+            //
+            // Construction Zone: passing in no argument will return general info about the game ie: event countdown timer
+            //
+            //
+
+            /*
             url = 'https://dragalialost.gamepress.gg/';
             request(url, (error, response, html) => {
                 if (!error && response.statusCode === 200) {
@@ -16,9 +25,10 @@ module.exports = {
                     const running = $('table').find($('.event-countdown-table'));
                     console.log(running);
                 }
-            });
+            });*/
         }
         else{
+            //solve edge cases of apostrophe and spaces in the unit's name
             var append = "";
             for(var x = 0; x < args.length; x++){
                 if(x !== 0){
@@ -51,36 +61,122 @@ module.exports = {
                             elementColor = "#ffff66"; break;
                     }
                     //get unit portrait
-                    const image = body.find($('.adv-portrait')).children().find($('img')).attr('src');
+                    var image = body.find($('.adv-portrait')).children().find($('img')).attr('src');
+                    if(image == null) {
+                        image = body.find($('.tabbertab')).children().find($('img')).attr('src');
+                        isDragon = true;
+                    }
                     //get unit info array
                     const info = body.find($('.dd-description')).each(function (i, elem) {
                         infoArr[i] = $(this).text()
                     });
+
                     //get unit type
                     const title = body.find($('.panel-heading div[style]')).text();
                     //get unit rarity
                     const rarity = body.find($('.dd-description div[style]')).find($('img')).last().attr('src');
-
+                    var stars;
+                    switch (rarity) {
+                        case "https://gamepedia.cursecdn.com/dragalialost_gamepedia_en/thumb/2/2e/Icon_Rarity_Row_5.png/90px-Icon_Rarity_Row_5.png?version=7b9cbdb84207b0b299ee8ecc364606dc": stars = 5; break;
+                        case "https://gamepedia.cursecdn.com/dragalialost_gamepedia_en/thumb/9/9e/Icon_Rarity_Row_4.png/90px-Icon_Rarity_Row_4.png?version=a5fa99709cd101b1ac26e6a5101ebde3": stars = 4; break;
+                        case "https://gamepedia.cursecdn.com/dragalialost_gamepedia_en/thumb/2/21/Icon_Rarity_Row_3.png/90px-Icon_Rarity_Row_3.png?version=9e6ddb955467dfade7f770dce533d5f8": stars = 3; break;
+                    }
+                    var rarityStr = "";
+                    var i;
+                    for(i = 0; i < stars; i++){
+                        rarityStr = rarityStr + "⭐";
+                    }
+                    //initialize and set up table parser
                     cheerioTableparser($);
-                    const unitTable = $('table')
+                    const unitTable = $('table');
                     const data = $(unitTable).parsetable(true,true,true);
-                    var s1 = ["**" + data[0][0] + ": **", data[0][1].substring(data[0][1].indexOf('Lv. 3'),data[0][1].length).replace('Lv. 3','')];
-                    var s2 = ["**" + data[0][2] + ": **", data[0][3].substring(data[0][3].indexOf('Lv. 2'),data[0][3].length).replace('Lv. 2','')];
-                    var coab = ["**" + data[0][4] + "**", data[0][5].substring(data[0][5].lastIndexOf('\n')+1)];
-                    var p1 = ["**" + data[0][6] + ": **", data[0][7].substring(data[0][7].lastIndexOf('\t')+1)];
-                    var p2 = ["**" + data[0][8] + ": **", data[0][9].substring(data[0][9].lastIndexOf('\t')+1)];
-                    var p3 = ["**" + data[0][10] + ": **", data[0][11].substring(data[0][11].lastIndexOf('\t')+1)];
-                    const embed = new Discord.RichEmbed()
-                        .setColor(elementColor)
-                        .setAuthor(unitName + ": " + title, elem)
-                        .setImage(image)
-                        .setThumbnail(rarity)
-                        .addField("ENG VA",infoArr[9],true)
-                        .addField("JP VA",infoArr[10],true)
-                        .addField("---Co-Ability:---", coab)
-                        .addField("-----Skills:-----",s1[0]+s1[1]+"\n"+s2[0]+s2[1])
-                        .addField("-----Ability:-----",p1[0]+p1[1]+"\n"+p2[0]+p2[1]+"\n"+p3[0]+p3[1]);
-                    message.channel.send({embed})
+                    //
+                    // Debug
+                    //
+                    /*
+                    for(x in data){
+                        for(var z in data[x]){
+                            console.log(x + ", " + z + " : " + data[x][z]);
+                        }
+
+                    }
+                    console.log(rarity);
+                    */
+                    if(!isDragon){
+                        //what to execute if the specified argument is a unit
+                        var s1, s2, coab, p1, p2, p3;
+                        s1 = ["**" + data[0][0] + ": **", data[0][1].substring(data[0][1].indexOf('Lv. 3'),data[0][1].length).replace('Lv. 3','')];
+                        s2 = ["**" + data[0][2] + ": **", data[0][3].substring(data[0][3].indexOf('Lv. 2'),data[0][3].length).replace('Lv. 2','')];
+                        coab = ["**" + data[0][4] + "**", data[0][5].substring(data[0][5].lastIndexOf('\n')+1)];
+                        p1 = ["**" + data[0][6] + ": **", data[0][7].substring(data[0][7].lastIndexOf('\t')+1)];
+                        p2 = ["**" + data[0][8] + ": **", data[0][9].substring(data[0][9].lastIndexOf('\t')+1)];
+                        p3 = ["**" + data[0][10] + ": **", data[0][11].substring(data[0][11].lastIndexOf('\t')+1)];
+                        const embed = new Discord.RichEmbed()
+                            .setColor(elementColor)
+                            .setAuthor(unitName + ": " + title + " " + rarityStr, elem)
+                            .setImage(image)
+                            //.setThumbnail(rarity)
+                            .addField("ENG VA",infoArr[9],true)
+                            .addField("JP VA",infoArr[10],true)
+                            .addField("---Co-Ability:---", coab)
+                            .addField("-----Skills:-----",s1[0]+s1[1]+"\n"+s2[0]+s2[1])
+                            .addField("-----Ability:-----",p1[0]+p1[1]+"\n"+p2[0]+p2[1]+"\n"+p3[0]+p3[1]);
+                        message.channel.send({embed})
+                    }else{
+                        //what to execute if the specified argument is a dragon
+                        var modset, abilities;
+                        if(data[0][4] != "Attack"){
+                            abilities = (data[0][2]+": **" + data[0][3].substring(data[0][3].lastIndexOf('\t')+1)) + "\n**" + data[0][4]+": **" + data[0][5].substring(data[0][5].lastIndexOf('\t')+1);
+                            modset = [7,8,9];
+                        }
+                        else{
+                            abilities = (data[0][2]+": **" + data[0][3].substring(data[0][3].lastIndexOf('\t')+1));
+                            modset = [5,6,7];
+                        }
+                        var h001 = data[1][modset[0]];
+                        var h002 = data[1][modset[1]];
+                        var h003 = data[1][modset[2]];
+                        if(h001.length < 4){
+                            h001 += " ";
+                        }
+                        if(h002.length < 4){
+                            h002 += " ";
+                        }
+                        if(h003.length < 4){
+                            h003 += " ";
+                        }
+                        var date;
+                        //console.log(infoArr[4]);
+                        switch (infoArr[4]) {
+                            case " Juicy Meat": date = "Monday";
+                            break;
+                            case " Kaleidoscope": date = "Tuesday";
+                            break;
+                            case " Floral Circlet": date = "Wednesday";
+                            break;
+                            case " Compelling Book": date = "Thursday";
+                            break;
+                            case " Mana Essence": date = "Friday";
+                            break;
+                        }
+                        const embed = new Discord.RichEmbed()
+                            .setColor(elementColor)
+                            .setAuthor(unitName + ": " + title + " " + rarityStr, elem)
+                            .setImage(image)
+                            //.setThumbnail(rarity)
+                            .addField("Favorite gift",infoArr[4],true)
+                            .addField("Feeding Day:",date,true)
+                            .addField("-----Skill:-----","**"+data[0][0]+": **" + data[0][1].substring(data[0][1].indexOf('Lv. 2'),data[0][1].length).replace('Lv. 2',''))
+                            .addField("----Ability:----","**"+abilities)
+                            .addField("---Modifiers:---","```╔═════════╦══════════╦═════════╗\n" +
+                                                            "║ Attack  ║   Mod    ║  #Hits  ║\n" +
+                                                            "╠═════════╬══════════╬═════════╣\n" +
+                                                            "║ Combo1  ║   "+h001+"   ║    "+data[2][modset[0]]+"    ║\n" +
+                                                            "║ Combo2  ║   "+h002+"   ║    "+data[2][modset[1]]+"    ║\n" +
+                                                            "║ Combo3  ║   "+h003+"   ║    "+data[2][modset[2]]+"    ║\n" +
+                                                            "╚═════════╩══════════╩═════════╝```");
+                        message.channel.send({embed})
+                    }
                 }
             });
         }

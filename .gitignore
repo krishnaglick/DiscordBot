@@ -1,3 +1,7 @@
 ignore/auth.json
 auth.json
-commands/gamepress.html
+node_modules
+*.yml
+*.html
+*.css
+*.info
