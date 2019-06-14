@@ -28,6 +28,7 @@ module.exports = {
             });*/
         }
         else{
+            //solve edge cases of apostrophe and spaces in the unit's name
             var append = "";
             for(var x = 0; x < args.length; x++){
                 if(x !== 0){
@@ -74,18 +75,36 @@ module.exports = {
                     const title = body.find($('.panel-heading div[style]')).text();
                     //get unit rarity
                     const rarity = body.find($('.dd-description div[style]')).find($('img')).last().attr('src');
-
+                    var stars;
+                    switch (rarity) {
+                        case "https://gamepedia.cursecdn.com/dragalialost_gamepedia_en/thumb/2/2e/Icon_Rarity_Row_5.png/90px-Icon_Rarity_Row_5.png?version=7b9cbdb84207b0b299ee8ecc364606dc": stars = 5; break;
+                        case "https://gamepedia.cursecdn.com/dragalialost_gamepedia_en/thumb/9/9e/Icon_Rarity_Row_4.png/90px-Icon_Rarity_Row_4.png?version=a5fa99709cd101b1ac26e6a5101ebde3": stars = 4; break;
+                        case "https://gamepedia.cursecdn.com/dragalialost_gamepedia_en/thumb/2/21/Icon_Rarity_Row_3.png/90px-Icon_Rarity_Row_3.png?version=9e6ddb955467dfade7f770dce533d5f8": stars = 3; break;
+                    }
+                    var rarityStr = "";
+                    var i;
+                    for(i = 0; i < stars; i++){
+                        rarityStr = rarityStr + "⭐";
+                    }
+                    //initialize and set up table parser
                     cheerioTableparser($);
                     const unitTable = $('table');
                     const data = $(unitTable).parsetable(true,true,true);
+                    //
+                    // Debug
+                    //
+                    /*
                     for(x in data){
                         for(var z in data[x]){
                             console.log(x + ", " + z + " : " + data[x][z]);
                         }
 
                     }
-                    var s1, s2, coab, p1, p2, p3;
+                    console.log(rarity);
+                    */
                     if(!isDragon){
+                        //what to execute if the specified argument is a unit
+                        var s1, s2, coab, p1, p2, p3;
                         s1 = ["**" + data[0][0] + ": **", data[0][1].substring(data[0][1].indexOf('Lv. 3'),data[0][1].length).replace('Lv. 3','')];
                         s2 = ["**" + data[0][2] + ": **", data[0][3].substring(data[0][3].indexOf('Lv. 2'),data[0][3].length).replace('Lv. 2','')];
                         coab = ["**" + data[0][4] + "**", data[0][5].substring(data[0][5].lastIndexOf('\n')+1)];
@@ -94,9 +113,9 @@ module.exports = {
                         p3 = ["**" + data[0][10] + ": **", data[0][11].substring(data[0][11].lastIndexOf('\t')+1)];
                         const embed = new Discord.RichEmbed()
                             .setColor(elementColor)
-                            .setAuthor(unitName + ": " + title, elem)
+                            .setAuthor(unitName + ": " + title + " " + rarityStr, elem)
                             .setImage(image)
-                            .setThumbnail(rarity)
+                            //.setThumbnail(rarity)
                             .addField("ENG VA",infoArr[9],true)
                             .addField("JP VA",infoArr[10],true)
                             .addField("---Co-Ability:---", coab)
@@ -104,8 +123,9 @@ module.exports = {
                             .addField("-----Ability:-----",p1[0]+p1[1]+"\n"+p2[0]+p2[1]+"\n"+p3[0]+p3[1]);
                         message.channel.send({embed})
                     }else{
+                        //what to execute if the specified argument is a dragon
                         var modset, abilities;
-                        if(data[0][4] != null){
+                        if(data[0][4] != "Attack"){
                             abilities = (data[0][2]+": **" + data[0][3].substring(data[0][3].lastIndexOf('\t')+1)) + "\n**" + data[0][4]+": **" + data[0][5].substring(data[0][5].lastIndexOf('\t')+1);
                             modset = [7,8,9];
                         }
@@ -126,7 +146,7 @@ module.exports = {
                             h003 += " ";
                         }
                         var date;
-                        console.log(infoArr[4]);
+                        //console.log(infoArr[4]);
                         switch (infoArr[4]) {
                             case " Juicy Meat": date = "Monday";
                             break;
@@ -141,20 +161,20 @@ module.exports = {
                         }
                         const embed = new Discord.RichEmbed()
                             .setColor(elementColor)
-                            .setAuthor(unitName + ": " + title, elem)
+                            .setAuthor(unitName + ": " + title + " " + rarityStr, elem)
                             .setImage(image)
-                            .setThumbnail(rarity)
+                            //.setThumbnail(rarity)
                             .addField("Favorite gift",infoArr[4],true)
                             .addField("Feeding Day:",date,true)
                             .addField("-----Skill:-----","**"+data[0][0]+": **" + data[0][1].substring(data[0][1].indexOf('Lv. 2'),data[0][1].length).replace('Lv. 2',''))
                             .addField("----Ability:----","**"+abilities)
-                            .addField("---Modifiers:---","```╔═════════╦══════════╦══════════╗\n" +
-                                                            "║ Attack  ║   Mod    ║   #Hits  ║\n" +
-                                                            "╠═════════╬══════════╬══════════╣\n" +
-                                                            "║ Combo1  ║   "+h001+"   ║     "+data[2][modset[0]]+"    ║\n" +
-                                                            "║ Combo2  ║   "+h002+"   ║     "+data[2][modset[1]]+"    ║\n" +
-                                                            "║ Combo3  ║   "+h003+"   ║     "+data[2][modset[2]]+"    ║\n" +
-                                                            "╚═════════╩══════════╩══════════╝```");
+                            .addField("---Modifiers:---","```╔═════════╦══════════╦═════════╗\n" +
+                                                            "║ Attack  ║   Mod    ║  #Hits  ║\n" +
+                                                            "╠═════════╬══════════╬═════════╣\n" +
+                                                            "║ Combo1  ║   "+h001+"   ║    "+data[2][modset[0]]+"    ║\n" +
+                                                            "║ Combo2  ║   "+h002+"   ║    "+data[2][modset[1]]+"    ║\n" +
+                                                            "║ Combo3  ║   "+h003+"   ║    "+data[2][modset[2]]+"    ║\n" +
+                                                            "╚═════════╩══════════╩═════════╝```");
                         message.channel.send({embed})
                     }
                 }
