@@ -1,31 +1,33 @@
-const cheerio = require('cheerio')
-const request = require('request')
+const cheerio = require('cheerio');
+const request = require('request');
 const Discord = require('discord.js');
-const cheerioTableparser = require('cheerio-tableparser')
+const cheerioTableparser = require('cheerio-tableparser');
 module.exports = {
     name: 'drag',
     description: 'view the drag wiki',
     execute(message, args) {
         var isDragon = false;
         if(args[0] == null){
-
             //
             //
             // Construction Zone: passing in no argument will return general info about the game ie: event countdown timer
             //
             //
-
-            /*
             url = 'https://dragalialost.gamepress.gg/';
             request(url, (error, response, html) => {
                 if (!error && response.statusCode === 200) {
                     const $ = cheerio.load(html);
                     const body = $('body');
                     cheerioTableparser($);
-                    const running = $('table').find($('.event-countdown-table'));
-                    console.log(running);
+                    const running = body.find($('table')).find($('.event-countdown-table'));
+                    console.log(running.find($('tbody')).text());
                 }
-            });*/
+            });
+            //
+            //
+            //
+            //
+            //
         }
         else{
             //solve edge cases of apostrophe and spaces in the unit's name
@@ -147,6 +149,7 @@ module.exports = {
                         }
                         var date;
                         //console.log(infoArr[4]);
+                        var today = new Date().getDay();
                         switch (infoArr[4]) {
                             case " Juicy Meat": date = "Monday";
                             break;
@@ -159,12 +162,29 @@ module.exports = {
                             case " Mana Essence": date = "Friday";
                             break;
                         }
+                        var food = infoArr[4];
+                        switch (date) {
+                            case "Monday": if(today === 1) { food += " 👑";}
+                                break;
+                            case "Tuesday": if(today === 2) { food += " 👑";}
+                                break;
+                            case "Wednesday": if(today === 3) { food += " 👑";}
+                                break;
+                            case "Thursday": if(today === 4) { food += " 👑";}
+                                break;
+                            case "Friday": if(today === 5) { food += " 👑";}
+                                break;
+                            case "Saturday": if(today === 6) { food += " 👑";}
+                                break;
+                            case "Sunday": if(today === 7) { food += " 👑";}
+                                break;
+                        }
                         const embed = new Discord.RichEmbed()
                             .setColor(elementColor)
                             .setAuthor(unitName + ": " + title + " " + rarityStr, elem)
                             .setImage(image)
                             //.setThumbnail(rarity)
-                            .addField("Favorite gift",infoArr[4],true)
+                            .addField("Favorite gift",food,true)
                             .addField("Feeding Day:",date,true)
                             .addField("-----Skill:-----","**"+data[0][0]+": **" + data[0][1].substring(data[0][1].indexOf('Lv. 2'),data[0][1].length).replace('Lv. 2',''))
                             .addField("----Ability:----","**"+abilities)
