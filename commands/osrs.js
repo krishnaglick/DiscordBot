@@ -1,7 +1,7 @@
 const cheerio = require('cheerio')
 const request = require('request')
 const Discord = require('discord.js');
-const cheerioTableparser = require('cheerio-tableparser')
+const cheerioTableparser = require('cheerio-tableparser');
 
 module.exports = {
     name: 'rs',
