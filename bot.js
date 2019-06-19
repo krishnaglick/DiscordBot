@@ -28,6 +28,12 @@ client.once('ready', () => {
 const squint = client.emojis.find(emoji => emoji.name === "squint");
 //code which is done whenever a message is sent in a discord the bot exists in.
 client.on('message', message => {
+	//le reddit filter
+    if(message.content.indexOf("r/") !== -1 || message.content.indexOf("reddit") !== -1){
+        message.delete()
+            .then(msg => console.log(`Deleted message from ${msg.author.username} for saying ${msg.content}`))
+            .catch(console.error);
+    }
     //if the message is one of the auto response inputs, reply with the output
     if(responseObject[message.content]) {
         message.reply(responseObject[message.content]);
