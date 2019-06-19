@@ -139,10 +139,12 @@ request(url, (error, response, html) => {
                 //.addField(labelArr[d], " " + valueArr[d])
                 //.addField(labelArr[e], " " + valueArr[e])
         }else if (finalConvertedLabel.includes('Rarity')) {
+            //Mods
                 embed = new Discord.RichEmbed()
                 .setImage(imageWarframe)
         }else if (finalConvertedLabel.includes('Attack Speed')){
-            embed = new Discord.RichEmbed()
+            //Melee
+                embed = new Discord.RichEmbed()
                 .setAuthor(Name + "    " + valueArr[f + 1], gunIcon)
                 .setImage(imageGun)
                 .addField(labelArr[a], " " + valueArr[a + 1])
@@ -152,7 +154,8 @@ request(url, (error, response, html) => {
                 .addField(labelArr[e], " " + valueArr[e + 1])
                 .addField(labelArr[g], " " + valueArr[g + 1])
         }else {
-            embed = new Discord.RichEmbed()
+            //Gun
+                embed = new Discord.RichEmbed()
                 .setAuthor(Name + "    " + valueArr[f + 1], gunIcon)
                 .setImage(imageGun)
                 .addField(labelArr[a], " " + valueArr[a + 1])
