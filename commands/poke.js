@@ -6,7 +6,7 @@ module.exports = {
     name: 'poke',
     description: 'Parses Serebii.net',
     execute(message, args) {
-        var dexfinal
+        var dexfinal;
         if(args[0] === "random"){
             var dexentry = Math.floor(Math.random() * 1000)- 193;
             if(dexentry.length === 1){
@@ -19,6 +19,7 @@ module.exports = {
             var name = args[0][0].toLocaleUpperCase() + args[0].substring(1,args[0].length);
             dexfinal = dexnumMap[name];
         }
+        console.log(`Poke: ${message.author.username} requested ${args[0]}`);
         url = 'https://serebii.net/pokedex-sm/' + dexfinal + '.shtml';
         request(url, (error, response, html) => {
             if (!error && response.statusCode === 200) {
@@ -86,7 +87,6 @@ module.exports = {
                 const image = "https://serebii.net/" + body.find($('.dextab')).find('img').attr('src');
                 const thumb = "https://pokemon-trainer.com/images/sprite/xyorasani/"+dexfinal+".gif";
                 const portrait = "https://serebii.net/sunmoon/pokemon/"+dexfinal+".png";
-                console.log(portrait);
                 const data = $(dex).parsetable(true,true,true);
                 for(var x in data[0]){
                     //console.log(x + " : " + data[0][x]);
