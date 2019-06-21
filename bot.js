@@ -19,25 +19,68 @@ const responseObject = {
     "ascii": "][_ {[]} ][_",
     "gay": "SHUT THE FUCK UP"
 };
+//reddit filter establisher
+var fw = ["/r", "r/", "/r/", "eddit", ":leddit:", "eddit.com"];
+var length = fw.length;
+var whileCon = length;
 //code which is done on bot's start up. As of now only logs that the bot is running and sets the activty.
 client.once('ready', () => {
 	console.log('Bot is running');
 	client.user.setActivity('in the mud');
 });
+//botgame prototype
+var keyword = "none";
+var keywordFound = false;
+var it = "";
+
 //creates reference to the squint custom emoji used later
 const squint = client.emojis.find(emoji => emoji.name === "squint");
 //code which is done whenever a message is sent in a discord the bot exists in.
 client.on('message', message => {
+<<<<<<< HEAD
 	//le reddit filter
     if(message.content.indexOf("r/") !== -1 || message.content.indexOf("reddit") !== -1 || message.content.indexOf("Reddit") !== -1){
         message.delete()
             .then(msg => console.log(`Deleted message from ${msg.author.username} for saying ${msg.content}`))
             .catch(console.error);
+=======
+    if(whileCon !== length){
+        whileCon = length;
+    }
+
+    if(message.guild) {
+        let itRole = message.guild.roles.find(role => role.name === "IT");
+        if (message.content.indexOf(keyword) !== -1 && keywordFound === false && message.author !== it) {
+            keywordFound = true;
+            it = message.author;
+            message.member.addRole(itRole);
+            message.author.send("Congratulations! You've invoked the keyword: " + keyword + ". Go to the #bot-game channel I just added you to and set a new Keyword to continue the game. Use >kw [your new keyword]");
+            console.log("The keyword: " + keyword + " has been found by " + message.author.username);
+
+        }
+        if (keywordFound === true && message.content.startsWith(">kw ") && message.author === it) {
+            keyword = message.content.replace(">kw ", "");
+            keywordFound = false;
+            message.member.removeRole(itRole);
+            message.author.send("You've set the new keyword. The game continues.");
+            console.log("The keyword has been set to: " + keyword + " by " + message.author.username);
+
+        }
+>>>>>>> a0a1bd24661cf46ad8502d4908af3b3316283eed
     }
     //if the message is one of the auto response inputs, reply with the output
     if(responseObject[message.content]) {
         message.reply(responseObject[message.content]);
     }
+    //le reddit filter
+    while(whileCon--){
+        if(message.content.indexOf(fw[whileCon]) !== -1 && message.guild.id === "453732177058988034"){
+            message.delete()
+                .then(msg => console.log(`Deleted message from ${msg.author.username} for saying ${msg.content}`))
+                .catch(console.error);
+        }
+    }
+    whileCon = length;
     //randomly react to messages with the squint emoji from earlier
     if(Math.floor(Math.random() * 100) > 97){
         message.react(client.emojis.find(emoji => emoji.name === "squint").id);
