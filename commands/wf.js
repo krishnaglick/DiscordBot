@@ -34,6 +34,7 @@ request(url, (error, response, html) => {
         const gunIcon = body.find($('a.image.image-thumbnail.link-internal')).children().find($('img')).attr('data-src');
         const imageLocation = $('div.floatnone')
         const imageLocationWarframe = $('figure.pi-item.pi-image')
+        const imageLocationMod = $('figure.pi-item.pi-image')
         const labelArr = {}
         const valueArr = {}
         //div for the value to minimize links appearing in your scrape.
@@ -77,6 +78,9 @@ request(url, (error, response, html) => {
         var e = '';
         var f = '';
         var g = '';
+//This mess here is to fuck around with the different gun types, warframes, and mods. incldues is my cheap way of just identifying which is which.
+//In retrospect, I could have just used a switch case but ¯\_(ツ)_/¯
+
 
             if (finalConvertedValue.includes('Arch-Gun')){
                 a = finalConvertedLabel.indexOf('Crit Chance');
@@ -134,8 +138,13 @@ request(url, (error, response, html) => {
                 //.addField(labelArr[c], " " + valueArr[c])
                 //.addField(labelArr[d], " " + valueArr[d])
                 //.addField(labelArr[e], " " + valueArr[e])
+        }else if (finalConvertedLabel.includes('Rarity')) {
+            //Mods
+                embed = new Discord.RichEmbed()
+                .setImage(imageWarframe)
         }else if (finalConvertedLabel.includes('Attack Speed')){
-            embed = new Discord.RichEmbed()
+            //Melee
+                embed = new Discord.RichEmbed()
                 .setAuthor(Name + "    " + valueArr[f + 1], gunIcon)
                 .setImage(imageGun)
                 .addField(labelArr[a], " " + valueArr[a + 1])
@@ -145,7 +154,8 @@ request(url, (error, response, html) => {
                 .addField(labelArr[e], " " + valueArr[e + 1])
                 .addField(labelArr[g], " " + valueArr[g + 1])
         }else {
-            embed = new Discord.RichEmbed()
+            //Gun
+                embed = new Discord.RichEmbed()
                 .setAuthor(Name + "    " + valueArr[f + 1], gunIcon)
                 .setImage(imageGun)
                 .addField(labelArr[a], " " + valueArr[a + 1])
@@ -154,36 +164,7 @@ request(url, (error, response, html) => {
                 .addField(labelArr[d], " " + valueArr[d + 1])
                 .addField(labelArr[e], " " + valueArr[e + 1])
         }
-/*
-        if (finalConvertedLabel.includes('Health')) {
-            embed = new Discord.RichEmbed()
-                .setAuthor(Name)
-                .setImage(imageWarframe)
-                .addField(labelArr[a], " " + valueArr[a])
-                .addField(labelArr[b], " " + valueArr[b])
-                .addField(labelArr[c], " " + valueArr[c])
-                .addField(labelArr[d], " " + valueArr[d])
-                .addField(labelArr[e], " " + valueArr[e])
-        }else if (finalConvertedLabel.includes('Attack Speed')){
-            embed = new Discord.RichEmbed()
-                .setAuthor(Name + "    " + valueArr[f + 1], gunIcon)
-                .setImage(imageGun)
-                .addField(labelArr[a], " " + valueArr[a + 1])
-                .addField(labelArr[b], " " + valueArr[b + 1])
-                .addField(labelArr[c], " " + valueArr[c + 1])
-                .addField(labelArr[d], " " + valueArr[d + 1])
-                .addField(labelArr[e], " " + valueArr[e + 1])
-                .addField(labelArr[g], " " + valueArr[g + 1])
-        }else {
-            embed = new Discord.RichEmbed()
-                .setAuthor(Name + "    " + valueArr[f + 1], gunIcon)
-                .setImage(imageGun)
-                .addField(labelArr[a], " " + valueArr[a + 1])
-                .addField(labelArr[b], " " + valueArr[b + 1])
-                .addField(labelArr[c], " " + valueArr[c + 1])
-                .addField(labelArr[d], " " + valueArr[d + 1])
-                .addField(labelArr[e], " " + valueArr[e + 1])
-        }*/
+
                 message.channel.send({embed})
 
 
