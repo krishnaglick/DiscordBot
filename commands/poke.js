@@ -19,7 +19,7 @@ module.exports = {
             var name = args[0][0].toLocaleUpperCase() + args[0].substring(1,args[0].length);
             dexfinal = dexnumMap[name];
         }
-        console.log(`Poke: ${message.author.username} requested ${args[0]}`);
+        console.log(`POKE  || ${message.author.username} requested ${args[0]}`);
         url = 'https://serebii.net/pokedex-sm/' + dexfinal + '.shtml';
         request(url, (error, response, html) => {
             if (!error && response.statusCode === 200) {

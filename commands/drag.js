@@ -247,7 +247,7 @@ module.exports = {
         }catch (e) {
             //
         }finally {
-            console.log(`Drag: ${message.author.username} requested ${appendFinal}`);
+            console.log(`DRAG  || ${message.author.username} requested ${appendFinal}`);
         }
     },
 };

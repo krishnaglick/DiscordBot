@@ -20,7 +20,7 @@ const responseObject = {
     "gay": "SHUT THE FUCK UP"
 };
 //reddit filter establisher
-var fw = ["/r", "r/", "/r/", "eddit", ":leddit:", "eddit.com"];
+var fw = ["/r", "r/", "/r/", "eddit", ":leddit:", "eddit.com", "reddi"];
 var length = fw.length;
 var whileCon = length;
 //code which is done on bot's start up. As of now only logs that the bot is running and sets the activty.
@@ -32,32 +32,77 @@ client.once('ready', () => {
 var keyword = "none";
 var keywordFound = false;
 var it = "";
+var previt = "";
 
 //creates reference to the squint custom emoji used later
 const squint = client.emojis.find(emoji => emoji.name === "squint");
 //code which is done whenever a message is sent in a discord the bot exists in.
 client.on('message', message => {
+    //if the message is sent by a bot, ignore it.
+    if (message.author.bot) return;
+    //reset the filter array length so it can be ran through for each message.
     if(whileCon !== length){
         whileCon = length;
     }
-
+    //keyword game handler
     if(message.guild) {
+        //role reference for IT
         let itRole = message.guild.roles.find(role => role.name === "IT");
+        //code block to run if the keyword is said by someone who isn't it.
         if (message.content.indexOf(keyword) !== -1 && keywordFound === false && message.author !== it) {
             keywordFound = true;
             it = message.author;
             message.member.addRole(itRole);
-            message.author.send("Congratulations! You've invoked the keyword: " + keyword + ". Go to the #bot-game channel I just added you to and set a new Keyword to continue the game. Use >kw [your new keyword]");
+            message.react(client.emojis.find(emoji => emoji.name === "ru").id);
+            message.author.send("Congratulations! You've invoked the keyword: " + keyword + " that was set by " + previt + ". Go to the #bot-game channel I just added you to and set a new Keyword to continue the game. Use >kw [your new keyword]");
             console.log("The keyword: " + keyword + " has been found by " + message.author.username);
-
         }
+        //code block to run when it sets their new keyword
         if (keywordFound === true && message.content.startsWith(">kw ") && message.author === it) {
             keyword = message.content.replace(">kw ", "");
             keywordFound = false;
             message.member.removeRole(itRole);
             message.author.send("You've set the new keyword. The game continues.");
             console.log("The keyword has been set to: " + keyword + " by " + message.author.username);
-
+            previt = message.author.username;
+            message.delete()
+                .then(msg => console.log(`Deleted >kw from ${msg.author.username}`))
+                .catch(console.error);
+            return;
+        }
+        //debug command for setting IT
+        if (message.content.startsWith(">debug set it")) {
+            it = getUserFromMention(message.content.replace(">debug set it ", ""));
+            console.log("DEBUG || It set to: " + it.username);
+            message.delete()
+                .then(msg => console.log(`Deleted >debug from ${msg.author.username}`))
+                .catch(console.error);
+            return;
+        }
+        //debug command for setting the keyword
+        if (message.content.startsWith(">debug set word")) {
+            keyword = message.content.replace(">debug set word ", "");
+            console.log("DEBUG || KeyWord set to: " + keyword);
+            message.delete()
+                .then(msg => console.log(`Deleted >debug from ${msg.author.username}`))
+                .catch(console.error);
+            return;
+        }
+        //debug command to print current game information
+        if (message.content.startsWith(">debug botgame info")) {
+            var kwstatus = "";
+            if(keywordFound){
+                kwstatus = "Found and awaiting >kw from " + it.username;
+            }else{
+                kwstatus = "Not Found";
+            }
+            console.log("DEBUG || KeyWord: " + keyword +"\n"+
+                        "      || Current IT: " + it.username + "\n"+
+                        "      || KeyWord Status: " + kwstatus);
+            message.delete()
+                .then(msg => console.log(`Deleted >debug from ${msg.author.username}`))
+                .catch(console.error);
+            return;
         }
     }
     //if the message is one of the auto response inputs, reply with the output
@@ -93,3 +138,17 @@ client.on('message', message => {
 });
 client.login(token);
 //Fix?
+
+function getUserFromMention(mention) {
+    if (!mention) return;
+
+    if (mention.startsWith('<@') && mention.endsWith('>')) {
+        mention = mention.slice(2, -1);
+
+        if (mention.startsWith('!')) {
+            mention = mention.slice(1);
+        }
+
+        return client.users.get(mention);
+    }
+}
