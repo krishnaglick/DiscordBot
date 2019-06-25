@@ -44,20 +44,12 @@ client.on('message', message => {
     if(whileCon !== length){
              whileCon = length;
     }
-    if(message.guild) {
-        //role reference for IT
-        let itRole = message.guild.roles.find(role => role.name === "IT");
-        //code block to run if the keyword is said by someone who isn't it.
-        if (message.content.indexOf(keyword) !== -1 && keywordFound === false && message.author !== it) {
-            keywordFound = true;
-            it = message.author;
-            message.member.addRole(itRole);
-            message.react(client.emojis.find(emoji => emoji.name === "ru").id);
 	//le reddit filter
     if(message.content.indexOf("r/") !== -1 || message.content.indexOf("reddit") !== -1 || message.content.indexOf("Reddit") !== -1) {
         message.delete()
             .then(msg => console.log(`Deleted message from ${msg.author.username} for saying ${msg.content}`))
             .catch(console.error);
+    }
         //keyword game handler
         if (message.guild) {
             //role reference for IT
@@ -149,7 +141,6 @@ client.on('message', message => {
             console.error(error);
             message.reply('Cannot run command!');
         }
-    }
 });
 client.login(token);
 //Fix?
