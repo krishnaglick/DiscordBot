@@ -12,13 +12,15 @@ for (const file of commandFiles) {
 	const command = require(`./commands/${file}`);
 	client.commands.set(command.name, command);
 }
-//auto response dictionary. input on the left and output on the right.
+//auto response dictionary. input on the left and output on the right. Type useless tbh
+/*
 const responseObject = {
     ":^)": "(^:",
     "based": "and redpilled",
     "ascii": "][_ {[]} ][_",
     "gay": "SHUT THE FUCK UP"
 };
+*/
 //reddit filter establisher
 var fw = ["/r", "r/", "/r/", "eddit", ":leddit:", "eddit.com", "reddi"];
 var length = fw.length;
@@ -33,11 +35,40 @@ var keyword = "none";
 var keywordFound = false;
 var it = "";
 var previt = "";
-
+//emoji func for reactwait
+const filter = (reaction, user) => {
+    return ['🚫'].includes(reaction.emoji.name);
+};
 //creates reference to the squint custom emoji used later
 const squint = client.emojis.find(emoji => emoji.name === "squint");
 //code which is done whenever a message is sent in a discord the bot exists in.
 client.on('message', message => {
+    //message id reference
+    var messageID = message.id;
+    //message vote to delete functionality.
+    var users = [];
+    client.on('messageReactionAdd', (reaction) => {
+        if (reaction.emoji.name === "🚫" && reaction.message.id === messageID) {
+            users.push(reaction.users.last().username);
+        }
+    });
+    var emotesToDelete = 1;
+    var collectedEmotes = 0;
+    message.awaitReactions(filter, {max:4 ,time: 600000, errors: ['time'] })
+        .then(collected => {
+            collectedEmotes++;
+            const reaction = collected.first();
+            if (reaction.emoji.name === '🚫' /* && left !== 0*/) {
+                message.send(`${emotesToDelete - collected.size} left to delete ${message.author.username}'s message`);
+            }
+        })
+        .catch(collected => {
+            if(collectedEmotes === emotesToDelete){
+                message.delete().then(msg => message.channel.send(`Deleted message from ${msg.author.username}\nVoted by: ${users.join(", ")}`)).catch(console.error);
+                console.log("DEMOC || Message deleted by vote.");
+            }
+            console.log("DEMOC || Message not deleted due to lack of votes.")
+        });
     //if the message is sent by a bot, ignore it.
     if (message.author.bot) return;
     //reset the filter array length so it can be ran through for each message.
@@ -55,7 +86,7 @@ client.on('message', message => {
             //role reference for IT
             let itRole = message.guild.roles.find(role => role.name === "IT");
             //code block to run if the keyword is said by someone who isn't it.
-            if (message.content.indexOf(keyword) !== -1 && keywordFound === false && message.author !== it) {
+            if ((message.content.indexOf(keyword) !== -1 || message.content.indexOf(keyword.toLocaleLowerCase()) !== -1 || message.content.indexOf(keyword.toLocaleUpperCase()) !== -1 || message.content.indexOf(keyword.charAt(0).toUpperCase() + keyword.substring(1,keyword.length)) !== -1) && keywordFound === false && message.author !== it) {
                 keywordFound = true;
                 it = message.author;
                 message.member.addRole(itRole);
@@ -112,9 +143,11 @@ client.on('message', message => {
             }
         }
         //if the message is one of the auto response inputs, reply with the output
+        /*
         if (responseObject[message.content]) {
             message.reply(responseObject[message.content]);
         }
+        */
         //le reddit filter
         while (whileCon--) {
             if (message.content.indexOf(fw[whileCon]) !== -1 && message.guild.id === "453732177058988034") {
