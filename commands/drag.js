@@ -45,6 +45,7 @@ module.exports = {
                 var url = 'https://dragalialost.gamepedia.com/' + append.replace(" ", "_");
                 request(url, (error, response, html) => {
                     if (!error && response.statusCode === 200) {
+                        message.channel.startTyping();
                         const $ = cheerio.load(html);
                         const body = $('body');
                         const infoArr = {};
@@ -80,7 +81,6 @@ module.exports = {
                         const info = body.find($('.dd-description')).each(function (i, elem) {
                             infoArr[i] = $(this).text()
                         });
-
                         //get unit type
                         const title = body.find($('.panel-heading div[style]')).text();
                         //get unit rarity
@@ -114,12 +114,10 @@ module.exports = {
                             for(var z in data[x]){
                                 console.log(x + ", " + z + " : " + data[x][z]);
                             }
-
                         }
                         console.log(rarity);
                         */
                         if (!isDragon && !(data[0][1] == null)) {
-
                             //what to execute if the specified argument is a unit
                             var s1, s2, coab, p1, p2, p3;
                             s1 = ["**" + data[0][0] + ": **", data[0][1].substring(data[0][1].indexOf('Lv. 3'), data[0][1].length).replace('Lv. 3', '')];
@@ -230,25 +228,25 @@ module.exports = {
                                 .addField("-----Skill:-----", "**" + data[0][0] + ": **" + data[0][1].substring(data[0][1].indexOf('Lv. 2'), data[0][1].length).replace('Lv. 2', ''))
                                 .addField("----Ability:----", "**" + abilities)
                                 .addField("---Modifiers:---", "```╔═════════╦══════════╦═════════╗\n" +
-                                    "║ Attack  ║   Mod    ║  #Hits  ║\n" +
-                                    "╠═════════╬══════════╬═════════╣\n" +
-                                    "║ Combo1  ║   " + h001 + "   ║    " + data[2][modset[0]] + "    ║\n" +
-                                    "║ Combo2  ║   " + h002 + "   ║    " + data[2][modset[1]] + "    ║\n" +
-                                    "║ Combo3  ║   " + h003 + "   ║    " + data[2][modset[2]] + "    ║\n" +
-                                    "╚═════════╩══════════╩═════════╝```");
+                                                                 "║ Attack  ║   Mod    ║  #Hits  ║\n" +
+                                                                 "╠═════════╬══════════╬═════════╣\n" +
+                                                                 "║ Combo1  ║   " + h001 + "   ║    " + data[2][modset[0]] + "    ║\n" +
+                                                                 "║ Combo2  ║   " + h002 + "   ║    " + data[2][modset[1]] + "    ║\n" +
+                                                                 "║ Combo3  ║   " + h003 + "   ║    " + data[2][modset[2]] + "    ║\n" +
+                                                                 "╚═════════╩══════════╩═════════╝```");
                             message.channel.send({embed})
                         }
                         if(data[0][1] == null){
                             message.channel.send("The information for the unit you've requested is not ready yet.");
                         }
+                        message.channel.stopTyping(true);
                     }
                 });
             }
         }catch (e) {
             //
         }finally {
-            console.log(`DRAG  || ${message.author.username} requested ${appendFinal}`);
-        }
+            console.log(`DRAG  || ${message.author.username} requested ${appendFinal}`);}
     },
 };
 
