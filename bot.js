@@ -22,16 +22,16 @@ const responseObject = {
 };
 */
 //reddit filter establisher
-var fw = ["/r", "r/", "/r/", "eddit", ":leddit:", "eddit.com", "reddi"];
-var length = fw.length;
-var whileCon = length;
+//var fw = ["/r", "r/", "/r/", "eddit", ":leddit:", "eddit.com", "reddi"];
+//var length = fw.length;
+//var whileCon = length;
 //code which is done on bot's start up. As of now only logs that the bot is running and sets the activty.
 client.once('ready', () => {
 	console.log('Bot is running');
 	client.user.setActivity('Please Read Pokemon Special');
 });
 //botgame prototype
-var keyword = "n";
+var keyword = "asdafasdfasedfwqaefqerwsgqergwergsdafgadfsg";
 var keywordFound = false;
 var it = "";
 var previt = "";
@@ -83,15 +83,16 @@ client.on('message', message => {
     //if the message is sent by a bot, ignore it.
     if (message.author.bot) return;
     //reset the filter array length so it can be ran through for each message.
-    if(whileCon !== length){
-             whileCon = length;
-    }
+    //if(whileCon !== length){
+             //whileCon = length;
+    //}
 	//le reddit filter
+    /*
     if(message.content.indexOf("r/") !== -1 || message.content.indexOf("reddit") !== -1 || message.content.indexOf("Reddit") !== -1) {
         message.delete()
             .then(msg => console.log(`Deleted message from ${msg.author.username} for saying ${msg.content}`))
             .catch(console.error);
-    }
+    }*/
     //mafia handler
     var gameRunning = false;
 
@@ -181,6 +182,7 @@ client.on('message', message => {
     }
     */
     //le reddit filter
+    /*
     while (whileCon--) {
         if (message.content.indexOf(fw[whileCon]) !== -1 && message.guild.id === "453732177058988034") {
             message.delete()
@@ -189,10 +191,13 @@ client.on('message', message => {
         }
     }
     whileCon = length;
+    */
     //randomly react to messages with the squint emoji from earlier
+    /*
     if (Math.floor(Math.random() * 100) > 97) {
         message.react(client.emojis.find(emoji => emoji.name === "squint").id);
     }
+    */
     //checks the message's first character for the > prefix, if the prefix isnt found the function returns.
     if (!message.content.startsWith(prefix) || message.author.bot) return;
     //if the prefix IS found, the command call is split with the word immediately following the prefix becoming command and everything after it becoming the space delimitted args array
