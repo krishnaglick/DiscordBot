@@ -2,12 +2,14 @@ const cheerio = require('cheerio');
 const request = require('request');
 const Discord = require('discord.js');
 const cheerioTableparser = require('cheerio-tableparser');
+const paginationEmbed = require('discord.js-pagination');
+const { MessageEmbed } = require('discord.js');
 module.exports = {
     name: 'pm',
     description: 'Masters',
     execute(message, args) {
         console.log("PKMAS || " + message.author.username + " has requested " + args.join(" "));
-        url = 'https://www.serebii.net/pokemonmasters/syncpairs/' + args[0] + '.shtml';
+        var url = 'https://www.serebii.net/pokemonmasters/syncpairs/' + args[0].toLowerCase() + '.shtml';
         request(url, (error, response, html) => {
             if (!error && response.statusCode === 200) {
                 const $ = cheerio.load(html);
@@ -60,7 +62,7 @@ module.exports = {
                         isFirstNameElem = false;
                     }
                     else if(name[x] === "Name" && isSync){
-                        sync.push("**" + name[parseInt(x) + 1] + "**");
+                        sync.push("**" + name[index + 1] + "**");
                         sync.push("Power: " + data[3][index + 1] + " **|** " + "Target: " + data[4][index + 1]);
                         sync.push(data[3][index + 2]);
                         isSync = false;
@@ -72,43 +74,95 @@ module.exports = {
                     movesOut = movesOut + movesTemp;
                 }
                 var syncOut = sync.join("\n");
-                //
-                //Stat initializers
-                //
-                var HP = data[0][17];
-                var ATK = data[1][17];
-                var DEF = data[2][17];
-                var SPATK = data[3][17];
-                var SPDEF = data[4][17];
-                var SPD = data[5][17];
+
+                var sync1 = [];
+                sync1.push("**" + name[56 + 1] + "**");
+                sync1.push("Power: " + data[3][56 + 1] + " **|** " + "Target: " + data[4][56 + 1]);
+                sync1.push(data[3][56 + 2]);
+                var syncOut1 = sync1.join("\n");
+                //console.log(sync1);
+                var sync2 = [];
+                sync2.push("**" + name[83 + 1] + "**");
+                sync2.push("Power: " + data[3][83 + 1] + " **|** " + "Target: " + data[4][83 + 1]);
+                sync2.push(data[3][83 + 2]);
+                var syncOut2 = sync2.join("\n");
+                //console.log(sync2);
+                //console.log(movesOut1);
                 /*
-                var debugindex = 1;
+                var debugindex = 0;
                 for(x in data[debugindex]) {
                     console.log(x + " : " + data[debugindex][x]);
                 }
-                console.log(moves);
-                console.log(sync);
                 */
                 //
-                //
+                //Get Thumbnails
                 //
                 const embed = new Discord.RichEmbed()
                     .setAuthor(data[1][5])
                     .setImage(trainerImage)
                     .setThumbnail(typeImage)
                     //.addField("Weakness","")
-                    .addField("HP",HP,true)
-                    .addField("ATK",ATK,true)
-                    .addField("DEF",DEF,true)
-                    .addField("SPATK",SPATK,true)
-                    .addField("SPDEF",SPDEF,true)
-                    .addField("SPD",SPD,true)
+                    .addField("HP",data[0][17],true)
+                    .addField("ATK",data[1][17],true)
+                    .addField("DEF",data[2][17],true)
+                    .addField("SPATK",data[3][17],true)
+                    .addField("SPDEF",data[4][17],true)
+                    .addField("SPD",data[5][17],true)
                     .addField("Passives", passives)
                     .addField("Moves", movesOut)
                     .addField("Sync Move", syncOut)
                     .setColor(getColor(typeImage))
                     .setFooter("Stats reflect their values at level 100 (UNDER CONSTRUCTION)");
-                message.channel.send({embed})
+                const embed2 = new Discord.RichEmbed()
+                    .setAuthor(data[1][32])
+                    .setImage(trainerImage)
+                    .setThumbnail(typeImage)
+                    //.addField("Weakness","")
+                    .addField("HP",data[0][44],true)
+                    .addField("ATK",data[1][44],true)
+                    .addField("DEF",data[2][44],true)
+                    .addField("SPATK",data[3][44],true)
+                    .addField("SPDEF",data[4][44],true)
+                    .addField("SPD",data[5][44],true)
+                    .addField("Passives", passives)
+                    .addField("Moves", movesOut)
+                    .addField("Sync Move", syncOut1)
+                    .setColor(getColor(typeImage))
+                    .setFooter("Stats reflect their values at level 100 (UNDER CONSTRUCTION)");
+                const embed3 = new Discord.RichEmbed()
+                    .setAuthor(data[1][59])
+                    .setImage(trainerImage)
+                    .setThumbnail(typeImage)
+                    //.addField("Weakness","")
+                    .addField("HP",data[0][71],true)
+                    .addField("ATK",data[1][71],true)
+                    .addField("DEF",data[2][71],true)
+                    .addField("SPATK",data[3][71],true)
+                    .addField("SPDEF",data[4][71],true)
+                    .addField("SPD",data[5][71],true)
+                    .addField("Passives", passives)
+                    .addField("Moves", movesOut)
+                    .addField("Sync Move", syncOut2)
+                    .setColor(getColor(typeImage))
+                    .setFooter("Stats reflect their values at level 100 (UNDER CONSTRUCTION)");
+                var pages = [];
+                if(sync2[0] !== "**undefined**"){
+                    pages = [
+                        embed,
+                        embed2,
+                        embed3
+                    ];
+                    paginationEmbed(message, pages, ['⏪', '⏩'], 60000);
+                }else if(sync1[0] !== "**undefined**"){
+                    pages = [
+                        embed,
+                        embed2,
+                    ];
+                    paginationEmbed(message, pages, ['⏪', '⏩'], 60000);
+                }else{
+                    message.channel.send({embed})
+                }
+
             }
         })
     },

@@ -27,7 +27,7 @@ const responseObject = {
 //var whileCon = length;
 //code which is done on bot's start up. As of now only logs that the bot is running and sets the activty.
 client.once('ready', () => {
-	console.log('Bot is running');
+	console.log(`Bot is running on ${client.guilds.size} servers`);
 	client.user.setActivity('Please Read Pokemon Special');
 });
 //botgame prototype
@@ -53,6 +53,7 @@ client.on('message', message => {
     //message id reference
     var messageID = message.id;
     //message vote to delete functionality.
+    /*
     var users = [];
     var emotesToDelete = 1;
     var collectedEmotes = 0;
@@ -80,6 +81,7 @@ client.on('message', message => {
             console.log("DEMOC || Message deleted by vote.");
         }
     });
+    */
     //if the message is sent by a bot, ignore it.
     if (message.author.bot) return;
     //reset the filter array length so it can be ran through for each message.
@@ -111,6 +113,7 @@ client.on('message', message => {
         }
     }
     //keyword game handler
+    /*
     if (message.guild) {
         //role reference for IT
         let itRole = message.guild.roles.find(role => role.name === "IT");
@@ -175,6 +178,7 @@ client.on('message', message => {
             return;
         }
     }
+    */
     //if the message is one of the auto response inputs, reply with the output
     /*
     if (responseObject[message.content]) {
@@ -214,7 +218,7 @@ client.on('message', message => {
 });
 client.login(token);
 //Fix?
-
+/*
 function getUserFromMention(mention) {
     if (!mention) return;
 
@@ -313,3 +317,4 @@ const alignment = {
     "Cop" : "Town",
     "Doctor" : "Town"
 };
+*/
