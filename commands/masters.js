@@ -3,7 +3,6 @@ const request = require('request');
 const Discord = require('discord.js');
 const cheerioTableparser = require('cheerio-tableparser');
 const paginationEmbed = require('discord.js-pagination');
-const { MessageEmbed } = require('discord.js');
 module.exports = {
     name: 'pm',
     description: 'Masters',

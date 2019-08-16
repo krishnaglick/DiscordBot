@@ -19,7 +19,7 @@ client.once('ready', () => {
 });
 
 client.on('messageReactionAdd', (reaction, user) => {
-    if(reaction.emoji.name === '🤝'){
+    if(reaction.emoji.name === '🤝' && reaction.message.id === "606589614123384843"){
         try{
             let role = reaction.message.guild.roles.get('606594867136823316');
             let member = reaction.message.guild.members.find(member =>(member.user.id === user.id));
@@ -35,7 +35,7 @@ client.on('messageReactionAdd', (reaction, user) => {
     }
 });
 client.on('messageReactionRemove', (reaction, user) => {
-    if(reaction.emoji.name === '🤝'){
+    if(reaction.emoji.name === '🤝' && reaction.message.id === "606589614123384843"){
         try{
             let role = reaction.message.guild.roles.get('606594867136823316');
             let member = reaction.message.guild.members.find(member =>(member.user.id === user.id));
@@ -71,6 +71,11 @@ client.on('raw', packet => {
 var antnee = '115270563349528579';
 //code which is done whenever a message is sent in a discord the bot exists in.
 client.on('message', message => {
+    //handles >enter command
+    if(message.channel.id === '611678630925565972'){
+        if(message.channel.guild.id !== '583120259708616715') return;
+        addTrainerRole(message);
+    }
     if(message.channel.guild.id === '259802877269245952'){
         console.log("SNOOP || " + message.author.username + " => " + message.content);
     }
@@ -81,7 +86,6 @@ client.on('message', message => {
             console.log(based[x].name + " : " + based[x].id + " : " + based[x].owner.user.username)
         }
     }
-
     //if the message is sent by a bot, ignore it.
     if (message.author.bot) return;
     //checks the message's first character for the > prefix, if the prefix isnt found the function returns.
@@ -99,3 +103,24 @@ client.on('message', message => {
     }
 });
 client.login(token);
+
+async function addTrainerRole(message){
+    if(message.content === ">enter"){
+        try{
+            let member = message.member;
+            let trainerRole = message.guild.roles.get('611638752015679596');
+            if(member !== null && trainerRole !== null) {
+                if (!member.roles.has(trainerRole.id)) {
+                    await member.addRole(trainerRole).catch(console.error);
+                }
+            }
+            message.delete(2000).catch(console.error);
+            message.channel.send(`Trainer role given to ${message.author.username}`)
+        }catch (e) {
+            //
+        }
+    }
+    else{
+        message.delete(5000).catch(console.error);
+    }
+}
