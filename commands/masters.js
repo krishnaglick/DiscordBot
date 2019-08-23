@@ -21,6 +21,8 @@ module.exports = {
                 if(name[33] && name[32]){
                     if(name[33].includes("Sygna") || name[32].includes("Sygna")){
                         isSygna = true;
+                    }if(name[33].includes("Mega") || name[32].includes("Mega")){
+                        isSygna = true;
                     }
                 }
                 var trainerImage = "https://www.serebii.net/pokemonmasters/syncpairs/" + general.find('img').attr('src');
@@ -135,10 +137,12 @@ module.exports = {
                     var movesTemp3 = moves3[x].join("\n") + "\n";
                     movesOut3 = movesOut3 + movesTemp3;
                 }
+
                 if(!isSygna){
                     movesOut2 = movesOut;
                     movesOut3 = movesOut;
                 }
+
                 var sync = [];
                 var syncOut;
                 var syncLocations = [];

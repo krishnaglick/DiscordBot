@@ -121,6 +121,6 @@ async function addTrainerRole(message){
         }
     }
     else{
-        message.delete(5000).catch(console.error);
+        message.delete(10000).catch(console.error);
     }
 }
