@@ -278,6 +278,8 @@ module.exports = {
                 }catch (e) {
                     message.channel.send(`Sorry ${message.author.username}, but that trainer isn't in the game yet.`)
                 }
+            }else{
+                message.channel.send(`Sorry ${message.author.username}, but that trainer isn't in the game yet.`)
             }
         })
     },

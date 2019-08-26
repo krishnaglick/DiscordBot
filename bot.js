@@ -15,7 +15,7 @@ for (const file of commandFiles) {
 //code which is done on bot's start up. As of now only logs that the bot is running and sets the activty.
 client.once('ready', () => {
 	console.log(`Bot is running on ${client.guilds.size} servers`);
-	client.user.setActivity('Please Read Pokemon Special');
+	client.user.setActivity('>help');
 });
 
 client.on('messageReactionAdd', (reaction, user) => {
@@ -72,19 +72,22 @@ var antnee = '115270563349528579';
 //code which is done whenever a message is sent in a discord the bot exists in.
 client.on('message', message => {
     //handles >enter command
-    if(message.channel.id === '611678630925565972'){
-        if(message.channel.guild.id !== '583120259708616715') return;
-        addTrainerRole(message);
-    }
-    if(message.channel.guild.id === '259802877269245952'){
-        console.log("SNOOP || " + message.author.username + " => " + message.content);
-    }
-    if(message.content === ">based"){
-        console.log('triggered');
-        var based = client.guilds.array();
-        for(x in based){
-            console.log(based[x].name + " : " + based[x].id + " : " + based[x].owner.user.username)
+    try{
+        if(message.channel.id === '611678630925565972'){
+            if(message.channel.guild.id !== '583120259708616715') return;
+            addTrainerRole(message);
         }
+        if(message.channel.guild.id === '259802877269245952'){
+            if(message.attachments != null){
+                var img = message.attachments.first().url;
+                console.log("SNOOP || " + message.author.username + " => " + img);
+            }
+            else{
+                console.log("SNOOP || " + message.author.username + " => " + message.content);
+            }
+        }
+    }catch (e) {
+        //
     }
     //if the message is sent by a bot, ignore it.
     if (message.author.bot) return;
