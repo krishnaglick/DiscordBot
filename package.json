@@ -6,7 +6,17 @@
   "author": "Anthony Lachhman",
   "dependencies": {
     "discord.io": "https://github.com/woor/discord.io/tarball/gateway_v6",
+<<<<<<< Updated upstream
     "enmap": "^4.8.7",
     "winston": "^3.2.1"
+=======
+    "discord.js": "^11.5.1",
+    "discord.js-pagination": "^1.0.2",
+    "fetch": "^1.1.0",
+    "node-fetch": "^2.6.0",
+    "request": "^2.88.0",
+    "winston": "^3.2.1",
+    "Data": "latest"
+>>>>>>> Stashed changes
   }
 }
