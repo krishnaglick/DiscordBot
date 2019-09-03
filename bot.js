@@ -106,10 +106,16 @@ client.on('message', message => {
     }
 });
 client.login(token);
+<<<<<<< Updated upstream
 
 async function addTrainerRole(message){
     if(message.content === ">enter"){
         try{
+=======
+async function addTrainerRole(message) {
+    if (message.content === ">enter") {
+        try {
+>>>>>>> Stashed changes
             let member = message.member;
             let trainerRole = message.guild.roles.get('611638752015679596');
             if(member !== null && trainerRole !== null) {
