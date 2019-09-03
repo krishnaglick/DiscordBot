@@ -6,8 +6,12 @@ const { MessageEmbed } = require('discord.js');
 const cheerioTableparser = require('cheerio-tableparser');
 module.exports = {
     name: 'drag',
-    description: 'view the drag wiki',
+    display: 'Dragalia Lost',
+    description: '`>drag [unit/dragon/weapon/print]` will return information on (mostly) anything in Dragalia Lost.',
     execute(message, args) {
+        if(args[0].toLowerCase() === "antnee"){
+            args[0] = "marth"
+        }
         var appendFinal = "";
         try {
             var isDragon = false;

@@ -4,7 +4,8 @@ const Discord = require('discord.js');
 const cheerioTableparser = require('cheerio-tableparser');
 module.exports = {
     name: 'poke',
-    description: 'Parses Serebii.net',
+    display: 'Pokedex',
+    description: '`>poke [pkmn name]` will return information on any Pokemon. You can also do `>poke random` to see a random one.',
     execute(message, args) {
         var dexfinal;
         if(args[0] === "random"){
@@ -85,6 +86,7 @@ module.exports = {
                         elementColor = "#ffb7d7"; break;
                 }
                 const image = "https://serebii.net/" + body.find($('.dextab')).find('img').attr('src');
+                console.log("https://serebii.net/" + body.find($('.dextab')).find('img').attr('src'));
                 const thumb = "https://pokemon-trainer.com/images/sprite/xyorasani/"+dexfinal+".gif";
                 const portrait = "https://serebii.net/sunmoon/pokemon/"+dexfinal+".png";
                 const data = $(dex).parsetable(true,true,true);
