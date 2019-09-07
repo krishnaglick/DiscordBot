@@ -8,62 +8,93 @@ const Discord = require('discord.js');
 var AsciiTable = require('ascii-table');
 const paginationEmbed = require('discord.js-pagination');
 module.exports = {
-    name: 'pm',
+    name: 't',
     display: 'Pokemon Masters',
-    description: '`>pm summon` will simulate a 10-summon on the latest Masters banner.' + '\n' + '`>pm [character]` will return information on any character in Masters.',
+    description: '`>pm summon [OPTIONAL - banner featured unit name]` will simulate a 10-summon on the latest Masters banner. ' + '\n' + '`>pm [character]` will return information on any character in Masters.',
     execute(message, args, client) {
         try {
-            if (args[0].toLowerCase() === "summon") {
-                console.log("PKMAS || " + message.author.username + " has summoned.");
-                summonSim(message, args, client)
-            } else {
-                console.log("PKMAS || " + message.author.username + " has requested " + args.join(" "));
-                getUnit(message, args.join(" "), client);
+            switch(args[0].toLowerCase()){
+                case "scouts": checkBanners(message, args, client); break;
+                case "compare": compare(message, args, client); break;
+                case "summon": console.log("PKMAS || " + message.author.username + " has summoned.");
+                    summonSim(message, args, client, 1, 3000, message.author.id, 0, 0, 0, 0, [], []);
+                    break;
+                default: console.log("PKMAS || " + message.author.username + " has requested " + args.join(" "));
+                    getUnit(message, args.join(" "), client);
             }
         } catch (e) {
             message.channel.send('<@!115270563349528579>, help this guy out please...')
         }
-
     },
 };
 
-async function summonSim(message, args, client) {
+async function compare(message, args, client){
+    if(args.length !== 3){
+
+    }
+
+}
+
+async function checkBanners(message, args, client){
+    var banners = await fetch(bannerUrl)
+        .then(response => response.json())
+        .then(bannerJson => banners = bannerJson);
+    var out = banners.map((banner)=>{if(banner.featured_units !== ""){return "**" + banner.title + ":** featuring " + banner.featured_units.replace('&amp;', '&')}else{return ""}});
+    for( var i = out.length-1; i--;){if ( out[i] === '') out.splice(i, 1);}
+    var count = 0;
+    var trueOut = out.map((elem)=>{count ++; return(elem)});
+    var embed = new Discord.RichEmbed().addField('Banners',trueOut.join("\n")).setColor("#ffdf43");
+    message.channel.send({embed});
+}
+
+async function summonSim(message, args, client, count, currency, user, threeCount, fourCount, fiveCount, featuredCount, embeds, finalFiveStars) {
     var banners;
     var threeStars = [];
     var fourStars = [];
     var fiveStars = [];
     var featured = [];
     var results = [];
+    var author = message.author.username;
     try {
         await fetch(bannerUrl)
             .then(response => response.json())
             .then(bannerJson => banners = bannerJson);
-        var banner = banners[0];
+        var banner;
+        if(args[1] === undefined){
+            banner = banners[0];
+        }else{
+            for(var scout of banners){
+                if(scout.title.toLowerCase().includes(args[1])){
+                    banner = scout;
+                }
+            }
+        }
+        //Todo: come up with a better way to determine rarity, perhaps logic that looks at out[1] in a different way besides switchcase
         var pool = banner.units.split('<br />\r\n').map((unit) => {
             var out = unit.replace('&amp;', " & ").split('\t');
             switch (out[1]) {
                 case '365':
-                    return ([out[0], '3⭐']);
+                    return ([out[0], `3${client.emojis.get(getEmoji['star'])}`]);
                 case '111':
-                    return ([out[0], '4⭐']);
-                case '100':
-                    return ([out[0], '5⭐']);
+                    return ([out[0], `4${client.emojis.get(getEmoji['star'])}`]);
                 case '200':
-                    return ([out[0], '5⭐ ・ **Featured**']);
+                    return ([out[0], `5${client.emojis.get(getEmoji['star'])} ・ **Featured**`]);
+                default:
+                    return ([out[0], `5${client.emojis.get(getEmoji['star'])}`]);
             }
         });
         for (var y in pool) {
             switch (pool[y][1]) {
-                case '3⭐':
+                case `3${client.emojis.get(getEmoji['star'])}`:
                     threeStars.push(pool[y]);
                     break;
-                case '4⭐':
+                case `4${client.emojis.get(getEmoji['star'])}`:
                     fourStars.push(pool[y]);
                     break;
-                case '5⭐':
+                case `5${client.emojis.get(getEmoji['star'])}`:
                     fiveStars.push(pool[y]);
                     break;
-                case '5⭐ ・ **Featured**':
+                case `5${client.emojis.get(getEmoji['star'])} ・ **Featured**`:
                     featured.push(pool[y]);
                     break;
             }
@@ -72,26 +103,32 @@ async function summonSim(message, args, client) {
             var firstRoll = Math.round(Math.random() * 100);
             var secondRoll, thirdRoll, min, max;
             if (firstRoll > 93) {
-                var featuredChance = 1 - (fiveStars.length / 7);
+                var featuredChance = 0.28;
                 secondRoll = Math.random();
                 if (secondRoll < featuredChance) {
                     results.push(featured[0]);
+                    finalFiveStars.push(featured[0]);
+                    featuredCount += 1;
                 } else {
                     min = 0;
                     max = fiveStars.length - 1;
                     thirdRoll = Math.round(Math.random() * (+max - +min) + +min);
                     results.push(fiveStars[thirdRoll]);
+                    finalFiveStars.push(fiveStars[thirdRoll]);
+                    fiveCount += 1;
                 }
             } else if (firstRoll > 73) {
                 min = 0;
                 max = fourStars.length - 1;
                 secondRoll = Math.round(Math.random() * (+max - +min) + +min);
                 results.push(fourStars[secondRoll]);
+                fourCount += 1;
             } else {
                 min = 0;
                 max = threeStars.length - 1;
                 secondRoll = Math.round(Math.random() * (+max - +min) + +min);
                 results.push(threeStars[secondRoll]);
+                threeCount += 1;
             }
         }
         results.sort((a, b) => {
@@ -103,16 +140,67 @@ async function summonSim(message, args, client) {
         });
         var bannerImg = 'https://pokemonmasters.gamepress.gg' + banner.banner.substring(banner.banner.indexOf('<img src="') + 10, banner.banner.indexOf('" width'));
         var embed = new Discord.RichEmbed()
-            .setAuthor(banner.title + " Summon Simulator")
+            .setAuthor(banner.title + " Summon Simulator ・ " + message.author.username + " summon #" + count)
             .setImage(bannerImg)
             .setColor("#ffdf43")
-            .addField("Results", results.map((unit)=>{return unit[1] + " ・ " + unit[0]}));
-        message.channel.send({embed});
-    }catch (e) {
+            .addField("Results", results.map((unit) => {
+                return unit[1] + " ・ " + unit[0]
+            }))
+            .addField('Cost', '**# of Summons:** ' + count * 10 + " ・ " + '**Cost:** ' + currency + " gems | " + gemsToUSD(currency) + " USD")
+            .addField('Totals', '**Featured:** ' + featuredCount + " ・ " + '**5 star:** ' + fiveCount + " ・ " + '**4 star:** ' + fourCount + " ・ " + '**3 star:** ' + threeCount)
+            .setFooter('👌 => summon again ・ 👍 => summary ・ >pm scout => banners.');
+        const filter = (reaction, user) => {
+            return ['👍', '👌'].includes(reaction.emoji.name) && user.id === message.author.id;
+        };
+        embeds.push(embed);
+        message.channel.send({embed}).then(async (reply) => {
+            try {
+                await reply.react('👌');
+                await reply.react('👍');
+            } catch (error) {
+                console.error('One of the emojis failed to react.');
+            }
+            var collector = reply.createReactionCollector(filter, {time: 15000, max: 1});
+            collector.on('collect', r => {
+                if(r._emoji.name === '👌'){
+                    reply.delete().catch(console.error);
+                    summonSim(message, args, client, count + 1, currency + 3000, user, threeCount, fourCount, fiveCount, featuredCount, embeds, finalFiveStars)
+                }
+                if(r._emoji.name === '👍'){
+                    reply.delete().catch(console.error);
+                    genResults(message, args, client, embeds, finalFiveStars, count, currency, user, threeCount, fourCount, fiveCount, featuredCount, bannerImg, author);
+                }
+            });
+            collector.on('end', collected => reply.clearReactions());
+        })
+    } catch (e) {
         //summonSim(message, args, client);
-        message.channel.send('<@!115270563349528579>, help this guy out please...')
+        //message.channel.send('<@!115270563349528579>, help this guy out please...')
+        //console.log(e)
+        message.channel.send('Try again?');
     }
 }
+function genResults(message, args, client, embeds, finalFiveStars, count, currency, user, threeCount, fourCount, fiveCount, featuredCount, bannerImg, author){
+    if(finalFiveStars.length < 1){
+        finalFiveStars.push(["None", ":P"]);
+    }
+    var worth;
+    if(featuredCount + fiveCount > count){
+        worth = "Worth it."
+    }else{
+        worth = "Not Worth it."
+    }
+    const embed = new Discord.RichEmbed()
+        .setColor("#ffdf43")
+        .setAuthor(author + "'s results")
+        .setImage(bannerImg)
+        .addField('Cost', '**# of Summons:** ' + count * 10 + " ・ " + '**Cost:** ' + currency + " gems | " + gemsToUSD(currency) + " USD" + " ・ " + worth)
+        .addField('Totals', '**Featured:** ' + featuredCount + " ・ " + '**5 star:** ' + fiveCount + " ・ " + '**4 star:** ' + fourCount + " ・ " + '**3 star:** ' + threeCount)
+        .addField("Notable Units", finalFiveStars.map((elem)=>{return elem[1] + " ・ " + elem[0]}));
+    embeds.unshift(embed);
+    paginationEmbed(message, embeds, ['⏪', '⏩'], 60000);
+}
+
 
 async function getUnit(message, args, client) {
     var embeds = [];
@@ -154,13 +242,13 @@ async function getUnit(message, args, client) {
     await fetch(PassiveUrl)
         .then(response => response.json())
         .then(passive => passives = passive.cargoquery);
-    if(unit[0].TrainerName === "Main Character"){
+    if (unit[0].TrainerName === "Main Character") {
         await fetch(iconUrl)
             .then(response => response.json())
             .then(iconsUrl => icon = iconsUrl.find(function (curUnit) {
                 return curUnit.title === "Player"
             }).icon);
-    }else{
+    } else {
         await fetch(iconUrl)
             .then(response => response.json())
             .then(iconsUrl => icon = iconsUrl.find(function (curUnit) {
@@ -171,11 +259,14 @@ async function getUnit(message, args, client) {
     embeds = unit.map((unit) => {
             movesOut = getMoves([unit.Move1, unit.Move2, unit.Move3, unit.Move4], moves, client) + getSync(unit.SyncMove, moves, client);
             passivesOut = getPassives([unit.Passive1, unit.Passive2, unit.Passive3], passives);
+            if(passivesOut.length < 1){
+                passivesOut = "Information Missing."
+            }
             var chibi;
             if (unit.PokemonName.includes('Mega ')) {
                 chibi = 'https://serebii.net//pokedex-sm/icon/' + dexnumMap[unit.PokemonName.substring(5, unit.PokemonName.length)] + '.png';
             } else {
-                chibi = 'https://serebii.net//pokedex-sm/icon/' + dexnumMap[unit.PokemonName.replace(" Shield","").replace(" Sword","")] + '.png';
+                chibi = 'https://serebii.net//pokedex-sm/icon/' + dexnumMap[unit.PokemonName.replace(" Shield", "").replace(" Sword", "")] + '.png';
             }
             chibiTemp = chibi;
             var table = new AsciiTable();
@@ -199,9 +290,9 @@ async function getUnit(message, args, client) {
     );
     var description;
     if (unit[0].PokemonName.includes("Mega ")) {
-        if(!unit[1]){
-            description = "Mega-evolved form of " + unit[0].PokemonName.replace("Mega ","");
-        }else{
+        if (!unit[1]) {
+            description = "Mega-evolved form of " + unit[0].PokemonName.replace("Mega ", "");
+        } else {
             description = unit[1].Description;
         }
 
@@ -211,9 +302,9 @@ async function getUnit(message, args, client) {
     var embedFinal = new Discord.RichEmbed()
         .setTitle('Wiki Link')
         .setAuthor(unit[0].TrainerName.replace("Synga Suit ", "") + " & " + unit[0].PokemonName + " ・ " + unit[0].Role + " " + rarity)
-        .setImage('https://www.serebii.net/pokemonmasters/syncpairs/' + unit[0].TrainerName.replace("Synga Suit ", "").toLowerCase().replace(" ","") + '.png')
+        .setImage('https://www.serebii.net/pokemonmasters/syncpairs/' + unit[0].TrainerName.replace("Synga Suit ", "").toLowerCase().replace(" ", "") + '.png')
         .setThumbnail(iconPruned)
-        .addField('Obtained From: ', unit[0].Obtain.replace('[', '').replace(']', '').replace('[', '').replace(']', '').replace('Main Story|',""))
+        .addField('Obtained From: ', unit[0].Obtain.replace('[', '').replace(']', '').replace('[', '').replace(']', '').replace('Main Story|', ""))
         .addField('Pokemon Description', description)
         .setURL('https://pokemonmasters.miraheze.org/wiki/' + unit[0].TrainerName.split(" ").join("_"))
         .setColor(getColor(unit[0].SPType));
@@ -260,10 +351,9 @@ function generateMoveOut(move, client, count) {
             moveOut += ' ・ Pow: ' + move.Power + " - " + move.MaxPower + ' ・ ' + 'Acc: ' + move.Accuracy
         }
     }
-    if(move.Description.length > 250){
+    if (move.Description.length > 250) {
         moveOut += '\n' + "Description too long. Check the wiki."
-    }
-    else{
+    } else {
         moveOut += '\n' + move.Description;
     }
     return moveOut;
@@ -273,7 +363,7 @@ function getPassives(unitPassiveArr, passives) {
     var passiveList = [];
     for (var x in unitPassiveArr) {
         for (var y in passives) {
-            if (unitPassiveArr[x] === passives[y].title.Name) {
+            if (unitPassiveArr[x] === passives[y].title.Name.replace('&amp;#39;', "'")) {
                 var passive = passives[y].title;
                 var passiveOut = '**' + passive.Name + ':** ' + passive.Description;
                 passiveList.push(passiveOut);
@@ -286,12 +376,16 @@ function getPassives(unitPassiveArr, passives) {
 function getSync(sync, moves, client) {
     var syncOut = "\n";
     for (var x in moves) {
-        if (sync === moves[x].title.Name) {
+        if (sync === moves[x].title.Name.replace('&amp;#39;', "'")) {
             var move = moves[x].title;
             syncOut += generateMoveOut(move, client, "S");
         }
     }
     return syncOut;
+}
+
+function gemsToUSD(currency) {
+    return (currency / 100) * 0.99;
 }
 
 function getColor(type) {

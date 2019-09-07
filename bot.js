@@ -8,6 +8,7 @@ const client = new Discord.Client();
 //setup for commands collection.
 client.commands = new Discord.Collection();
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
+var timedMessage;
 for (const file of commandFiles) {
 	const command = require(`./commands/${file}`);
 	client.commands.set(command.name, command);
@@ -48,7 +49,6 @@ client.on('messageReactionRemove', (reaction, user) => {
         }catch (e) {
             //ToDo: Figure somethin out.
         }
-
     }
 });
 //Discord Raw event handler. Current impplementation takes in only raw events it detects are reaction events. this is done to get reacts from old messages.
@@ -71,6 +71,28 @@ client.on('raw', packet => {
 var antnee = '115270563349528579';
 //code which is done whenever a message is sent in a discord the bot exists in.
 client.on('message', message => {
+    try{
+        if(message.content === '>start alerts'){
+            var channel = message.channel.guild.channels.get('597471505571381272');
+            var messageToSend = '```md\nALERT\n===========\nPlease refrain from making general discussion in this channel. Individuals chatting in here are expected to either be posting gacha/scouting results or salt about these posts. Anyone who is caught utilizing #gacha-results as a second #pm-chat will receive a warning or mute with no verbal warning beforehand. Any selling or trading is strictly prohibited on the pokemon masters discord, and anyone suspected of trying to initiate an account exchange with other users will be immediately banned. Remember to spend your money wisely, gacha is gambling.```';
+            channel.send(messageToSend);
+            settime(messageToSend, channel);
+        }
+        if(message.content === ">stop alerts"){
+            clearTimeout(timedMessage);
+        }
+    }catch (e) {
+        //
+    }
+    try{
+        if (message.guild.id === '583120259708616715') {
+            if (message.channel.id === '603818219131764736' || message.channel.id === '604281012901511178') {
+                return;
+            }
+        }
+    }catch (e) {
+        //
+    }
     //handles >enter command
     try{
         if(message.channel.id === '611678630925565972'){
@@ -99,23 +121,17 @@ client.on('message', message => {
     //if the commaand is not found within the commands collection (ie. it doesnt exist) then the function returns. otherwise it will execute the function defined in the commands specific .js file in the commands folder
     if (!client.commands.has(command)) return;
     try {
-        client.commands.get(command).execute(message, args);
+        client.commands.get(command).execute(message, args, client);
     } catch (error) {
         console.error(error);
         message.reply('Cannot run command!');
     }
 });
 client.login(token);
-<<<<<<< Updated upstream
 
-async function addTrainerRole(message){
-    if(message.content === ">enter"){
-        try{
-=======
 async function addTrainerRole(message) {
     if (message.content === ">enter") {
         try {
->>>>>>> Stashed changes
             let member = message.member;
             let trainerRole = message.guild.roles.get('611638752015679596');
             if(member !== null && trainerRole !== null) {
@@ -132,4 +148,9 @@ async function addTrainerRole(message) {
     else{
         message.delete(10000).catch(console.error);
     }
+};
+
+function settime(messageToSend, channel){
+    timedMessage = setTimeout(()=>{channel.send(messageToSend);settime(messageToSend, channel)}, 10800000);
 }
+

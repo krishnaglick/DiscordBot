@@ -164,7 +164,7 @@ module.exports = {
                 */
                 const embed = new Discord.RichEmbed()
                     .setColor(elementColor)
-                    .setAuthor(dexnum + ": " + name + " the " + classification + "  |  " + typesToPrint, image)
+                    .setAuthor("#" + dexnumMap[name] + ": " + name + " the " + classification + "  |  " + typesToPrint, image)
                     .setImage(portrait)
                     //.setThumbnail(thumb)
                     .addField("Abilities:",ability[1].replace(" - ", ", "))
