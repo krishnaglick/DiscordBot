@@ -8,14 +8,14 @@ const Discord = require('discord.js');
 var AsciiTable = require('ascii-table');
 const paginationEmbed = require('discord.js-pagination');
 module.exports = {
-    name: 't',
+    name: 'pm',
     display: 'Pokemon Masters',
     description: '`>pm summon [OPTIONAL - banner featured unit name]` will simulate a 10-summon on the latest Masters banner. ' + '\n' + '`>pm [character]` will return information on any character in Masters.',
     execute(message, args, client) {
         try {
             switch(args[0].toLowerCase()){
                 case "scouts": checkBanners(message, args, client); break;
-                case "compare": compare(message, args, client); break;
+                //case "compare": compare(message, args, client); break;
                 case "summon": console.log("PKMAS || " + message.author.username + " has summoned.");
                     summonSim(message, args, client, 1, 3000, message.author.id, 0, 0, 0, 0, [], []);
                     break;
@@ -27,13 +27,6 @@ module.exports = {
         }
     },
 };
-
-async function compare(message, args, client){
-    if(args.length !== 3){
-
-    }
-
-}
 
 async function checkBanners(message, args, client){
     var banners = await fetch(bannerUrl)
@@ -71,14 +64,14 @@ async function summonSim(message, args, client, count, currency, user, threeCoun
         }
         //Todo: come up with a better way to determine rarity, perhaps logic that looks at out[1] in a different way besides switchcase
         var pool = banner.units.split('<br />\r\n').map((unit) => {
-            var out = unit.replace('&amp;', " & ").split('\t');
+            var out = unit.replace('&amp;', "/").replace('(Midnight Form)',"").replace(' (Shield Forme)','').split('\t');
             switch (out[1]) {
                 case '365':
                     return ([out[0], `3${client.emojis.get(getEmoji['star'])}`]);
                 case '111':
                     return ([out[0], `4${client.emojis.get(getEmoji['star'])}`]);
                 case '200':
-                    return ([out[0], `5${client.emojis.get(getEmoji['star'])} ・ **Featured**`]);
+                    return ([out[0], `5${client.emojis.get(getEmoji['star'])}**`]);
                 default:
                     return ([out[0], `5${client.emojis.get(getEmoji['star'])}`]);
             }
@@ -94,8 +87,8 @@ async function summonSim(message, args, client, count, currency, user, threeCoun
                 case `5${client.emojis.get(getEmoji['star'])}`:
                     fiveStars.push(pool[y]);
                     break;
-                case `5${client.emojis.get(getEmoji['star'])} ・ **Featured**`:
-                    featured.push(pool[y]);
+                case `5${client.emojis.get(getEmoji['star'])}**`:
+                    featured.push([pool[y][0] + "**", pool[y][1]]);
                     break;
             }
         }
@@ -138,14 +131,19 @@ async function summonSim(message, args, client, count, currency, user, threeCoun
                 return -1;
             }
         });
+        var resultsOut = results.map((unit) => {
+            return unit[1] + " ・ " + unit[0]
+        });
+        let halfWayThough = Math.floor(resultsOut.length / 2);
+        let arrayFirstHalf = resultsOut.slice(0, halfWayThough);
+        let arraySecondHalf = resultsOut.slice(halfWayThough, resultsOut.length);
         var bannerImg = 'https://pokemonmasters.gamepress.gg' + banner.banner.substring(banner.banner.indexOf('<img src="') + 10, banner.banner.indexOf('" width'));
         var embed = new Discord.RichEmbed()
             .setAuthor(banner.title + " Summon Simulator ・ " + message.author.username + " summon #" + count)
             .setImage(bannerImg)
             .setColor("#ffdf43")
-            .addField("Results", results.map((unit) => {
-                return unit[1] + " ・ " + unit[0]
-            }))
+            .addField("Results", arrayFirstHalf, true)
+            .addField(" - ", arraySecondHalf,true)
             .addField('Cost', '**# of Summons:** ' + count * 10 + " ・ " + '**Cost:** ' + currency + " gems | " + gemsToUSD(currency) + " USD")
             .addField('Totals', '**Featured:** ' + featuredCount + " ・ " + '**5 star:** ' + fiveCount + " ・ " + '**4 star:** ' + fourCount + " ・ " + '**3 star:** ' + threeCount)
             .setFooter('👌 => summon again ・ 👍 => summary ・ >pm scout => banners.');
@@ -176,7 +174,7 @@ async function summonSim(message, args, client, count, currency, user, threeCoun
     } catch (e) {
         //summonSim(message, args, client);
         //message.channel.send('<@!115270563349528579>, help this guy out please...')
-        //console.log(e)
+        console.log(e);
         message.channel.send('Try again?');
     }
 }
@@ -194,7 +192,7 @@ function genResults(message, args, client, embeds, finalFiveStars, count, curren
         .setColor("#ffdf43")
         .setAuthor(author + "'s results")
         .setImage(bannerImg)
-        .addField('Cost', '**# of Summons:** ' + count * 10 + " ・ " + '**Cost:** ' + currency + " gems | " + gemsToUSD(currency) + " USD" + " ・ " + worth)
+        .addField('Cost', '**# of Summons:** ' + count * 10 + " ・ " + '**Cost:** ' + currency + " gems | " + gemsToUSD(currency) + " USD" + "\n" + worth)
         .addField('Totals', '**Featured:** ' + featuredCount + " ・ " + '**5 star:** ' + fiveCount + " ・ " + '**4 star:** ' + fourCount + " ・ " + '**3 star:** ' + threeCount)
         .addField("Notable Units", finalFiveStars.map((elem)=>{return elem[1] + " ・ " + elem[0]}));
     embeds.unshift(embed);

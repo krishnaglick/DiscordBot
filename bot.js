@@ -99,15 +99,6 @@ client.on('message', message => {
             if(message.channel.guild.id !== '583120259708616715') return;
             addTrainerRole(message);
         }
-        if(message.channel.guild.id === '259802877269245952'){
-            if(message.attachments != null){
-                var img = message.attachments.first().url;
-                console.log("SNOOP || " + message.author.username + " => " + img);
-            }
-            else{
-                console.log("SNOOP || " + message.author.username + " => " + message.content);
-            }
-        }
     }catch (e) {
         //
     }
