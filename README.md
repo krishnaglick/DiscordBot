@@ -13,13 +13,11 @@ The Digital manifestation of Antnee's concious, enslaved and forced to serve dis
 
 **\>pm** - retursn information on any Pokemon Masters sync pair. [preview](https://imgur.com/AG4LJsl)
   
-  >**Usage:** >pm [trainer or pokemon_name]
-  
-  **Sub Commands:** 
-  
-  >\>pm summon - Start up a summon Simulator session.\n
-  \>pm scouts - View the banners that the summon simulator is able to simulate.\n
-  \>pm compare [pokemon_name][other_pokemon_name] - Compare the stats of two pokemon.
+  >**Usage:** >pm [trainer or pokemon_name]&nbsp;
+  **Sub Commands:** &nbsp;
+  >\>pm summon - Start up a summon Simulator session.&nbsp;
+  \>pm scouts - View the banners that the summon simulator is able to simulate.&nbsp;
+  \>pm compare [pokemon_name][other_pokemon_name] - Compare the stats of two pokemon.&nbsp;
   
   
 More Features coming soon.
