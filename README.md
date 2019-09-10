@@ -13,21 +13,26 @@ The Digital manifestation of Antnee's concious, enslaved and forced to serve dis
   
   >**Usage:** >poke [pokemon_name]
 
-  ![preview](https://imgur.com/AG4LJsl)
+  ![Imgur](https://i.imgur.com/yvZ8JUW.png)
   
 **\>pm** - retursn information on any Pokemon Masters sync pair. 
   
   >**Usage:** >pm [trainer or pokemon_name]
   
-  ![preview](https://imgur.com/AG4LJsl)
+  ![Imgur](https://i.imgur.com/2j90Wxs.png)
   
   **\>pm Sub Commands:**
  
   >\>pm summon - Start up a summon Simulator session.
   
+  ![Imgur](https://i.imgur.com/RaqGXlg.png)
+  
   >\>pm scouts - View the banners that the summon simulator is able to simulate.
+  
+  ![Imgur](https://i.imgur.com/Vt90ONg.png)
   
   >\>pm compare [pokemon_name][other_pokemon_name] - Compare the stats of two pokemon.
   
+  ![Imgur](https://i.imgur.com/QFEhaJc.png)
   
 More Features coming soon.
