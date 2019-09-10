@@ -2,24 +2,24 @@
 The Digital manifestation of Antnee's concious, enslaved and forced to serve discord servers. Add him [here](https://discordapp.com/oauth2/authorize?&client_id=577853873088102400&scope=bot&permissions=8).
 
 ## Commands:
-**\>date** - returns the day of the week.
 
-**\>fortune** - peek into the future.
-  
-**\>server** - returns server information.
-
-**\>name** - get profile information of anyone on the server.
-
-  >**Usage:** >name [insert person's name here] 
-
-**\>rpg** - conducts a traditional rpg battle with your given parameters.
-  
-  >**Usage:** >rpg [fighter1] [fighter1 atk] [fighter1 def] [fighter2] [fighter2 atk] [fighter2 def]
-
-**\>drag** - returns information on any particular Dragalia Lost unit. [(UNDER CONSTRUCTION)](https://imgur.com/AG4LJsl)
+**\>drag** - returns information on any particular Dragalia Lost unit/weapon/wyrmprint/dragon. [(UNDER CONSTRUCTION)](https://imgur.com/AG4LJsl)
   
   >**Usage:** >drag [unit_name]
+
+**\>poke** - returns a pokedex entry for any pokemon. [preview](https://imgur.com/AG4LJsl)
   
+  >**Usage:** >poke [pokemon_name]
+
+**\>pm** - retursn information on any Pokemon Masters sync pair. [preview](https://imgur.com/AG4LJsl)
+  
+  >**Usage:** >pm [trainer or pokemon_name]
+  
+  >**Sub Commands:** 
+  
+  >\>pm summon - Start up a summon Simulator session.
+  \>pm scouts - View the banners that the summon simulator is able to simulate.
+  \>pm compare [pokemon_name][other_pokemon_name] - Compare the stats of two pokemon.
   
   
 More Features coming soon.
