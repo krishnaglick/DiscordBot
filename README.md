@@ -3,17 +3,23 @@ The Digital manifestation of Antnee's concious, enslaved and forced to serve dis
 
 ## Commands:
 
-**\>drag** - returns information on any particular Dragalia Lost unit/weapon/wyrmprint/dragon. [(UNDER CONSTRUCTION)](https://imgur.com/AG4LJsl)
+**\>drag** - returns information on any particular Dragalia Lost unit/weapon/wyrmprint/dragon. 
   
   >**Usage:** >drag [unit_name]
+  
+  ![(UNDER CONSTRUCTION)](https://imgur.com/AG4LJsl)
 
-**\>poke** - returns a pokedex entry for any pokemon. [preview](https://imgur.com/AG4LJsl)
+**\>poke** - returns a pokedex entry for any pokemon.
   
   >**Usage:** >poke [pokemon_name]
 
-**\>pm** - retursn information on any Pokemon Masters sync pair. [preview](https://imgur.com/AG4LJsl)
+  ![preview](https://imgur.com/AG4LJsl)
+  
+**\>pm** - retursn information on any Pokemon Masters sync pair. 
   
   >**Usage:** >pm [trainer or pokemon_name]
+  
+  ![preview](https://imgur.com/AG4LJsl)
   
   **\>pm Sub Commands:**
  
