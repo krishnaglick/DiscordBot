@@ -7,7 +7,7 @@ The Digital manifestation of Antnee's concious, enslaved and forced to serve dis
   
   >**Usage:** >drag [unit_name]
   
-  ![(UNDER CONSTRUCTION)](https://imgur.com/AG4LJsl)
+  ![(UNDER CONSTRUCTION)](https://imgur.com/o4kmmjf)
 
 **\>poke** - returns a pokedex entry for any pokemon.
   
