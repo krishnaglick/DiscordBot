@@ -15,10 +15,10 @@ The Digital manifestation of Antnee's concious, enslaved and forced to serve dis
   
   >**Usage:** >pm [trainer or pokemon_name]
   
-  >**Sub Commands:** 
+  **Sub Commands:** 
   
-  >\>pm summon - Start up a summon Simulator session.
-  \>pm scouts - View the banners that the summon simulator is able to simulate.
+  >\>pm summon - Start up a summon Simulator session.\n
+  \>pm scouts - View the banners that the summon simulator is able to simulate.\n
   \>pm compare [pokemon_name][other_pokemon_name] - Compare the stats of two pokemon.
   
   
