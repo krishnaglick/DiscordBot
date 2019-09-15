@@ -1,3 +1,5 @@
+[![Discord Bots](https://discordbots.org/api/widget/577853873088102400.svg)](https://discordbots.org/bot/577853873088102400)
+
 # An-Two-Nee 
 The Digital manifestation of Antnee's concious, enslaved and forced to serve discord servers. Add him [here](https://discordapp.com/oauth2/authorize?&client_id=577853873088102400&scope=bot&permissions=8).
 
