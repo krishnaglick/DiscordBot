@@ -4,6 +4,7 @@ const Discord = require('discord.js');
 const paginationEmbed = require('discord.js-pagination');
 const { MessageEmbed } = require('discord.js');
 const cheerioTableparser = require('cheerio-tableparser');
+const AsciiTable = require('ascii-table');
 module.exports = {
     name: 'drag',
     display: 'Dragalia Lost',
@@ -227,6 +228,13 @@ module.exports = {
                             if (h003.length < 4) {
                                 h003 += " ";
                             }
+                            var table = new AsciiTable();
+                            table
+                                .setBorder('|', '-', '■', '■')
+                                .setHeading("Attack", "Mod", "Hits")
+                                .addRow("Combo 1", h001,  data[2][modset[0]])
+                                .addRow("Combo 2", h002,  data[2][modset[1]])
+                                .addRow("Combo 3", h003,  data[2][modset[2]]);
                             var date;
                             //console.log(infoArr[4]);
                             var today = new Date().getDay();
@@ -266,13 +274,7 @@ module.exports = {
                                 .addField("Feeding Day:", date, true)
                                 .addField("-----Skill:-----", "**" + data[0][0] + ": **" + data[0][1].substring(data[0][1].indexOf('Lv. 2'), data[0][1].length).replace('Lv. 2', ''))
                                 .addField("----Ability:----", "**" + abilities)
-                                .addField("---Modifiers:---", "```╔═════════╦══════════╦═════════╗\n" +
-                                                                 "║ Attack  ║   Mod    ║  #Hits  ║\n" +
-                                                                 "╠═════════╬══════════╬═════════╣\n" +
-                                                                 "║ Combo1  ║   " + h001 + "   ║    " + data[2][modset[0]] + "    ║\n" +
-                                                                 "║ Combo2  ║   " + h002 + "   ║    " + data[2][modset[1]] + "    ║\n" +
-                                                                 "║ Combo3  ║   " + h003 + "   ║    " + data[2][modset[2]] + "    ║\n" +
-                                                                 "╚═════════╩══════════╩═════════╝```");
+                                .addField("---Modifiers:---", "```" + table +"```");
                             message.channel.send({embed})
                         }
                         //

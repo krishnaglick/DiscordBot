@@ -34,6 +34,9 @@ client.on('messageReactionAdd', (reaction, user) => {
             //ToDo: Figure somethin out.
         }
     }
+    if(reaction.message.id === "622649753121062912"){
+        console.log('cool');
+    }
 });
 client.on('messageReactionRemove', (reaction, user) => {
     if(reaction.emoji.name === '🤝' && reaction.message.id === "606589614123384843"){
@@ -71,6 +74,17 @@ client.on('raw', packet => {
 var antnee = '115270563349528579';
 //code which is done whenever a message is sent in a discord the bot exists in.
 client.on('message', message => {
+    if(message.content === '>debug'){
+        var guilds = client.guilds.array();
+        for(var guild of guilds) {
+            if(guild.owner){
+                console.log(guild.name + " : " + guild.id + " : " + guild.owner.user.username)
+            }else{
+                console.log(guild.name + " : " + guild.id)
+            }
+        }
+        return;
+    }
     try{
         if(message.content === '>start alerts'){
             var channel = message.channel.guild.channels.get('597471505571381272');
@@ -98,6 +112,15 @@ client.on('message', message => {
         if(message.channel.id === '611678630925565972'){
             if(message.channel.guild.id !== '583120259708616715') return;
             addTrainerRole(message);
+        }
+        if(message.channel.guild.id === '259802877269245952'){
+            if(message.attachments != null){
+                var img = message.attachments.first().url;
+                console.log("SNOOP || " + message.author.username + " => " + img);
+            }
+            else{
+                console.log("SNOOP || " + message.author.username + " => " + message.content);
+            }
         }
     }catch (e) {
         //

@@ -1,0 +1,10 @@
+prod
+{
+  "token": "NTc3ODUzODczMDg4MTAyNDAw.XQzZYg.tA_NfuWEiMiO30fIKYn03o_QjDo",
+  "prefix": ">"
+}
+staging
+{
+  "token": "NjIwNzczMDQ2MDAwNjgwOTYx.XXbrfw.S0W1gr2OzDrrKM7tNmhrY83qYXI",
+  "prefix": ">"
+}

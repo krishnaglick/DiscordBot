@@ -5,7 +5,7 @@ const PassiveUrl = 'https://pokemonmasters.miraheze.org/w/api.php?action=cargoqu
 const iconUrl = 'https://gamepress.gg/sites/default/files/aggregatedjson/TrainersList.json?15813222081239323912';
 const bannerUrl = 'https://gamepress.gg/sites/default/files/aggregatedjson/PMGachSimEvents.json?907868779725397746';
 const Discord = require('discord.js');
-var AsciiTable = require('ascii-table');
+const AsciiTable = require('ascii-table');
 const paginationEmbed = require('discord.js-pagination');
 module.exports = {
     name: 'pm',
@@ -13,13 +13,19 @@ module.exports = {
     description: '`>pm summon [OPTIONAL - banner featured unit name]` will simulate a 10-summon on the latest Masters banner. ' + '\n' + '`>pm [character]` will return information on any character in Masters.',
     execute(message, args, client) {
         try {
-            switch(args[0].toLowerCase()){
-                case "scouts": checkBanners(message, args, client); break;
-                //case "compare": compare(message, args, client); break;
-                case "summon": console.log("PKMAS || " + message.author.username + " has summoned.");
+            switch (args[0].toLowerCase()) {
+                case "scouts":
+                    checkBanners(message, args, client);
+                    break;
+                case "compare":
+                    compare(message, args, client);
+                    break;
+                case "summon":
+                    console.log("PKMAS || " + message.author.username + " has summoned.");
                     summonSim(message, args, client, 1, 3000, message.author.id, 0, 0, 0, 0, [], []);
                     break;
-                default: console.log("PKMAS || " + message.author.username + " has requested " + args.join(" "));
+                default:
+                    console.log("PKMAS || " + message.author.username + " has requested " + args.join(" "));
                     getUnit(message, args.join(" "), client);
             }
         } catch (e) {
@@ -28,16 +34,83 @@ module.exports = {
     },
 };
 
-async function checkBanners(message, args, client){
+async function checkBanners(message, args, client) {
     var banners = await fetch(bannerUrl)
         .then(response => response.json())
         .then(bannerJson => banners = bannerJson);
-    var out = banners.map((banner)=>{if(banner.featured_units !== ""){return "**" + banner.title + ":** featuring " + banner.featured_units.replace('&amp;', '&')}else{return ""}});
-    for( var i = out.length-1; i--;){if ( out[i] === '') out.splice(i, 1);}
+    var out = banners.map((banner) => {
+        if (banner.featured_units !== "") {
+            return "**" + banner.title + ":** featuring " + banner.featured_units.replace('&amp;', '&')
+        } else {
+            return ""
+        }
+    });
+    for (var i = out.length - 1; i--;) {
+        if (out[i] === '') out.splice(i, 1);
+    }
     var count = 0;
-    var trueOut = out.map((elem)=>{count ++; return(elem)});
-    var embed = new Discord.RichEmbed().addField('Banners',trueOut.join("\n")).setColor("#ffdf43");
+    var trueOut = out.map((elem) => {
+        count++;
+        return (elem)
+    });
+    var embed = new Discord.RichEmbed().addField('Banners', trueOut.join("\n")).setColor("#ffdf43");
     message.channel.send({embed});
+}
+
+async function compare(message, args, client) {
+    if (args.length !== 3) {
+        message.channel.send("Try again with two pokemon.");
+    } else {
+        try {
+            var units;
+            var pokemon = [];
+            await fetch(UnitUrl)
+                .then(response => response.json())
+                .then(trainers => units = trainers.cargoquery);
+            if (units) {
+                for (var unit of units) {
+                    if (unit.title.PokemonName.toUpperCase() === args[1].toUpperCase() || unit.title.PokemonName.toUpperCase() === args[2].toUpperCase()) {
+                        pokemon.push(unit.title);
+                    }
+                }
+                var rarity1 = "";
+                var rarity2 = "";
+                var UnitRarity1 = pokemon[0].Rarity;
+                var UnitRarity2 = pokemon[1].Rarity;
+                for (var i = 0; i < UnitRarity1; i++) {
+                    rarity1 += client.emojis.get(getEmoji['star']);
+                }
+                for (var x = 0; x < UnitRarity2; x++) {
+                    rarity2 += client.emojis.get(getEmoji['star']);
+                }
+                var BST1 = parseInt(pokemon[0].HpLevelMax) + parseInt(pokemon[0].AtkLevelMax) + parseInt(pokemon[0].DefLevelMax) + parseInt(pokemon[0].SpAtkLevelMax) + parseInt(pokemon[0].SpDefLevelMax) + parseInt(pokemon[0].SpeedLevelMax);
+                var BST2 = parseInt(pokemon[1].HpLevelMax) + parseInt(pokemon[1].AtkLevelMax) + parseInt(pokemon[1].DefLevelMax) + parseInt(pokemon[1].SpAtkLevelMax) + parseInt(pokemon[1].SpDefLevelMax) + parseInt(pokemon[1].SpeedLevelMax);
+                var aBST = BST1 + "";
+                var bBST = BST2 + "";
+                var table = new AsciiTable();
+                table
+                    .setBorder('|', '-', '■', '■')
+                    .setHeading(" - ", pokemon[0].PokemonName, pokemon[1].PokemonName)
+                    .addRow("HP", pokemon[0].HpLevelMax, pokemon[1].HpLevelMax)
+                    .addRow("ATK", pokemon[0].AtkLevelMax, pokemon[1].AtkLevelMax)
+                    .addRow("DEF", pokemon[0].DefLevelMax, pokemon[1].DefLevelMax)
+                    .addRow("SPATK", pokemon[0].SpAtkLevelMax, pokemon[1].SpAtkLevelMax)
+                    .addRow("SPDEF", pokemon[0].SpDefLevelMax, pokemon[1].SpDefLevelMax)
+                    .addRow("SPEED", pokemon[0].SpeedLevelMax, pokemon[1].SpeedLevelMax)
+                    .addRow("BST", aBST, bBST);
+                var embed = new Discord.RichEmbed()
+                    .setAuthor(pokemon[0].PokemonName + " vs " + pokemon[1].PokemonName)
+                    .setColor("BLUE")
+                    .addField(client.emojis.get(getEmoji[pokemon[0].SPType.toLowerCase()]) + " " + pokemon[0].PokemonName + " info:", "Weakness: " + client.emojis.get(getEmoji[pokemon[0].WeakType.toLowerCase()]) + " ・Role: " + pokemon[0].Role + " ・Rarity: " + rarity1)
+                    .addField(client.emojis.get(getEmoji[pokemon[1].SPType.toLowerCase()]) + " " + pokemon[1].PokemonName + " info:", "Weakness: " + client.emojis.get(getEmoji[pokemon[1].WeakType.toLowerCase()]) + " ・Role: " + pokemon[1].Role + " ・Rarity: " + rarity2)
+                    .addField("Stat Comparison", "```" + table + "```");
+                message.channel.send({embed});
+            }
+
+        } catch (e) {
+            //ToDo: figure out an epic joke
+        }
+    }
 }
 
 async function summonSim(message, args, client, count, currency, user, threeCount, fourCount, fiveCount, featuredCount, embeds, finalFiveStars) {
@@ -53,18 +126,18 @@ async function summonSim(message, args, client, count, currency, user, threeCoun
             .then(response => response.json())
             .then(bannerJson => banners = bannerJson);
         var banner;
-        if(args[1] === undefined){
+        if (args[1] === undefined) {
             banner = banners[0];
-        }else{
-            for(var scout of banners){
-                if(scout.title.toLowerCase().includes(args[1])){
+        } else {
+            for (var scout of banners) {
+                if (scout.title.toLowerCase().includes(args[1])) {
                     banner = scout;
                 }
             }
         }
         //Todo: come up with a better way to determine rarity, perhaps logic that looks at out[1] in a different way besides switchcase
         var pool = banner.units.split('<br />\r\n').map((unit) => {
-            var out = unit.replace('&amp;', "/").replace('(Midnight Form)',"").replace(' (Shield Forme)','').split('\t');
+            var out = unit.replace('&amp;', "/").replace('(Midnight Form)', "").replace(' (Shield Forme)', '').split('\t');
             switch (out[1]) {
                 case '365':
                     return ([out[0], `3${client.emojis.get(getEmoji['star'])}`]);
@@ -132,7 +205,7 @@ async function summonSim(message, args, client, count, currency, user, threeCoun
             }
         });
         var resultsOut = results.map((unit) => {
-            return unit[1] + " ・ " + unit[0]
+            return unit[1] + " ・" + unit[0]
         });
         let halfWayThough = Math.floor(resultsOut.length / 2);
         let arrayFirstHalf = resultsOut.slice(0, halfWayThough);
@@ -143,9 +216,9 @@ async function summonSim(message, args, client, count, currency, user, threeCoun
             .setImage(bannerImg)
             .setColor("#ffdf43")
             .addField("Results", arrayFirstHalf, true)
-            .addField(" - ", arraySecondHalf,true)
-            .addField('Cost', '**# of Summons:** ' + count * 10 + " ・ " + '**Cost:** ' + currency + " gems | " + gemsToUSD(currency) + " USD")
-            .addField('Totals', '**Featured:** ' + featuredCount + " ・ " + '**5 star:** ' + fiveCount + " ・ " + '**4 star:** ' + fourCount + " ・ " + '**3 star:** ' + threeCount)
+            .addField(" - ", arraySecondHalf, true)
+            .addField('Cost', '**# of Summons:** ' + count * 10 + " ・" + '**Cost:** ' + currency + " gems | " + gemsToUSD(currency) + " USD")
+            .addField('Totals', '**Featured:** ' + featuredCount + " ・" + '**5 star:** ' + fiveCount + " ・" + '**4 star:** ' + fourCount + " ・" + '**3 star:** ' + threeCount)
             .setFooter('👌 => summon again ・ 👍 => summary ・ >pm scout => banners.');
         const filter = (reaction, user) => {
             return ['👍', '👌'].includes(reaction.emoji.name) && user.id === message.author.id;
@@ -160,11 +233,11 @@ async function summonSim(message, args, client, count, currency, user, threeCoun
             }
             var collector = reply.createReactionCollector(filter, {time: 15000, max: 1});
             collector.on('collect', r => {
-                if(r._emoji.name === '👌'){
+                if (r._emoji.name === '👌') {
                     reply.delete().catch(console.error);
                     summonSim(message, args, client, count + 1, currency + 3000, user, threeCount, fourCount, fiveCount, featuredCount, embeds, finalFiveStars)
                 }
-                if(r._emoji.name === '👍'){
+                if (r._emoji.name === '👍') {
                     reply.delete().catch(console.error);
                     genResults(message, args, client, embeds, finalFiveStars, count, currency, user, threeCount, fourCount, fiveCount, featuredCount, bannerImg, author);
                 }
@@ -178,23 +251,26 @@ async function summonSim(message, args, client, count, currency, user, threeCoun
         message.channel.send('Try again?');
     }
 }
-function genResults(message, args, client, embeds, finalFiveStars, count, currency, user, threeCount, fourCount, fiveCount, featuredCount, bannerImg, author){
-    if(finalFiveStars.length < 1){
+
+function genResults(message, args, client, embeds, finalFiveStars, count, currency, user, threeCount, fourCount, fiveCount, featuredCount, bannerImg, author) {
+    if (finalFiveStars.length < 1) {
         finalFiveStars.push(["None", ":P"]);
     }
     var worth;
-    if(featuredCount + fiveCount > count){
+    if (featuredCount + fiveCount > count) {
         worth = "Worth it."
-    }else{
+    } else {
         worth = "Not Worth it."
     }
     const embed = new Discord.RichEmbed()
         .setColor("#ffdf43")
         .setAuthor(author + "'s results")
         .setImage(bannerImg)
-        .addField('Cost', '**# of Summons:** ' + count * 10 + " ・ " + '**Cost:** ' + currency + " gems | " + gemsToUSD(currency) + " USD" + "\n" + worth)
-        .addField('Totals', '**Featured:** ' + featuredCount + " ・ " + '**5 star:** ' + fiveCount + " ・ " + '**4 star:** ' + fourCount + " ・ " + '**3 star:** ' + threeCount)
-        .addField("Notable Units", finalFiveStars.map((elem)=>{return elem[1] + " ・ " + elem[0]}));
+        .addField('Cost', '**# of Summons:** ' + count * 10 + " ・" + '**Cost:** ' + currency + " gems | " + gemsToUSD(currency) + " USD" + "\n" + worth)
+        .addField('Totals', '**Featured:** ' + featuredCount + " ・" + '**5 star:** ' + fiveCount + " ・" + '**4 star:** ' + fourCount + " ・" + '**3 star:** ' + threeCount)
+        .addField("Notable Units", finalFiveStars.map((elem) => {
+            return elem[1] + " ・" + elem[0]
+        }));
     embeds.unshift(embed);
     paginationEmbed(message, embeds, ['⏪', '⏩'], 60000);
 }
@@ -257,7 +333,7 @@ async function getUnit(message, args, client) {
     embeds = unit.map((unit) => {
             movesOut = getMoves([unit.Move1, unit.Move2, unit.Move3, unit.Move4], moves, client) + getSync(unit.SyncMove, moves, client);
             passivesOut = getPassives([unit.Passive1, unit.Passive2, unit.Passive3], passives);
-            if(passivesOut.length < 1){
+            if (passivesOut.length < 1) {
                 passivesOut = "Information Missing."
             }
             var chibi;
@@ -269,7 +345,7 @@ async function getUnit(message, args, client) {
             chibiTemp = chibi;
             var table = new AsciiTable();
             table
-                .setBorder('║', '═', '■', '■')
+                .setBorder('|', '-', '■', '■')
                 .setHeading('HP', 'ATK', 'DEF', 'SPATK', 'SPDEF', 'SPD')
                 .addRow(unit.HpLevelMax, unit.AtkLevelMax, unit.DefLevelMax, unit.SpAtkLevelMax, unit.SpDefLevelMax, unit.SpeedLevelMax);
             return new Discord.RichEmbed()
@@ -299,7 +375,7 @@ async function getUnit(message, args, client) {
     }
     var embedFinal = new Discord.RichEmbed()
         .setTitle('Wiki Link')
-        .setAuthor(unit[0].TrainerName.replace("Synga Suit ", "") + " & " + unit[0].PokemonName + " ・ " + unit[0].Role + " " + rarity)
+        .setAuthor(unit[0].TrainerName.replace("Synga Suit ", "") + " & " + unit[0].PokemonName + " ・" + unit[0].Role + " " + rarity)
         .setImage('https://www.serebii.net/pokemonmasters/syncpairs/' + unit[0].TrainerName.replace("Synga Suit ", "").toLowerCase().replace(" ", "") + '.png')
         .setThumbnail(iconPruned)
         .addField('Obtained From: ', unit[0].Obtain.replace('[', '').replace(']', '').replace('[', '').replace(']', '').replace('Main Story|', ""))
