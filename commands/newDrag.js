@@ -8,11 +8,16 @@ module.exports = {
     display: 'Dragalia Lost',
     description: '`>drag [unit/dragon/weapon/print]` will return information on (mostly) anything in Dragalia Lost.',
     async execute(message, args) {
-        var unit = await HELPER.searchCollection(args.join(" "), await HELPER.getData(ADV_DATA), message, args);
-        var embed = new Discord.RichEmbed()
-            .setAuthor(unit.Name)
-            .addField("placeholder","placeholder")
+        let unit = await HELPER.searchCollection(args.join(" "), await HELPER.getData(ADV_DATA), message);
+        const embed = new Discord.RichEmbed()
+            .setAuthor(unit.Name + ": " + unit.Title + " | " + await HELPER.generateStars(unit.Rarity), await HELPER.getElementImage(unit.ElementalType))
+            .addField("Weapon", unit.WeaponType, true)
+            .addField("Role", unit.CharaType,true)
+            .addField("Description", unit.Description)
+            .addField("HP", unit.MinHp5 + " - " + unit.MaxHp, true)
+            .addField("ATK", unit.MinAtk5 + " - " + unit.MaxAtk, true)
+            .setColor(await HELPER.getEmbedColor(unit.ElementalType))
             .setImage(await HELPER.getImage(args));
-        await message.channel.send({embed});
+        message.channel.send({embed});
     }
 };

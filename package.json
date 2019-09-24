@@ -15,5 +15,8 @@
     "node-fetch": "^2.6.0",
     "request": "^2.88.0",
     "winston": "^3.2.1"
+  },
+  "devDependencies": {
+    "ascii-table": "0.0.9"
   }
 }
