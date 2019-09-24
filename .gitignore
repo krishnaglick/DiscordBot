@@ -6,3 +6,4 @@ commands/fortune.js
 *.html
 *.css
 *.info
+auth.txt
