@@ -1,10 +1,10 @@
 prod
 {
-  "token": "NTc3ODUzODczMDg4MTAyNDAw.XQzZYg.tA_NfuWEiMiO30fIKYn03o_QjDo",
+  "token": "NTc3ODUzODczMDg4MTAyNDAw.XYRAPg.Yu-lHyVmUjzQbgq1mNqw7hVhQaM",
   "prefix": ">"
 }
 staging
 {
-  "token": "NjIwNzczMDQ2MDAwNjgwOTYx.XXbrfw.S0W1gr2OzDrrKM7tNmhrY83qYXI",
+  "token": "NjIwNzczMDQ2MDAwNjgwOTYx.XYRDfg.kPVia9HGTvvzV5OD1Dbu132U3aA",
   "prefix": ">"
 }

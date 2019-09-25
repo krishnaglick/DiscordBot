@@ -25,7 +25,7 @@ module.exports = {
      * @param message
      * @returns {Promise<*>}
      */
-    searchCollection: async function (desired, collection, message) {
+    searchCollectionSingle: async function (desired, collection, message) {
         try {
             for (const goal of collection) {
                 if (goal.title.Name.toUpperCase() === desired.toUpperCase()) {
@@ -37,6 +37,19 @@ module.exports = {
                 "Try redoing the command properly: `>drag [unit/dragon/weapon/print]`", message);
         }
     },
+    /*
+    searchCollectionMultiple: async  function (desired, collection, message) {
+        try{
+            for(const goal of collection){
+                for(const lookUp of desired){
+                    if(lookUp.title.Id === goal)
+                }
+            }
+        }catch (e) {
+
+        }
+    },
+     */
     getImage: async function (args) {
         let nameFinal = await helper.stringEdgeCase(args);
         let url = 'https://dragalialost.gamepedia.com/' + nameFinal.replace(" ", "_");
