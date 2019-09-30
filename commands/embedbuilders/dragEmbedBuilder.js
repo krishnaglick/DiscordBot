@@ -2,7 +2,6 @@ const ADV_DATA = "https://dragalialost.gamepedia.com/index.php?title=Special:Car
 const ABI_DATA = "https://dragalialost.gamepedia.com/index.php?title=Special:CargoExport&tables=Abilities&&fields=_pageName%3DPage%2CId%3DId%2CGenericName%3DGenericName%2CName%3DName%2CDetails%3DDetails%2CAbilityIconName%3DAbilityIconName%2CAbilityGroup%3DAbilityGroup%2CPartyPowerWeight%3DPartyPowerWeight%2CAbilityLimitedGroupId1%3DAbilityLimitedGroupId1%2CAbilityLimitedGroupId2%3DAbilityLimitedGroupId2%2CAbilityLimitedGroupId3%3DAbilityLimitedGroupId3&&order+by=%60_pageName%60%2C%60Id%60%2C%60GenericName%60%2C%60Name%60%2C%60Details%60&limit=5000&format=json";
 const SKL_DATA = "https://dragalialost.gamepedia.com/index.php?title=Special:CargoExport&tables=Skills&&fields=_pageName%3DPage%2CSkillId%3DSkillId%2CName%3DName%2CSkillLv1IconName%3DSkillLv1IconName%2CSkillLv2IconName%3DSkillLv2IconName%2CSkillLv3IconName%3DSkillLv3IconName%2CDescription1%3DDescription1%2CDescription2%3DDescription2%2CDescription3%3DDescription3%2CHideLevel3%3DHideLevel3%2CSp%3DSp%2CSPLv2%3DSPLv2%2CSpRegen%3DSpRegen%2CIsAffectedByTension%3DIsAffectedByTension%2CCrisisModifier%3DCrisisModifier%2CIframeDuration%3DIframeDuration&&order+by=%60_pageName%60%2C%60SkillId%60%2C%60Name%60%2C%60SkillLv1IconName%60%2C%60SkillLv2IconName%60&limit=5000&format=json"
 const HELPER = require('./helpers/dragHelper');
-const GENERAL = require('./helpers/general');
 const fetch = require("node-fetch");
 const cheerio = require('cheerio');
 const Discord = require('discord.js');
@@ -11,18 +10,29 @@ const {MessageEmbed} = require('discord.js');
 const AsciiTable = require('ascii-table');
 const request = require('request');
 module.exports = {
-    unitEmbed: async function(message, args) {
+    unitEmbed: async function (message, args) {
         let unit = await HELPER.searchCollectionSingle(args.join(" "), await HELPER.getData(ADV_DATA), message);
-        let abilities = HELPER.generateSkillOutput(await HELPER.searchCollectionMultiple([unit.Abilities11,unit.Abilities12,unit.Abilities21,unit.Abilities22,unit.Abilities31,unit.Abilities32], await HELPER.getData(ABI_DATA), message));
+        let abilities = await HELPER.generateSkillOutput(await HELPER.searchCollectionMultiple([unit.Abilities11, unit.Abilities12, unit.Abilities21, unit.Abilities22, unit.Abilities31, unit.Abilities32], await HELPER.getData(ABI_DATA), message));
+        let nameFinal = unit.Name + ": " + unit.Title + " | " + await HELPER.generateStars(unit.Rarity)
+        let iconFinal = await HELPER.getElementImage(unit.ElementalType);
+        let colorFinal = await HELPER.getEmbedColor(unit.ElementalType);
         //console.log(abilities);
-        return new Discord.RichEmbed()
-            .setAuthor(unit.Name + ": " + unit.Title + " | " + await HELPER.generateStars(unit.Rarity), await HELPER.getElementImage(unit.ElementalType))
-            .addField("Weapon", unit.WeaponType, true)
-            .addField("Role", unit.CharaType, true)
-            .addField("Description", unit.Description)
-            .addField("HP", unit.MinHp5 + " - " + unit.MaxHp, true)
-            .addField("ATK", unit.MinAtk5 + " - " + unit.MaxAtk, true)
-            .setColor(await HELPER.getEmbedColor(unit.ElementalType))
-            .setImage(await HELPER.getImage(args));
+        return [
+            new Discord.RichEmbed()
+                .setAuthor(nameFinal, iconFinal)
+                .addField("Weapon", unit.WeaponType, true)
+                .addField("HP", unit.MinHp5 + " - " + unit.MaxHp, true)
+                .addField("ATK", unit.MinAtk5 + " - " + unit.MaxAtk, true)
+                .addField("Co-Ab", await HELPER.generateCoAb(unit, unit.WeaponType))
+                .addField("Abilities", abilities)
+                .setColor(colorFinal),
+            new Discord.RichEmbed()
+                .setAuthor(nameFinal, iconFinal)
+                .addField("VA", unit.EnglishCV + " | " + unit.JapaneseCV)
+                .addField("Release", unit.Obtain.replace("[[","").replace("]]","") + " : " + unit.ReleaseDate)
+                .addField("Description", unit.Description)
+                .setImage(await HELPER.getImage(args))
+                .setColor(colorFinal),
+        ];
     },
 };

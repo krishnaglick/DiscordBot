@@ -3,6 +3,8 @@ const paginationEmbed = require('discord.js-pagination');
 const { MessageEmbed } = require('discord.js');
 const AsciiTable = require('ascii-table');
 module.exports = {
+    nextButtons: ['⏪', '⏩'],
+    paginationTimeOut: 60000,
     errorSend: async function (problem, solution, message) {
         var embed = new Discord.RichEmbed()
             .setColor('RED')
@@ -32,5 +34,11 @@ module.exports = {
         }
         append = append.replace('\'', '%27');
         return append;
+    },
+    startTypingAlert: function (message) {
+        message.channel.startTyping();
+    },
+    stopTypingAlert: function (message){
+        message.channel.stopTyping(true);
     }
 };
