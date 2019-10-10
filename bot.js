@@ -74,6 +74,11 @@ client.on('raw', packet => {
 var antnee = '115270563349528579';
 //code which is done whenever a message is sent in a discord the bot exists in.
 client.on('message', message => {
+    if(message.channel.id === "626538160330899476" || message.channel.id === "620714509862174720" || message.channel.id === "453736163187097601"){
+        if(message.content.startsWith('99')){
+            message.channel.send("100 suckers, yo shouts out to my boy blade for getting cucked.");
+        }
+    }
     if(message.content === '>debug'){
         var guilds = client.guilds.array();
         for(var guild of guilds) {

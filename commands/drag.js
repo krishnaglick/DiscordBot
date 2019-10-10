@@ -173,6 +173,10 @@ module.exports = {
                             p1 = ["**" + data[0][6] + ": **", data[0][7].substring(data[0][7].lastIndexOf('\t') + 1)];
                             p2 = ["**" + data[0][8] + ": **", data[0][9].substring(data[0][9].lastIndexOf('\t') + 1)];
                             p3 = ["**" + data[0][10] + ": **", data[0][11].substring(data[0][11].lastIndexOf('\t') + 1)];
+                            var skillOut = s1[0] + s1[1] + "\n" + s2[0] + s2[1];
+                            if(skillOut.length > 1028){
+                                skillOut = "Skill descriptions too long to display in a Discord Embed."
+                            }
                             try{
                                 const embed1 = new Discord.RichEmbed()
                                     .setColor(elementColor)
@@ -181,7 +185,7 @@ module.exports = {
                                     .addField("ENG VA", infoArr[9], true)
                                     .addField("JP VA", infoArr[10], true)
                                     .addField("---Co-Ability:---", coab)
-                                    .addField("-----Skills:-----", s1[0] + s1[1] + "\n" + s2[0] + s2[1]);
+                                    .addField("-----Skills:-----", skillOut);
                                 const embed2 = new Discord.RichEmbed()
                                     .setColor(elementColor)
                                     .setAuthor(unitName + ": " + title + " " + rarityStr, elem)
@@ -196,6 +200,7 @@ module.exports = {
                                 ];
                                 paginationEmbed(message, pages, ['⏪', '⏩'], 60000);
                             }catch (e) {
+                                console.log(e);
                                 message.channel.send("Try Again");
                             }
                         //

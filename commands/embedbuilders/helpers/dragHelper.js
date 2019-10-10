@@ -130,12 +130,31 @@ module.exports = {
         }
         return stars;
     },
+    generateSkillOutput: async function (unitName, matching, data) {
+        let skillData = [[],[]];
+        for(let unit of matching){
+            if(unit.title.toUpperCase() === unitName.toUpperCase()){
+                skillData[0].push(unit.skill1);
+                skillData[1].push(unit.skill2);
+            }
+        }
+        for(let skill of data){
+            if(skill.Name.includes(skillData[0][0])){
+                skillData[0].push(skill.description);
+            }
+            if(skill.Name.includes(skillData[1][0])){
+                skillData[1].push(skill.description);
+            }
+        }
+        console.log(skillData);
+        return skillData;
+    },
     /**
      *
      * @param skills
      * @returns {Promise<string>}
      */
-    generateSkillOutput: async function (skills) {
+    generateAbilityOutput: async function (skills) {
         let output = "";
         let formattedSkills = [
             {levels: []},
@@ -173,19 +192,35 @@ module.exports = {
         }
         return output;
     },
-    generateCoAb: async function(unit, weapon){
+    /**
+     *
+     * @param unit
+     * @param weapon
+     * @returns {Promise<string>}
+     */
+    generateCoAb: async function (unit, weapon) {
         switch (unit.Name) {
-            case "Euden": return "Dragon Form = damage +6/7/8/9/10%, Shapeshift Time +10/15/20%";
-            default: switch (weapon) {
-                case "Sword": return "Dragon gauge fill rate +5/6/8/11/15%";
-                case "Dagger": return "Crit Rate +5/6/7/8/10%";
-                case "Blade": return "Strength +5/6/7/8/10%";
-                case "Axe": return "Defense +9/10/11/12/15%";
-                case "Lance": return "HP +7/8/9/12/15%";
-                case "Bow": return "Skill gauge fill rate +8/9/11/12/15%";
-                case "Wand": return "Skill Damage +8/9/11/12/15%";
-                case "Staff": return "Recovery Potency +10/12/14/16/20%"
-            }
+            case "Euden":
+                return "Dragon Form = damage +6/7/8/9/10%, Shapeshift Time +10/15/20%";
+            default:
+                switch (weapon) {
+                    case "Sword":
+                        return "Dragon gauge fill rate +5/6/8/11/15%";
+                    case "Dagger":
+                        return "Crit Rate +5/6/7/8/10%";
+                    case "Blade":
+                        return "Strength +5/6/7/8/10%";
+                    case "Axe":
+                        return "Defense +9/10/11/12/15%";
+                    case "Lance":
+                        return "HP +7/8/9/12/15%";
+                    case "Bow":
+                        return "Skill gauge fill rate +8/9/11/12/15%";
+                    case "Wand":
+                        return "Skill Damage +8/9/11/12/15%";
+                    case "Staff":
+                        return "Recovery Potency +10/12/14/16/20%"
+                }
         }
     }
 };
