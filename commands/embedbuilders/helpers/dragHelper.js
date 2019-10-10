@@ -140,10 +140,10 @@ module.exports = {
         }
         for(let skill of data){
             if(skill.Name.includes(skillData[0][0])){
-                skillData[0].push(skill.description);
+                skillData[0].push(await formatSkillDesc(skill.Description2));
             }
             if(skill.Name.includes(skillData[1][0])){
-                skillData[1].push(skill.description);
+                skillData[1].push(await formatSkillDesc(skill.Description2));
             }
         }
         console.log(skillData);
@@ -224,3 +224,16 @@ module.exports = {
         }
     }
 };
+
+async function formatSkillDesc(desc){
+    let out = desc;
+    let styleCount = (desc.match(/&lt;span/g) || []).length;
+    let quoteCount = (desc.match(/&quot;/g) || []).length;
+    for(let i = 0; i < styleCount; i++){
+        out = out.substring(0, out.indexOf("&lt;span")) + out.substring(out.indexOf("/span&gt;") + "/span&gt;".length);
+    }
+    for(let i = 0; i < quoteCount; i++){
+        out = out.substring(0, out.indexOf("&quot;")) + out.substring(out.indexOf("&quot;") + "&quot;".length)
+    }
+    return out;
+}
