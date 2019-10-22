@@ -1,10 +1,11 @@
-prod
 {
- "token": "NTc3ODUzODczMDg4MTAyNDAw.XYre1g.vZ7QNF0EhUT7GYH6Aso3Y9gub9A",
- "prefix": ">"
+  "token": "NTc3ODUzODczMDg4MTAyNDAw.XZ-LyQ.zdj4iUjzCURcjyIPKiEaFc3VRJ8",
+  "prefix": ">",
+  "environment": "prod"
 }
-staging
+
 {
  "token": "NjIwNzczMDQ2MDAwNjgwOTYx.XYrfLw.H9MyX41hmIneOdmquB5GsQvtja8",
- "prefix": ">"
+ "prefix": ">",
+ "environment": "staging"
 }

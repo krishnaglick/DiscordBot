@@ -4,12 +4,13 @@ const SK1_DATA = "https://gamepress.gg/sites/default/files/aggregatedjson/Charac
 const SK2_DATA = "https://dragalialost.gamepedia.com/index.php?title=Special:CargoExport&tables=Skills&&fields=_pageName%3DPage%2CSkillId%3DSkillId%2CName%3DName%2CSkillLv1IconName%3DSkillLv1IconName%2CSkillLv2IconName%3DSkillLv2IconName%2CSkillLv3IconName%3DSkillLv3IconName%2CDescription1%3DDescription1%2CDescription2%3DDescription2%2CDescription3%3DDescription3%2CHideLevel3%3DHideLevel3%2CSp%3DSp%2CSPLv2%3DSPLv2%2CSpRegen%3DSpRegen%2CIsAffectedByTension%3DIsAffectedByTension%2CCrisisModifier%3DCrisisModifier%2CIframeDuration%3DIframeDuration&&group+by=Skills.Name&order+by=%60_pageName%60%2C%60SkillId%60%2C%60Name%60%2C%60SkillLv1IconName%60%2C%60SkillLv2IconName%60&limit=5000&format=json";
 const HELPER = require('./helpers/dragHelper');
 const Discord = require('discord.js');
+const GENERAL = require("./helpers/general");
 module.exports = {
     unitEmbed: async function (message, args) {
         let unit = await HELPER.searchCollectionSingle(args.join(" "), await HELPER.getData(ADV_DATA), message);
         let abilitiesFinal = await HELPER.generateAbilityOutput(await HELPER.searchCollectionMultiple([unit.Abilities11, unit.Abilities12, unit.Abilities21, unit.Abilities22, unit.Abilities31, unit.Abilities32], await HELPER.getData(ABI_DATA), message));
         let skillsFinal = await HELPER.generateSkillOutput(unit.Name, await HELPER.getData(SK1_DATA), await HELPER.getData(SK2_DATA));
-        let nameFinal = unit.Name + ": " + unit.Title + " | " + await HELPER.generateStars(unit.Rarity);
+        let nameFinal = unit.Name + ": " + unit.Title + " | " + await GENERAL.generateStars(unit.Rarity);
         let iconFinal = await HELPER.getElementImage(unit.ElementalType);
         let colorFinal = await HELPER.getEmbedColor(unit.ElementalType);
         //console.log(abilities);

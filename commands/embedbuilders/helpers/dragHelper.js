@@ -1,10 +1,10 @@
 const fetch = require("node-fetch");
 const cheerio = require('cheerio');
+const request = require('request');
 const Discord = require('discord.js');
 const paginationEmbed = require('discord.js-pagination');
 const {MessageEmbed} = require('discord.js');
 const AsciiTable = require('ascii-table');
-const request = require('request');
 const helper = require('./general');
 module.exports = {
     /**
@@ -117,18 +117,6 @@ module.exports = {
             case 'Light':
                 return "#ffff66";
         }
-    },
-    /**
-     *
-     * @param rarity
-     * @returns {Promise<string>}
-     */
-    generateStars: async function (rarity) {
-        let stars = "";
-        for (let i = 0; i < parseInt(rarity); i++) {
-            stars += "⭐";
-        }
-        return stars;
     },
     generateSkillOutput: async function (unitName, matching, data) {
         let skillData = [[],[]];

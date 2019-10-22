@@ -8,7 +8,7 @@ const Discord = require('discord.js');
 const AsciiTable = require('ascii-table');
 const paginationEmbed = require('discord.js-pagination');
 module.exports = {
-    name: 'pm',
+    name: 'pmt',
     display: 'Pokemon Masters',
     description: '`>pm summon [OPTIONAL - banner featured unit name]` will simulate a 10-summon on the latest Masters banner. ' + '\n' + '`>pm [character]` will return information on any character in Masters.',
     execute(message, args, client) {
@@ -204,6 +204,7 @@ async function summonSim(message, args, client, count, currency, user, threeCoun
                 return -1;
             }
         });
+        console.log(results);
         var resultsOut = results.map((unit) => {
             return unit[1] + " ・" + unit[0]
         });
