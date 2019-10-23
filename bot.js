@@ -1,7 +1,7 @@
 //mandatory imports
 const fs = require('fs');
 const Discord = require('discord.js');
-const { prefix, token } = require('./auth.json');
+const { prefix, prodToken, stagingToken, environment } = require('./auth.json');
 
 //setup for discord client reference. Used as the basis for the bot.
 const client = new Discord.Client();
@@ -146,7 +146,8 @@ client.on('message', message => {
         message.reply('Cannot run command!');
     }
 });
-client.login(token);
+
+client.login(environment === "production" ? prodToken : stagingToken);
 
 async function addTrainerRole(message) {
     if (message.content === ">enter") {

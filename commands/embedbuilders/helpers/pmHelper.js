@@ -3,10 +3,10 @@ const resourcePath = './commands/embedbuilders/helpers/data/';
 const GENERAL = require('./general');
 module.exports = {
     findJSON: async function(arg, seek){
-        const trainerFiles = fs.readdirSync(resourcePath + seek).filter(file => file.endsWith('.json'));
+        const trainerFiles = await fs.readdirSync(resourcePath + seek).filter(file => file.endsWith('.json'));
         for(const file of trainerFiles){
-            let rawData = fs.readFileSync(resourcePath + seek + "/" + file);
-            let data = JSON.parse(rawData);
+            let rawData = await fs.readFileSync(resourcePath + seek + "/" + file);
+            let data = await JSON.parse(rawData);
             if(data.name.toUpperCase() === arg.toUpperCase()){
                 return data;
             }
