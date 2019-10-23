@@ -137,7 +137,7 @@ const getEmoji = {
     "water": "617968638883790858",
     "physical": "617968661663186945",
     "special": "617968684534857734",
-    "status": "617968708320624652",
+    "status effect": "617968708320624652",
     "star": "617978374614286360"
 };
 
@@ -952,5 +952,6 @@ const dexnumMap = {
     "Blacephalon": "806",
     "Zeraora": "807",
     "Meltan": "808",
-    "Melmetal": "809"
+    "Melmetal": "809",
+    "Antnee" : "42069"
 };
