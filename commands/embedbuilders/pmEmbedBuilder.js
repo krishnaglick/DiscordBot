@@ -5,13 +5,19 @@ module.exports = {
     pairSearchEmbed: async function (arg, client) {
         let embedArr = [];
         let PKMNList = [];
+
         const unit = await HELPER.findJSON(arg, "trainers");
         const rarity = await GENERAL.generateStars(unit.base_potential);
         const icon = await HELPER.getUnitIcon(unit);
+
         for(let PKMN of unit.pokemon_list){ PKMNList.push( await HELPER.findJSON(PKMN,"pokemon"))}
         const color = await GENERAL.getColor(PKMNList[0].type1);
         PKMNList.sort(async (a,b)=>{await HELPER.sortByStats(a,b)});
+
         for(let PKMNJson of PKMNList){ embedArr.push( await generateIndividualPKMNEmbed(PKMNJson, unit, rarity, icon, client))}
+
+        const passives = HELPER.getPassives(unit.name, PKMNList[0].name);
+
         const baseEmbed = new Discord.RichEmbed()
             .setAuthor(unit.name + " " + rarity)
             .setThumbnail(icon)

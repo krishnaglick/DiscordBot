@@ -3,6 +3,7 @@ const fetch = require("node-fetch");
 const AsciiTable = require('ascii-table');
 const resourcePath = './commands/embedbuilders/helpers/data/';
 const GENERAL = require('./general');
+const passives = require('./data/passives');
 const iconUrl = 'https://gamepress.gg/sites/default/files/aggregatedjson/TrainersList.json?15813222081239323912';
 module.exports = {
     findJSON: async function (arg, seek) {
@@ -20,6 +21,16 @@ module.exports = {
             return 'https://serebii.net//pokedex-sm/icon/' + await GENERAL.pokedexLookup(name.substring(5, name.length)) + '.png';
         } else {
             return 'https://serebii.net//pokedex-sm/icon/' + await GENERAL.pokedexLookup(name.replace(" Shield", "").replace(" Sword", "")) + '.png';
+        }
+    },
+    getPassives: async function(unit, pkmn){
+        for(const passive of passives.passivesList){
+            for(const pokemon of passive.name){
+                if(pokemon.includes(unit) && pokemon.includes(pkmn)){
+                    console.log(pokemon);
+                    break;
+                }
+            }
         }
     },
     sortByStats: async function (a, b) {
