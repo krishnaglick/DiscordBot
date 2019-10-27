@@ -24,14 +24,16 @@ module.exports = {
         }
     },
     getPassives: async function(unit, pkmn){
+        let passiveOut = "";
         for(const passive of passives.passivesList){
-            for(const pokemon of passive.name){
+            for(const pokemon of passive.pokemon){
                 if(pokemon.includes(unit) && pokemon.includes(pkmn)){
-                    console.log(pokemon);
+                    passiveOut += "**" + passive.name + ":** " + passive.effect + " \n";
                     break;
                 }
             }
         }
+        return passiveOut;
     },
     sortByStats: async function (a, b) {
         let aBST = a.stats.max.attack + a.stats.max.defense + a.stats.max.speed + a.stats.max.sp_atk + a.stats.max.sp_def;
