@@ -26,7 +26,7 @@ module.exports = {
             new Discord.RichEmbed()
                 .setAuthor(nameFinal, iconFinal)
                 .addField("VA", unit.EnglishCV + " | " + unit.JapaneseCV)
-                .addField("Release", unit.Obtain.replace("[[","").replace("]]","") + " : " + unit.ReleaseDate)
+                .addField("Release", unit.Obtain.replace("[[", "").replace("]]", "") + " : " + unit.ReleaseDate)
                 .addField("Description", unit.Description)
                 .setImage(await HELPER.getImage(args))
                 .setColor(colorFinal),

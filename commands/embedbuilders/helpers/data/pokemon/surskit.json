@@ -4,7 +4,7 @@
   "type2": "",
   "weakness": "Rock",
   "role": "Tech",
-  "image": "pm0283_00_ametama_256.ktx.png",
+  "image": "/pokemonmasters/sites/pokemonmasters/files/styles/55x55/public/2019-08/pm0283_00_ametama_256.ktx.png",
   "stats": {
     "base": {
       "attack": 6,
@@ -91,6 +91,24 @@
         "Training Machine x30",
         "Super Training Machine x5"
       ]
+    }
+  ],
+  "syncMove": {
+    "name": "Bug Sync Beam",
+    "type": " Bug",
+    "category": "Special",
+    "power": {
+      "min_power": 200,
+      "max_power": 240
+    },
+    "target": "An opponent",
+    "effect_tag": "-",
+    "description": "No additional effect."
+  },
+  "passives": [
+    {
+      "name": "Terrify 1",
+      "description": "Lowers the Attack of all opposing sync pairs when the Pokémon enters a battle."
     }
   ]
 }

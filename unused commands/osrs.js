@@ -8,12 +8,12 @@ module.exports = {
     description: 'Display information from the OSRS wiki.',
     execute(message, args) {
         var url;
-        switch(args[0]){
+        switch (args[0]) {
             case "price":
                 var append = "w/";
-                for(var x = 1; x < args.length; x++){
+                for (var x = 1; x < args.length; x++) {
                     console.log(args[x]);
-                    if(x !== 1){
+                    if (x !== 1) {
                         append += "_";
                     }
                     append += args[x];
@@ -26,9 +26,9 @@ module.exports = {
     },
 };
 
-function parsePrice(url, message){
+function parsePrice(url, message) {
     request(url, (error, response, html) => {
-        if(!error && response.statusCode === 200) {
+        if (!error && response.statusCode === 200) {
             const $ = cheerio.load(html);
             const body = $('body');
             const itemName = $('h1').text();
@@ -38,7 +38,7 @@ function parsePrice(url, message){
             const embed = new Discord.RichEmbed()
                 .setColor('#b76400')
                 .setAuthor(itemName + " price: " + price.substring(0, price.indexOf("(info")));
-                //.setImage(img)
+            //.setImage(img)
             message.channel.send({embed})
         }
     })

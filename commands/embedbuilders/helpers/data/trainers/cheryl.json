@@ -4,10 +4,6 @@
   "base_potential": 3,
   "recruit_method": "Sync Pair Scout",
   "pokemon_list": [
-    "Blissey"
-  ],
-  "image": "Cheryl_1",
-  "sync_pair_story": [
-    "A Day with Cheryl"
+    "Cheryl & Blissey"
   ]
 }

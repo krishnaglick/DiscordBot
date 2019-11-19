@@ -4,7 +4,7 @@
   "type2": "",
   "weakness": "Rock",
   "role": "Support",
-  "image": "pm0581_00_swanna_256.ktx.png",
+  "image": "/pokemonmasters/sites/pokemonmasters/files/styles/55x55/public/2019-08/pm0581_00_swanna_256.ktx.png",
   "stats": {
     "base": {
       "attack": 6,
@@ -91,6 +91,24 @@
         "Training Machine x",
         "Super Training Machine x"
       ]
+    }
+  ],
+  "syncMove": {
+    "name": "High-Flying Sky Attack",
+    "type": " Flying",
+    "category": "Physical",
+    "power": {
+      "min_power": 200,
+      "max_power": 240
+    },
+    "target": "An opponent",
+    "effect_tag": "-",
+    "description": "The more the user’s Speed has been raised, the greater the power of this move."
+  },
+  "passives": [
+    {
+      "name": "Haste",
+      "description": "Speed cannot be lowered."
     }
   ]
 }

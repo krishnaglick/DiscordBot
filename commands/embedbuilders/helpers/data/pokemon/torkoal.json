@@ -4,7 +4,7 @@
   "type2": "",
   "weakness": "Water",
   "role": "Tech",
-  "image": "pm0324_00_cotoise_256.ktx.png",
+  "image": "/pokemonmasters/sites/pokemonmasters/files/styles/55x55/public/2019-08/pm0324_00_cotoise_256.ktx.png",
   "stats": {
     "base": {
       "attack": 7,
@@ -91,6 +91,24 @@
         "Training Machine x30",
         "Super Training Machine x5"
       ]
+    }
+  ],
+  "syncMove": {
+    "name": "Fiery Passion Overheat",
+    "type": " Fire",
+    "category": "Special",
+    "power": {
+      "min_power": 200,
+      "max_power": 240
+    },
+    "target": "An opponent",
+    "effect_tag": "-",
+    "description": "Its power increases if the target is burned."
+  },
+  "passives": [
+    {
+      "name": "Impervious",
+      "description": "Stats cannot be lowered."
     }
   ]
 }

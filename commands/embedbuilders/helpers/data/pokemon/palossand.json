@@ -4,7 +4,7 @@
   "type2": "",
   "weakness": "Ice",
   "role": "Tech",
-  "image": "",
+  "image": "/pokemonmasters/sites/pokemonmasters/files/styles/55x55/public/2019-08/pm0823_00_sunaba2_256.ktx.png",
   "stats": {
     "base": {
       "attack": 7,
@@ -23,17 +23,6 @@
       "sp_atk": 111,
       "sp_def": 144
     }
-  },
-  "syncMove": {
-    "name": "Never-Ending Royal Nightmare",
-    "type": "Ghost",
-    "power": {
-      "min_power": 200,
-      "max_power": 240
-    },
-    "accuracy": 0,
-    "target": "An opponent",
-    "effect": "The more the user’s Defense has been raised, the greater the power of this move."
   },
   "moves": [
     {
@@ -75,7 +64,7 @@
         "max_power": 0
       },
       "accuracy": 0,
-      "target": "Entire Field",
+      "target": "Entire field",
       "cost": 2,
       "uses": 2,
       "effect": "Causes a sandstorm.",
@@ -102,6 +91,24 @@
         "Training Machine x30",
         "Super Training Machine x5"
       ]
+    }
+  ],
+  "syncMove": {
+    "name": "Never-Ending Royal Nightmare",
+    "type": " Ghost",
+    "category": "Physical",
+    "power": {
+      "min_power": 200,
+      "max_power": 240
+    },
+    "target": "An opponent",
+    "effect_tag": "-",
+    "description": "The more the user’s Defense has been raised, the greater the power of this move."
+  },
+  "passives": [
+    {
+      "name": "Sand Fortress",
+      "description": "Stats cannot be lowered in a sandstorm."
     }
   ]
 }

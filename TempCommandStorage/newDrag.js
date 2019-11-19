@@ -1,8 +1,8 @@
-const BUILDER = require('./embedbuilders/dragEmbedBuilder');
+const BUILDER = require('../commands/embedbuilders/dragEmbedBuilder');
 const Discord = require('discord.js');
-const { MessageEmbed } = require('discord.js');
+const {MessageEmbed} = require('discord.js');
 const paginationEmbed = require('discord.js-pagination');
-const GENERAL = require('./embedbuilders/helpers/general');
+const GENERAL = require('../commands/embedbuilders/helpers/general');
 module.exports = {
     name: 'dragt',
     display: 'Dragalia Lost',

@@ -4,11 +4,7 @@
   "base_potential": 4,
   "recruit_method": "Sync Pair Scout",
   "pokemon_list": [
-    "Aegislash (Shield Forme)",
-    "Aegislash (Blade Forme)"
-  ],
-  "image": "Wikstrom_1",
-  "sync_pair_story": [
-    "A Day with Wikstrom"
+    "Wikstrom & Aegislash (Shield Forme)",
+    "Wikstrom & Aegislash (Blade Forme)"
   ]
 }

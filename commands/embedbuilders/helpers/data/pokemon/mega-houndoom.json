@@ -4,7 +4,7 @@
   "type2": "",
   "weakness": "Fighting",
   "role": "Strike (Special)",
-  "image": "pm0229_51_megahellgar_256.ktx.png",
+  "image": "/pokemonmasters/sites/pokemonmasters/files/styles/55x55/public/2019-08/pm0229_51_megahellgar_256.ktx.png",
   "stats": {
     "base": {
       "attack": 18,
@@ -21,7 +21,7 @@
       "hp": 460,
       "speed": 345,
       "sp_atk": 336,
-      "sp_def": 155
+      "sp_def": 141
     }
   },
   "moves": [
@@ -41,14 +41,14 @@
       "unlock_requirements": []
     },
     {
-      "name": "Dire Hit",
+      "name": "Dire Hit +",
       "type": "",
       "category": "Status Effect",
       "power": {
-        "min_power": 0,
-        "max_power": 0
+        "min_power": null,
+        "max_power": null
       },
-      "accuracy": 0,
+      "accuracy": null,
       "target": "Self",
       "cost": "",
       "uses": 2,
@@ -91,6 +91,28 @@
         "Training Machine x30",
         "Super Training Machine x5"
       ]
+    }
+  ],
+  "syncMove": {
+    "name": "Beguiling Dark Pulse",
+    "type": " Dark",
+    "category": "Special",
+    "power": {
+      "min_power": 160,
+      "max_power": 192
+    },
+    "target": "An opponent",
+    "effect_tag": "-",
+    "description": "Become Mega Houndoom."
+  },
+  "passives": [
+    {
+      "name": "Flameproof",
+      "description": "Prevents the Pokémon from getting burned."
+    },
+    {
+      "name": "Wide Awake",
+      "description": "Prevents the Pokémon from falling asleep."
     }
   ]
 }

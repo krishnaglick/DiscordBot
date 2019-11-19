@@ -4,7 +4,7 @@
   "type2": "",
   "weakness": "Bug",
   "role": "Tech",
-  "image": "pm0053_61_apersian_256.ktx.png",
+  "image": "/pokemonmasters/sites/pokemonmasters/files/styles/55x55/public/2019-08/pm0053_61_apersian_256.ktx.png",
   "stats": {
     "base": {
       "attack": 7,
@@ -91,6 +91,24 @@
         "Training Machine x30",
         "Super Training Machine x5"
       ]
+    }
+  ],
+  "syncMove": {
+    "name": "Dark Authority Black Hole Eclipse",
+    "type": " Dark",
+    "category": "Physical",
+    "power": {
+      "min_power": 200,
+      "max_power": 240
+    },
+    "target": "An opponent",
+    "effect_tag": "-",
+    "description": "Its power increases if the target is flinching."
+  },
+  "passives": [
+    {
+      "name": "Critical Sting 1",
+      "description": "When a critical hit lands, raises the chance of making the target flinch, become confused, or become trapped with the additional effect of the move."
     }
   ]
 }

@@ -4,10 +4,6 @@
   "base_potential": 3,
   "recruit_method": "Sync Pair Scout",
   "pokemon_list": [
-    "Cranidos"
-  ],
-  "image": "Roark_1",
-  "sync_pair_story": [
-    "A Day with Roark"
+    "Roark & Cranidos"
   ]
 }

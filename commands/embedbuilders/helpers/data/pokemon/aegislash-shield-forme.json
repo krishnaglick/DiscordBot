@@ -4,7 +4,7 @@
   "type2": "",
   "weakness": "Fire",
   "role": "Tech",
-  "image": "pm0746_11_sword3_256.ktx.png",
+  "image": "/pokemonmasters/sites/pokemonmasters/files/styles/55x55/public/2019-08/pm0746_11_sword3_256.ktx.png",
   "stats": {
     "base": {
       "attack": 8,
@@ -91,6 +91,28 @@
         "Training Machine x30",
         "Super Training Machine x5"
       ]
+    }
+  ],
+  "syncMove": {
+    "name": "Shining Knight Iron Head",
+    "type": " Steel",
+    "category": "Physical",
+    "power": {
+      "min_power": 200,
+      "max_power": 240
+    },
+    "target": "An opponent",
+    "effect_tag": "-",
+    "description": "The more the opponent’s Attack is lowered, the greater the power of this move."
+  },
+  "passives": [
+    {
+      "name": "Stance Change",
+      "description": "Changes to Blade Forme when the Pokémon attacks. Changes to Shield Forme when the Pokémon uses King’s Shield or switches out."
+    },
+    {
+      "name": "Vigilance",
+      "description": "The Pokémon is protected against critical hits."
     }
   ]
 }

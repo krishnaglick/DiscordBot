@@ -4,7 +4,7 @@
   "type2": "Fighting",
   "weakness": "Electric",
   "role": "Strike (Special)",
-  "image": "pm0757_00_shrimp2_256.ktx.png",
+  "image": "/pokemonmasters/sites/pokemonmasters/files/styles/55x55/public/2019-08/pm0757_00_shrimp2_256.ktx.png",
   "stats": {
     "base": {
       "attack": 10,
@@ -91,6 +91,24 @@
         "Training Machine x30",
         "Super Training Machine x5"
       ]
+    }
+  ],
+  "syncMove": {
+    "name": "Water Pulse Du Jour",
+    "type": " Water",
+    "category": "Special",
+    "power": {
+      "min_power": 250,
+      "max_power": 300
+    },
+    "target": "An opponent",
+    "effect_tag": "-",
+    "description": "No additional effect."
+  },
+  "passives": [
+    {
+      "name": "Critical Focus 1",
+      "description": "Raises the Pokémon’s critical-hit rate when it lands a critical hit."
     }
   ]
 }

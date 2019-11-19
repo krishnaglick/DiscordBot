@@ -4,7 +4,7 @@
   "type2": "",
   "weakness": "Electric",
   "role": "Strike (Special)",
-  "image": "pm0086_00_pawou_256.ktx.png",
+  "image": "/pokemonmasters/sites/pokemonmasters/files/styles/55x55/public/2019-08/pm0086_00_pawou_256.ktx.png",
   "stats": {
     "base": {
       "attack": 10,
@@ -52,7 +52,7 @@
       "target": "Self",
       "cost": "",
       "uses": 2,
-      "effect": "Sharply raises the user’s critical-hit rate.",
+      "effect": "Raises the user’s critical-hit rate.",
       "unlock_requirements": []
     },
     {
@@ -91,6 +91,24 @@
         "Training Machine x30",
         "Super Training Machine x5"
       ]
+    }
+  ],
+  "syncMove": {
+    "name": "Ice Sync Beam",
+    "type": " Ice",
+    "category": "Special",
+    "power": {
+      "min_power": 200,
+      "max_power": 240
+    },
+    "target": "An opponent",
+    "effect_tag": "-",
+    "description": "No additional effect."
+  },
+  "passives": [
+    {
+      "name": "Superduper Effective 2",
+      "description": "Powers up moves that are super effective."
     }
   ]
 }

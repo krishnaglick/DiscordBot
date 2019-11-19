@@ -4,7 +4,7 @@
   "type2": "",
   "weakness": "Fairy",
   "role": "Support",
-  "image": "pm0307_01_asanan_256.ktx.png",
+  "image": "/pokemonmasters/sites/pokemonmasters/files/styles/55x55/public/2019-08/pm0307_01_asanan_256.ktx.png",
   "stats": {
     "base": {
       "attack": 16,
@@ -91,6 +91,24 @@
         "Training Machine x30",
         "Super Training Machine x5"
       ]
+    }
+  ],
+  "syncMove": {
+    "name": "Fighting Sync Impact",
+    "type": " Fighting",
+    "category": "Physical",
+    "power": {
+      "min_power": 200,
+      "max_power": 240
+    },
+    "target": "An opponent",
+    "effect_tag": "-",
+    "description": "No additional effect."
+  },
+  "passives": [
+    {
+      "name": "On the Ropes 3",
+      "description": "Reduces damage when the Pokémon is in a pinch and is hit by a physical attack."
     }
   ]
 }

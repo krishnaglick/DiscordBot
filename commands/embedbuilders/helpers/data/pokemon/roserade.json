@@ -4,7 +4,7 @@
   "type2": "",
   "weakness": "Flying",
   "role": "Strike (Special)",
-  "image": "pm0407_01_roserade_256.ktx.png",
+  "image": "/pokemonmasters/sites/pokemonmasters/files/styles/55x55/public/2019-08/pm0407_01_roserade_256.ktx.png",
   "stats": {
     "base": {
       "attack": 5,
@@ -41,14 +41,14 @@
       "unlock_requirements": []
     },
     {
-      "name": "Dire Hit",
+      "name": "Dire Hit +",
       "type": "",
       "category": "Status Effect",
       "power": {
-        "min_power": 0,
-        "max_power": 0
+        "min_power": null,
+        "max_power": null
       },
-      "accuracy": 0,
+      "accuracy": null,
       "target": "Self",
       "cost": "",
       "uses": 2,
@@ -84,13 +84,31 @@
       "target": "Self",
       "cost": "",
       "uses": 2,
-      "effect": "Increases the user’s move gauge by two. Inverts changes to the user’s stats that have been lowered.",
+      "effect": "Increases the user’s move gauge by two. Converts the user’s stat reductions into stat increases.",
       "unlock_requirements": [
         "Great Buff Blend x10",
         "Ultra Buff Blend x3",
         "Training Machine x30",
         "Super Training Machine x5"
       ]
+    }
+  ],
+  "syncMove": {
+    "name": "Vivid Leaf Storm",
+    "type": " Grass",
+    "category": "Special",
+    "power": {
+      "min_power": 250,
+      "max_power": 300
+    },
+    "target": "An opponent",
+    "effect_tag": "-",
+    "description": "No additional effect."
+  },
+  "passives": [
+    {
+      "name": "Speeding Sun 2",
+      "description": "Quickly charges the move gauge when the weather is sunny."
     }
   ]
 }

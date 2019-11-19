@@ -4,10 +4,6 @@
   "base_potential": 4,
   "recruit_method": "Story Progression",
   "pokemon_list": [
-    "Kingdra"
-  ],
-  "image": "Clair_1",
-  "sync_pair_story": [
-    "A Day with Clair"
+    "Clair & Kingdra"
   ]
 }

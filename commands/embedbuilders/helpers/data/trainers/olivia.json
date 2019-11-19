@@ -4,10 +4,6 @@
   "base_potential": 5,
   "recruit_method": "Sync Pair Scout",
   "pokemon_list": [
-    "Lycanroc (Midnight Form)"
-  ],
-  "image": "Olivia_1",
-  "sync_pair_story": [
-    "A Day with Olivia"
+    "Olivia & Lycanroc (Midnight Form)"
   ]
 }

@@ -4,11 +4,7 @@
   "base_potential": 3,
   "recruit_method": "Story Progression",
   "pokemon_list": [
-    "Lucario",
-    "Mega Lucario"
-  ],
-  "image": "Korrina",
-  "sync_pair_story": [
-    "A Day with Korrina"
+    "Korrina & Lucario",
+    "Korrina & Mega Lucario"
   ]
 }

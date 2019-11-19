@@ -4,12 +4,7 @@
   "base_potential": 4,
   "recruit_method": "",
   "pokemon_list": [
-    "Masquerain",
-    "Surskit"
-  ],
-  "image": "Viola_1",
-  "sync_pair_story": [
-    "A Day with Viola",
-    "Surskit’s Evolution"
+    "Viola & Surskit",
+    "Viola & Masquerain"
   ]
 }

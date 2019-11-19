@@ -4,7 +4,7 @@
   "type2": "",
   "weakness": "Ice",
   "role": "Strike (Physical)",
-  "image": "pm0612_00_ononokus_256.ktx.png",
+  "image": "/pokemonmasters/sites/pokemonmasters/files/styles/55x55/public/2019-08/pm0612_00_ononokus_256.ktx.png",
   "stats": {
     "base": {
       "attack": 18,
@@ -91,6 +91,24 @@
         "Training Machine x30",
         "Super Training Machine x5"
       ]
+    }
+  ],
+  "syncMove": {
+    "name": "Dragon Sage Outrage",
+    "type": " Dragon",
+    "category": "Physical",
+    "power": {
+      "min_power": 250,
+      "max_power": 300
+    },
+    "target": "An opponent",
+    "effect_tag": "-",
+    "description": "No additional effect."
+  },
+  "passives": [
+    {
+      "name": "Power Reserves 2",
+      "description": "Powers up moves in a pinch."
     }
   ]
 }

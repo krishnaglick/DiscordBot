@@ -4,12 +4,7 @@
   "base_potential": 3,
   "recruit_method": "Story Progression",
   "pokemon_list": [
-    "Dewgong",
-    "Seel"
-  ],
-  "image": "Pryce_1",
-  "sync_pair_story": [
-    "A Day with Pryce",
-    "Seel’s Evolution"
+    "Pryce & Seel",
+    "Pryce & Dewgong"
   ]
 }

@@ -3,7 +3,6 @@ const fetch = require("node-fetch");
 const AsciiTable = require('ascii-table');
 const resourcePath = './commands/embedbuilders/helpers/data/';
 const GENERAL = require('./general');
-const passives = require('./data/passives');
 const iconUrl = 'https://gamepress.gg/sites/default/files/aggregatedjson/TrainersList.json?15813222081239323912';
 module.exports = {
     findJSON: async function (arg, seek) {
@@ -14,6 +13,14 @@ module.exports = {
             if (data.name.toUpperCase() === arg.toUpperCase()) {
                 return data;
             }
+            if (seek === "trainers") {
+                for (const pkmn of data.pokemon_list) {
+                    if ((pkmn.replace(data.name + " & ", "").toUpperCase()) === arg.toUpperCase()) {
+                        console.log(pkmn.replace(data.name + " & ", "").toUpperCase());
+                        return data;
+                    }
+                }
+            }
         }
     },
     getPKMNIcon: async function (name) {
@@ -23,28 +30,29 @@ module.exports = {
             return 'https://serebii.net//pokedex-sm/icon/' + await GENERAL.pokedexLookup(name.replace(" Shield", "").replace(" Sword", "")) + '.png';
         }
     },
-    getPassives: async function(unit, pkmn){
-        let passiveOut = "";
-        for(const passive of passives.passivesList){
-            for(const pokemon of passive.pokemon){
-                if(pokemon.includes(unit) && pokemon.includes(pkmn)){
-                    passiveOut += "**" + passive.name + ":** " + passive.effect + " \n";
-                    break;
-                }
-            }
+    generatePassivesOut: async function (passives) {
+        let passivesOut = "";
+        for (const passive of passives) {
+            passivesOut += "**" + passive.name + ": **"
+                + passive.description
+                + "\n";
         }
-        return passiveOut;
+        return passivesOut;
     },
-    sortByStats: async function (a, b) {
-        let aBST = a.stats.max.attack + a.stats.max.defense + a.stats.max.speed + a.stats.max.sp_atk + a.stats.max.sp_def;
-        let bBST = b.stats.max.attack + b.stats.max.defense + b.stats.max.speed + b.stats.max.sp_atk + b.stats.max.sp_def;
-        if (aBST > bBST) {
-            return -1;
-        } else if (a === b) {
-            return 0;
-        } else {
-            return 1;
-        }
+    generateSyncOut: async function (sync, client) {
+        let isStatus = sync.category.toLowerCase() === "status effect";
+        return "**S. " + await GENERAL.getEmoji(sync.category.toLowerCase(), client) + " "
+            + sync.name + " "
+            + (isStatus
+                    ? ""
+                    : await GENERAL.getEmoji(sync.type.toLowerCase().replace(" ",""), client)
+            )
+            + " ・ "
+            + "PWR:** " + sync.power.min_power + "→" + sync.power.max_power
+            + " ・ "
+            + ((sync.target === "All opponents") ? " **AOE**" : " **ST**")
+            + "\n"
+            + sync.description;
     },
     generateStatTable: async function (stats) {
         let table = new AsciiTable();
@@ -66,7 +74,7 @@ module.exports = {
         return "```" + table.toString() + "```";
     },
     //ToDo: hard code this
-    getUnitIcon: async function(unit){
+    getUnitIcon: async function (unit) {
         let icon;
         if (unit.name === "Main Character") {
             await fetch(iconUrl)
@@ -83,22 +91,22 @@ module.exports = {
         }
         return 'https://pokemonmasters.gamepress.gg' + icon.substring(icon.indexOf('<img src="') + 10, icon.indexOf('" width'));
     },
-    generateMovesOut: async function (moves, client){
+    generateMovesOut: async function (moves, client) {
         let count = 1;
         let out = "";
-        for(const move of moves){
+        for (const move of moves) {
             let isStatus = move.category.toLowerCase() === "status effect";
             out += "**" + count + ". "
                 + await GENERAL.getEmoji(move.category.toLowerCase(), client) + " "
                 + move.name + " "
                 + (isStatus
-                    ? ""
-                    : await GENERAL.getEmoji(move.type.toLowerCase(), client)
+                        ? ""
+                        : await GENERAL.getEmoji(move.type.toLowerCase(), client)
                 )
                 + " ・ **"
                 + (isStatus
-                    ? " **Uses:** " + move.uses + " **Target:** " + move.target
-                    : " **Cost:** " + move.cost + " **PWR:** " + move.power.min_power + "→" + move.power.max_power + " **ACC:** " + move.accuracy + ((move.target === "All opponents")?" **AOE**":"")
+                        ? " **Uses:** " + move.uses + " **Target:** " + move.target
+                        : " **Cost:** " + move.cost + " **PWR:** " + move.power.min_power + "→" + move.power.max_power + " **ACC:** " + move.accuracy + ((move.target === "All opponents") ? " **AOE**" : "")
                 )
                 + "\n"
                 + move.effect

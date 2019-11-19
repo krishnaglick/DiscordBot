@@ -4,7 +4,7 @@
   "type2": "",
   "weakness": "Rock",
   "role": "Strike (Special)",
-  "image": "pm0609_00_chandela_256.ktx.png",
+  "image": "/pokemonmasters/sites/pokemonmasters/files/styles/55x55/public/2019-08/pm0609_00_chandela_256.ktx.png",
   "stats": {
     "base": {
       "attack": 4,
@@ -91,6 +91,28 @@
         "Training Machine x30",
         "Super Training Machine x5"
       ]
+    }
+  ],
+  "syncMove": {
+    "name": "Dark Tales of the Shadow Ball",
+    "type": " Ghost",
+    "category": "Special",
+    "power": {
+      "min_power": 250,
+      "max_power": 300
+    },
+    "target": "An opponent",
+    "effect_tag": "-",
+    "description": "No additional effect."
+  },
+  "passives": [
+    {
+      "name": "Unhindered",
+      "description": "When the Pokémon uses a move to attack, ignores the damage-reducing effects on the opponent’s field of play."
+    },
+    {
+      "name": "Power Reserves 2",
+      "description": "Powers up moves in a pinch."
     }
   ]
 }

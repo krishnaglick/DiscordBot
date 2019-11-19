@@ -4,7 +4,7 @@
   "type2": "",
   "weakness": "Steel",
   "role": "Tech",
-  "image": "pm0739_00_aurora1_256.ktx.png",
+  "image": "/pokemonmasters/sites/pokemonmasters/files/styles/55x55/public/2019-08/pm0739_00_aurora1_256.ktx.png",
   "stats": {
     "base": {
       "attack": 12,
@@ -91,6 +91,32 @@
         "Training Machine x30",
         "Super Training Machine x5"
       ]
+    }
+  ],
+  "syncMove": {
+    "name": "Rock Sync Impact",
+    "type": " Rock",
+    "category": "Physical",
+    "power": {
+      "min_power": 200,
+      "max_power": 240
+    },
+    "target": "An opponent",
+    "effect_tag": "-",
+    "description": "No additional effect."
+  },
+  "passives": [
+    {
+      "name": "Snow Shelter",
+      "description": "Protects the Pokémon from damage from a hailstorm."
+    },
+    {
+      "name": "Sand Shelter",
+      "description": "Protects the Pokémon from damage from a sandstorm."
+    },
+    {
+      "name": "Aggravation 1",
+      "description": "Raises the chance of inflicting the flinching, confused, or trapped condition with the additional effects of moves."
     }
   ]
 }

@@ -4,7 +4,7 @@
   "type2": "",
   "weakness": "Flying",
   "role": "Strike (Physical)",
-  "image": "pm0127_00_kailios_256.ktx.png",
+  "image": "/pokemonmasters/sites/pokemonmasters/files/styles/55x55/public/2019-08/pm0127_00_kailios_256.ktx.png",
   "stats": {
     "base": {
       "attack": 21,
@@ -91,6 +91,24 @@
         "Training Machine x30",
         "Super Training Machine x5"
       ]
+    }
+  ],
+  "syncMove": {
+    "name": "Factory Head X-Scissor",
+    "type": " Bug",
+    "category": "Physical",
+    "power": {
+      "min_power": 160,
+      "max_power": 192
+    },
+    "target": "An opponent",
+    "effect_tag": "-",
+    "description": "Become Mega Pinsir."
+  },
+  "passives": [
+    {
+      "name": "Headstrong",
+      "description": "Attack cannot be lowered."
     }
   ]
 }

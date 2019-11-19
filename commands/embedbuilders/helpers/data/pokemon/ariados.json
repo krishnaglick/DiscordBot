@@ -4,7 +4,7 @@
   "type2": "",
   "weakness": "Fire",
   "role": "Tech",
-  "image": "pm0168_00_ariados_256.ktx.png",
+  "image": "/pokemonmasters/sites/pokemonmasters/files/styles/55x55/public/2019-08/pm0168_00_ariados_256.ktx.png",
   "stats": {
     "base": {
       "attack": 11,
@@ -41,14 +41,14 @@
       "unlock_requirements": []
     },
     {
-      "name": "Dire Hit",
+      "name": "Dire Hit +",
       "type": "",
       "category": "Status Effect",
       "power": {
-        "min_power": 0,
-        "max_power": 0
+        "min_power": null,
+        "max_power": null
       },
-      "accuracy": 0,
+      "accuracy": null,
       "target": "Self",
       "cost": "",
       "uses": 2,
@@ -91,6 +91,24 @@
         "Training Machine x30",
         "Super Training Machine x5"
       ]
+    }
+  ],
+  "syncMove": {
+    "name": "Ninja Spirit Cross Poison",
+    "type": " Poison",
+    "category": "Physical",
+    "power": {
+      "min_power": 200,
+      "max_power": 240
+    },
+    "target": "An opponent",
+    "effect_tag": "-",
+    "description": "Its power increases if the target is poisoned or badly poisoned."
+  },
+  "passives": [
+    {
+      "name": "Hostile Environment 1",
+      "description": "Raises the chance of inflicting status conditions with the additional effects of moves."
     }
   ]
 }

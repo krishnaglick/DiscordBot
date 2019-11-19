@@ -4,11 +4,7 @@
   "base_potential": 4,
   "recruit_method": "Sync Pair Scout",
   "pokemon_list": [
-    "Gengar",
-    "Mega Gengar"
-  ],
-  "image": "Agatha_1",
-  "sync_pair_story": [
-    "A Day with Agatha"
+    "Agatha & Mega Gengar",
+    "Agatha & Gengar"
   ]
 }

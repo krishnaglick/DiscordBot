@@ -4,7 +4,7 @@
   "type2": "",
   "weakness": "Electric",
   "role": "Support",
-  "image": "pm0121_00_starmie_256.ktx.png",
+  "image": "/pokemonmasters/sites/pokemonmasters/files/styles/55x55/public/2019-08/pm0121_00_starmie_256.ktx.png",
   "stats": {
     "base": {
       "attack": 5,
@@ -91,6 +91,24 @@
         "Training Machine x30",
         "Super Training Machine x5"
       ]
+    }
+  ],
+  "syncMove": {
+    "name": "Tomboyish Mermaid Bubble Beam",
+    "type": " Water",
+    "category": "Special",
+    "power": {
+      "min_power": 200,
+      "max_power": 240
+    },
+    "target": "An opponent",
+    "effect_tag": "-",
+    "description": "The more the user’s Sp. Def has been raised, the greater the power of this move."
+  },
+  "passives": [
+    {
+      "name": "Healing Hand 2",
+      "description": "Occasionally removes all status conditions of all allied sync pairs after the Pokémon uses a move."
     }
   ]
 }

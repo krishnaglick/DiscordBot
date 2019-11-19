@@ -4,7 +4,7 @@
   "type2": "",
   "weakness": "Grass",
   "role": "Tech",
-  "image": "pm0419_00_floazel_256.ktx.png",
+  "image": "/pokemonmasters/sites/pokemonmasters/files/styles/55x55/public/2019-08/pm0419_00_floazel_256.ktx.png",
   "stats": {
     "base": {
       "attack": 21,
@@ -41,14 +41,14 @@
       "unlock_requirements": []
     },
     {
-      "name": "Dire Hit",
+      "name": "Dire Hit +",
       "type": "",
       "category": "Status Effect",
       "power": {
-        "min_power": 0,
-        "max_power": 0
+        "min_power": null,
+        "max_power": null
       },
-      "accuracy": 0,
+      "accuracy": null,
       "target": "Self",
       "cost": "",
       "uses": 2,
@@ -91,6 +91,28 @@
         "Training Machine x30",
         "Super Training Machine x5"
       ]
+    }
+  ],
+  "syncMove": {
+    "name": "Crashdown Aqua Jet",
+    "type": " Water",
+    "category": "Physical",
+    "power": {
+      "min_power": 200,
+      "max_power": 240
+    },
+    "target": "An opponent",
+    "effect_tag": "-",
+    "description": "Its power increases if the target is flinching."
+  },
+  "passives": [
+    {
+      "name": "Racing Rain 2",
+      "description": "Quickly charges the move gauge when the weather is rainy."
+    },
+    {
+      "name": "Aggravation 1",
+      "description": "Raises the chance of inflicting the flinching, confused, or trapped condition with the additional effects of moves."
     }
   ]
 }

@@ -1,7 +1,7 @@
 module.exports = {
-	name: 'date',
-	description: 'Sends message [its "insert day here" my dudes.]',
-	execute(message) {
+    name: 'date',
+    description: 'Sends message [its "insert day here" my dudes.]',
+    execute(message) {
         // Gets current date, if date ==
         let date = new Date().getDay()
         console.log(date)
@@ -9,7 +9,7 @@ module.exports = {
         if (date == 0)
             message.channel.send("https://imgur.com/JcsIYJs")
         if (date == 1)
-             message.channel.send("https://imgur.com/q1J8xO5")
+            message.channel.send("https://imgur.com/q1J8xO5")
         if (date == 2)
             message.channel.send("https://imgur.com/IDpAG8c")
         if (date == 3)
@@ -20,5 +20,5 @@ module.exports = {
             message.channel.send("https://imgur.com/XDqrJMG")
         if (date == 6)
             message.channel.send("https://imgur.com/LapzGfR")
-	},
+    },
 };

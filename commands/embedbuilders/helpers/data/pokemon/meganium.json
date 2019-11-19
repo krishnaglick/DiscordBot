@@ -4,7 +4,7 @@
   "type2": "",
   "weakness": "Fire",
   "role": "Support",
-  "image": "pm0154_01_meganium_256.ktx.png",
+  "image": "/pokemonmasters/sites/pokemonmasters/files/styles/55x55/public/2019-08/pm0154_01_meganium_256.ktx.png",
   "stats": {
     "base": {
       "attack": 17,
@@ -52,7 +52,7 @@
       "target": "All allies",
       "cost": "",
       "uses": 2,
-      "effect": "Sharply raises the critical-hit rate of all allied sync pairs.",
+      "effect": "Raises the critical-hit rate of all allied sync pairs.",
       "unlock_requirements": []
     },
     {
@@ -91,6 +91,24 @@
         "Training Machine x30",
         "Super Training Machine x5"
       ]
+    }
+  ],
+  "syncMove": {
+    "name": "Heart of Gold Leaf Storm",
+    "type": " Grass",
+    "category": "Special",
+    "power": {
+      "min_power": 200,
+      "max_power": 240
+    },
+    "target": "An opponent",
+    "effect_tag": "-",
+    "description": "The more the user’s stats are raised, the greater the power of this move."
+  },
+  "passives": [
+    {
+      "name": "Solar Shield",
+      "description": "The Pokémon is not affected by status conditions when the weather is sunny."
     }
   ]
 }

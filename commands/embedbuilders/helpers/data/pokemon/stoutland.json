@@ -4,7 +4,7 @@
   "type2": "",
   "weakness": "Fighting",
   "role": "Support",
-  "image": "pm0508_00_mooland_256.ktx.png",
+  "image": "/pokemonmasters/sites/pokemonmasters/files/styles/55x55/public/2019-08/pm0508_00_mooland_256.ktx.png",
   "stats": {
     "base": {
       "attack": 7,
@@ -91,6 +91,24 @@
         "Training Machine x30",
         "Super Training Machine x5"
       ]
+    }
+  ],
+  "syncMove": {
+    "name": "Fundamental Takedown",
+    "type": " Normal",
+    "category": "Physical",
+    "power": {
+      "min_power": 250,
+      "max_power": 300
+    },
+    "target": "An opponent",
+    "effect_tag": "-",
+    "description": "Its power increases if the user is affected by a status condition."
+  },
+  "passives": [
+    {
+      "name": "Outrun 4",
+      "description": "Quickly charges the move gauge when the Pokémon is affected by a status condition."
     }
   ]
 }

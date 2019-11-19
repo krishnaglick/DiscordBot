@@ -4,7 +4,7 @@
   "type2": "",
   "weakness": "Electric",
   "role": "Strike (Special)",
-  "image": "pm0087_00_jugon_256.ktx.png",
+  "image": "/pokemonmasters/sites/pokemonmasters/files/styles/55x55/public/2019-08/pm0087_00_jugon_256.ktx.png",
   "stats": {
     "base": {
       "attack": 15,
@@ -52,7 +52,7 @@
       "target": "Self",
       "cost": "",
       "uses": 2,
-      "effect": "Sharply raises the user’s critical-hit rate.",
+      "effect": "Raises the user’s critical-hit rate.",
       "unlock_requirements": []
     },
     {
@@ -73,24 +73,42 @@
       ]
     },
     {
-      "name": "I'll Teach You a Lesson!",
+      "name": "It Ain’t Over!",
       "type": "",
       "category": "Status Effect",
       "power": {
-        "min_power": null,
-        "max_power": null
+        "min_power": 0,
+        "max_power": 0
       },
-      "accuracy": null,
+      "accuracy": 0,
       "target": "Self",
       "cost": "",
       "uses": 2,
-      "effect": "Sharply raises the user's Sp. Atk and Sp. Def.",
+      "effect": "Sharply raises the user’s Speed. Makes the user able to endure the next hit it takes.",
       "unlock_requirements": [
         "Great Buff Blend x10",
         "Ultra Buff Blend x3",
         "Training Machine x30",
         "Super Training Machine x5"
       ]
+    }
+  ],
+  "syncMove": {
+    "name": "Winter’s Lesson Aurora Beam",
+    "type": " Ice",
+    "category": "Special",
+    "power": {
+      "min_power": 250,
+      "max_power": 300
+    },
+    "target": "An opponent",
+    "effect_tag": "-",
+    "description": "No additional effect."
+  },
+  "passives": [
+    {
+      "name": "Superduper Effective 2",
+      "description": "Powers up moves that are super effective."
     }
   ]
 }

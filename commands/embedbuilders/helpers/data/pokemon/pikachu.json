@@ -4,7 +4,7 @@
   "type2": "",
   "weakness": "Ground",
   "role": "Strike (Special)",
-  "image": "pm0025_00_pikachu_256.ktx.png",
+  "image": "/pokemonmasters/sites/pokemonmasters/files/styles/55x55/public/2019-08/pm0025_00_pikachu_256.ktx.png",
   "stats": {
     "base": {
       "attack": 10,
@@ -91,6 +91,24 @@
         "Training Machine x30",
         "Super Training Machine x5"
       ]
+    }
+  ],
+  "syncMove": {
+    "name": "Thunder of Newfound Passion",
+    "type": " Electric",
+    "category": "Special",
+    "power": {
+      "min_power": 250,
+      "max_power": 300
+    },
+    "target": "An opponent",
+    "effect_tag": "-",
+    "description": "No additional effect."
+  },
+  "passives": [
+    {
+      "name": "Endurance",
+      "description": "If the Pokémon enters battle with full HP, allows it to endure a single overwhelming attack with 1 HP left."
     }
   ]
 }

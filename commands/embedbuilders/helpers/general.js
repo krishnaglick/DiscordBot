@@ -953,5 +953,5 @@ const dexnumMap = {
     "Zeraora": "807",
     "Meltan": "808",
     "Melmetal": "809",
-    "Antnee" : "42069"
+    "Antnee": "42069"
 };

@@ -4,14 +4,8 @@
   "base_potential": 5,
   "recruit_method": "Story Progression",
   "pokemon_list": [
-    "Serperior",
-    "Servine",
-    "Snivy"
-  ],
-  "image": "Rosa_1",
-  "sync_pair_story": [
-    "A Day with Rosa",
-    "Snivy’s Evolution",
-    "Servine’s Evolution"
+    "Rosa & Servine",
+    "Rosa & Snivy",
+    "Rosa & Serperior"
   ]
 }

@@ -2,7 +2,7 @@ const cheerio = require('cheerio');
 const request = require('request');
 const Discord = require('discord.js');
 const paginationEmbed = require('discord.js-pagination');
-const { MessageEmbed } = require('discord.js');
+const {MessageEmbed} = require('discord.js');
 const cheerioTableparser = require('cheerio-tableparser');
 const AsciiTable = require('ascii-table');
 module.exports = {
@@ -10,7 +10,7 @@ module.exports = {
     display: 'Dragalia Lost',
     description: '`>drag [unit/dragon/weapon/print]` will return information on (mostly) anything in Dragalia Lost.',
     execute(message, args) {
-        if(args[0].toLowerCase() === "antnee"){
+        if (args[0].toLowerCase() === "antnee") {
             args[0] = "marth"
         }
         var appendFinal = "";
@@ -39,8 +39,7 @@ module.exports = {
                 //
                 //
                 //
-            }
-            else {
+            } else {
                 //solve edge cases of apostrophe and spaces in the unit's name
                 var append = "";
                 var capitalizationIgnoreDict = ['of', 'the'];
@@ -49,14 +48,14 @@ module.exports = {
                         append += "_";
                     }
                     var match = false;
-                    for(var y in capitalizationIgnoreDict){
-                        if(args[x] === capitalizationIgnoreDict[y]){
+                    for (var y in capitalizationIgnoreDict) {
+                        if (args[x] === capitalizationIgnoreDict[y]) {
                             match = true;
                         }
                     }
-                    if(match){
+                    if (match) {
                         append += args[x].charAt(0).toLowerCase() + args[x].slice(1);
-                    }else{
+                    } else {
                         append += args[x].charAt(0).toUpperCase() + args[x].slice(1);
                     }
                 }
@@ -100,21 +99,20 @@ module.exports = {
                         if (image == null) {
                             var check = body.find($('.tabbertab')).children().find($('img'));
                             image = check.attr('src');
-                            if(check.attr('width') === '160' || check.attr('height') === '160'){
+                            if (check.attr('width') === '160' || check.attr('height') === '160') {
                                 isWeapon = true;
-                            }else if(check.attr('width') === '400' || check.attr('height') === '400'){
+                            } else if (check.attr('width') === '400' || check.attr('height') === '400') {
                                 var printCheck = false;
                                 var identifier = body.find($('.mw-normal-catlinks')).children().find($('a')).attr('href');
-                                if(identifier === '/Category:Wyrmprints'){
+                                if (identifier === '/Category:Wyrmprints') {
                                     printCheck = true;
                                 }
-                                if(printCheck){
+                                if (printCheck) {
                                     isPrint = true;
-                                }else{
+                                } else {
                                     isDragon = true;
                                 }
-                            }
-                            else{
+                            } else {
                                 isDragon = true;
                             }
                         }
@@ -122,9 +120,9 @@ module.exports = {
                         const title = body.find($('.panel-heading div[style]')).text();
                         //get unit rarity
                         var rarity;
-                        if(isWeapon || isPrint){
+                        if (isWeapon || isPrint) {
                             rarity = body.find($('.dd-description')).find($('img')).attr('src');
-                        }else{
+                        } else {
                             rarity = body.find($('.dd-description div[style]')).find($('img')).last().attr('src');
                         }
                         var stars;
@@ -174,10 +172,10 @@ module.exports = {
                             p2 = ["**" + data[0][8] + ": **", data[0][9].substring(data[0][9].lastIndexOf('\t') + 1)];
                             p3 = ["**" + data[0][10] + ": **", data[0][11].substring(data[0][11].lastIndexOf('\t') + 1)];
                             var skillOut = s1[0] + s1[1] + "\n" + s2[0] + s2[1];
-                            if(skillOut.length > 1028){
+                            if (skillOut.length > 1028) {
                                 skillOut = "Skill descriptions too long to display in a Discord Embed."
                             }
-                            try{
+                            try {
                                 const embed1 = new Discord.RichEmbed()
                                     .setColor(elementColor)
                                     .setAuthor(unitName + ": " + title + " | " + rarityStr, elem)
@@ -199,25 +197,24 @@ module.exports = {
                                     embed2,
                                 ];
                                 paginationEmbed(message, pages, ['⏪', '⏩'], 60000);
-                            }catch (e) {
+                            } catch (e) {
                                 console.log(e);
                                 message.channel.send("Try Again");
                             }
-                        //
-                        //
-                        //
-                        //Dragons
-                        //
-                        //
-                        //
-                        } else if(!(data[0][1] == null) && isDragon){
+                            //
+                            //
+                            //
+                            //Dragons
+                            //
+                            //
+                            //
+                        } else if (!(data[0][1] == null) && isDragon) {
                             //what to execute if the specified argument is a dragon
                             var modset, abilities;
                             if (data[0][4] != "Attack") {
                                 abilities = (data[0][2] + ": **" + data[0][3].substring(data[0][3].lastIndexOf('\t') + 1)) + "\n**" + data[0][4] + ": **" + data[0][5].substring(data[0][5].lastIndexOf('\t') + 1);
                                 modset = [7, 8, 9];
-                            }
-                            else {
+                            } else {
                                 abilities = (data[0][2] + ": **" + data[0][3].substring(data[0][3].lastIndexOf('\t') + 1));
                                 modset = [5, 6, 7];
                             }
@@ -237,9 +234,9 @@ module.exports = {
                             table
                                 .setBorder('|', '-', '■', '■')
                                 .setHeading("Attack", "Mod", "Hits")
-                                .addRow("Combo 1", h001,  data[2][modset[0]])
-                                .addRow("Combo 2", h002,  data[2][modset[1]])
-                                .addRow("Combo 3", h003,  data[2][modset[2]]);
+                                .addRow("Combo 1", h001, data[2][modset[0]])
+                                .addRow("Combo 2", h002, data[2][modset[1]])
+                                .addRow("Combo 3", h003, data[2][modset[2]]);
                             var date;
                             //console.log(infoArr[4]);
                             var today = new Date().getDay();
@@ -262,13 +259,41 @@ module.exports = {
                             }
                             var food = infoArr[4];
                             switch (date) {
-                                case "Monday": if (today === 1) {food += " 👑";}break;
-                                case "Tuesday": if (today === 2) {food += " 👑";}break;
-                                case "Wednesday": if (today === 3) {food += " 👑";}break;
-                                case "Thursday": if (today === 4) {food += " 👑";}break;
-                                case "Friday": if (today === 5) {food += " 👑";}break;
-                                case "Saturday": if (today === 6) {food += " 👑";}break;
-                                case "Sunday": if (today === 7) {food += " 👑";}break;
+                                case "Monday":
+                                    if (today === 1) {
+                                        food += " 👑";
+                                    }
+                                    break;
+                                case "Tuesday":
+                                    if (today === 2) {
+                                        food += " 👑";
+                                    }
+                                    break;
+                                case "Wednesday":
+                                    if (today === 3) {
+                                        food += " 👑";
+                                    }
+                                    break;
+                                case "Thursday":
+                                    if (today === 4) {
+                                        food += " 👑";
+                                    }
+                                    break;
+                                case "Friday":
+                                    if (today === 5) {
+                                        food += " 👑";
+                                    }
+                                    break;
+                                case "Saturday":
+                                    if (today === 6) {
+                                        food += " 👑";
+                                    }
+                                    break;
+                                case "Sunday":
+                                    if (today === 7) {
+                                        food += " 👑";
+                                    }
+                                    break;
                             }
                             const embed = new Discord.RichEmbed()
                                 .setColor(elementColor)
@@ -279,7 +304,7 @@ module.exports = {
                                 .addField("Feeding Day:", date, true)
                                 .addField("-----Skill:-----", "**" + data[0][0] + ": **" + data[0][1].substring(data[0][1].indexOf('Lv. 2'), data[0][1].length).replace('Lv. 2', ''))
                                 .addField("----Ability:----", "**" + abilities)
-                                .addField("---Modifiers:---", "```" + table +"```");
+                                .addField("---Modifiers:---", "```" + table + "```");
                             message.channel.send({embed})
                         }
                         //
@@ -289,54 +314,54 @@ module.exports = {
                         //
                         //
                         //
-                        else if(isWeapon){
-                            try{
+                        else if (isWeapon) {
+                            try {
                                 var treeLocation;
                                 var statArr;
-                                for(var x in data) {
-                                    for(var y in data[x]){
+                                for (var x in data) {
+                                    for (var y in data[x]) {
                                         /*
                                         if(data[x][y].split('\n')[0] === unitName){
                                             treeLocation = data[x][y];
                                         }*/
                                         var temp = data[x][y].split('\n');
-                                        for(var z in temp){
-                                            if(temp[z] === unitName){
+                                        for (var z in temp) {
+                                            if (temp[z] === unitName) {
                                                 treeLocation = data[x][y];
                                             }
                                         }
                                     }
                                 }
                                 var treeInfo = treeLocation.split(unitName);
-                                for(x in treeInfo){
-                                    if(treeInfo[x][0] === '\n'){
+                                for (x in treeInfo) {
+                                    if (treeInfo[x][0] === '\n') {
                                         statArr = treeInfo[x].split('\n');
                                     }
                                 }
                                 var isVoid = true;
                                 var HP = statArr[1].split(":")[1];
                                 var STR = statArr[2].split(":")[1];
-                                if(statArr[4].split(":")[0] !== "Abilities"){
+                                if (statArr[4].split(":")[0] !== "Abilities") {
                                     abilities = statArr[5].split(",  ");
-                                }else{
+                                } else {
                                     abilities = statArr[4].split(",  ");
                                 }
                                 var abilitiesCleanedStage1 = [];
                                 var abilitiesCleanedFinal = [];
-                                if(abilities[1] !== "None"){
+                                if (abilities[1] !== "None") {
                                     abilitiesCleanedStage1.push(abilities[0].substring(abilities[0].indexOf("Abilities:  ") + 12, abilities[0].length).split("\n").join(""));
-                                    try{
+                                    try {
                                         abilitiesCleanedStage1.push(abilities[1].split("\n").join(""));
-                                    }catch(e){
+                                    } catch (e) {
                                         isVoid = false;
                                     }
-                                    for(x in abilitiesCleanedStage1){
+                                    for (x in abilitiesCleanedStage1) {
                                         var temp = abilitiesCleanedStage1[x].split('Lv. ');
-                                        var tempOutput =  "**" + temp[0] + "** Lv. " + temp[1];
+                                        var tempOutput = "**" + temp[0] + "** Lv. " + temp[1];
                                         abilitiesCleanedFinal.push(tempOutput);
                                     }
                                 }
-                                if(!isVoid){
+                                if (!isVoid) {
                                     const embed = new Discord.RichEmbed()
                                         .setColor(elementColor)
                                         .setAuthor(unitName + " | Core Weapon | " + rarityStr, elem)
@@ -345,7 +370,7 @@ module.exports = {
                                         .addField('STR', STR, true)
                                         .addField("-----Skill:-----", "**" + data[0][0] + ": **" + data[0][1].substring(data[0][1].indexOf('Lv. 2'), data[0][1].length).replace('Lv. 2', ''));
                                     message.channel.send({embed})
-                                }else{
+                                } else {
                                     const embed = new Discord.RichEmbed()
                                         .setColor(elementColor)
                                         .setAuthor(unitName + " | Void Weapon | " + rarityStr, elem)
@@ -355,55 +380,53 @@ module.exports = {
                                         .addField('-----Skill:-----', abilitiesCleanedFinal.join("\n"));
                                     message.channel.send({embed});
                                 }
-                            }catch (e) {
+                            } catch (e) {
                                 message.channel.send(":p");
                             }
-                        }
-                        else if(isPrint){
+                        } else if (isPrint) {
                             var refinedImage = body.find($('.tabbertab')).children().find($('img')).last().attr('src');
                             var printName = unitName.replace("&apos;", "'").replace("_", " ");
                             var HP = infoArr[0];
                             var STR = infoArr[1];
                             var isName = true;
                             var skills = [];
-                            for(var l = 0; l < (data[0].length/2); l++){
+                            for (var l = 0; l < (data[0].length / 2); l++) {
                                 skills.push([]);
                             }
                             var count = 0;
-                            for(x in data[0]){
+                            for (x in data[0]) {
                                 //console.log(x + " : " + data[0][x]);
-                                if(isName){
-                                    if(data[0][x].includes('(Event)')){
+                                if (isName) {
+                                    if (data[0][x].includes('(Event)')) {
                                         skills[count].push(data[0][x].substring(0, data[0][x].indexOf('(Event)')));
-                                    }else{
+                                    } else {
                                         skills[count].push(data[0][x]);
                                     }
                                     isName = !isName;
-                                }else{
+                                } else {
                                     skills[count].push(data[0][x].substring(data[0][x].lastIndexOf('\t') + 1, data[0][x].length));
                                     isName = !isName;
                                     count++;
                                 }
                             }
                             var skillsOut = "";
-                            for(x in skills){
+                            for (x in skills) {
                                 var isFirst = true;
-                                for(y in skills[x]){
-                                    if(isFirst){
+                                for (y in skills[x]) {
+                                    if (isFirst) {
                                         var append = "**" + skills[x][y] + ": **";
-                                        skillsOut +=  append;
+                                        skillsOut += append;
                                         isFirst = false;
-                                    }
-                                    else{
+                                    } else {
                                         skillsOut += skills[x][y];
                                         skillsOut += '\n';
                                     }
                                 }
                             }
-                            try{
+                            try {
                                 const embed = new Discord.RichEmbed()
                                     .setColor(starsColor)
-                                    .setAuthor(printName + " | " +  rarityStr, elem)
+                                    .setAuthor(printName + " | " + rarityStr, elem)
                                     .addField('HP', HP, true)
                                     .addField('STR', STR, true)
                                     .addField('-----Skill:-----', skillsOut)
@@ -420,21 +443,22 @@ module.exports = {
                                     embed2,
                                 ];
                                 paginationEmbed(message, pages, ['⏪', '⏩'], 60000);
-                            }catch (e) {
+                            } catch (e) {
                                 message.channel.send("Contact Antnee");
                             }
                         }
-                        if(data[0][1] == null){
+                        if (data[0][1] == null) {
                             message.channel.send("The information for the unit you've requested is not ready yet.");
                         }
                         message.channel.stopTyping(true);
                     }
                 });
             }
-        }catch (e) {
+        } catch (e) {
             //
-        }finally {
-            console.log(`DRAG  || ${message.author.username} requested ${appendFinal}`);}
+        } finally {
+            console.log(`DRAG  || ${message.author.username} requested ${appendFinal}`);
+        }
     },
 };
 

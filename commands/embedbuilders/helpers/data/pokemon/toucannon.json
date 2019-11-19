@@ -4,7 +4,7 @@
   "type2": "",
   "weakness": "Ice",
   "role": "Strike (Physical)",
-  "image": "pm0809_00_kuchibashi3_256.ktx.png",
+  "image": "/pokemonmasters/sites/pokemonmasters/files/styles/55x55/public/2019-08/pm0809_00_kuchibashi3_256.ktx.png",
   "stats": {
     "base": {
       "attack": 22,
@@ -91,6 +91,24 @@
         "Training Machine x30",
         "Super Training Machine x5"
       ]
+    }
+  ],
+  "syncMove": {
+    "name": "Supersonic Skystrike Drive",
+    "type": " Flying",
+    "category": "Physical",
+    "power": {
+      "min_power": 250,
+      "max_power": 300
+    },
+    "target": "An opponent",
+    "effect_tag": "-",
+    "description": "No additional effect."
+  },
+  "passives": [
+    {
+      "name": "Piercing Gaze",
+      "description": "Moves never miss."
     }
   ]
 }

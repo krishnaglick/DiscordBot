@@ -4,7 +4,7 @@
   "type2": "Psychic",
   "weakness": "Electric",
   "role": "Tech",
-  "image": "pm0178_01_natio_256.ktx.png",
+  "image": "/pokemonmasters/sites/pokemonmasters/files/styles/55x55/public/2019-08/pm0178_01_natio_256.ktx.png",
   "stats": {
     "base": {
       "attack": 11,
@@ -91,6 +91,24 @@
         "Training Machine x30",
         "Super Training Machine x5"
       ]
+    }
+  ],
+  "syncMove": {
+    "name": "Mystery Masquerade Psychic",
+    "type": " Psychic",
+    "category": "Special",
+    "power": {
+      "min_power": 200,
+      "max_power": 240
+    },
+    "target": "An opponent",
+    "effect_tag": "-",
+    "description": "Its power increases if the target is confused."
+  },
+  "passives": [
+    {
+      "name": "Impervious",
+      "description": "Stats cannot be lowered."
     }
   ]
 }

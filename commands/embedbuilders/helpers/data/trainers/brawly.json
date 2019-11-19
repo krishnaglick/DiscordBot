@@ -4,10 +4,6 @@
   "base_potential": 3,
   "recruit_method": "Sync Pair Scout",
   "pokemon_list": [
-    "Makuhita"
-  ],
-  "image": "Brawly_1",
-  "sync_pair_story": [
-    "A Day with Brawly"
+    "Brawly & Makuhita"
   ]
 }

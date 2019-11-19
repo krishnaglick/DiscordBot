@@ -4,7 +4,7 @@
   "type2": "",
   "weakness": "Fighting",
   "role": "Strike (Physical)",
-  "image": "pm0248_00_bangiras_256.ktx.png",
+  "image": "/pokemonmasters/sites/pokemonmasters/files/styles/55x55/public/2019-08/pm0248_00_bangiras_256.ktx.png",
   "stats": {
     "base": {
       "attack": 11,
@@ -91,6 +91,24 @@
         "Training Machine x30",
         "Super Training Machine x5"
       ]
+    }
+  ],
+  "syncMove": {
+    "name": "Sygnature Rock-Solid Stone Edge",
+    "type": " Rock",
+    "category": "Physical",
+    "power": {
+      "min_power": 250,
+      "max_power": 300
+    },
+    "target": "An opponent",
+    "effect_tag": "-",
+    "description": "No additional effect."
+  },
+  "passives": [
+    {
+      "name": "Sand Fortress",
+      "description": "Stats cannot be lowered in a sandstorm."
     }
   ]
 }

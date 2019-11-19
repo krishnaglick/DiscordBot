@@ -4,7 +4,7 @@
   "type2": "",
   "weakness": "Fire",
   "role": "Strike (Physical)",
-  "image": "pm0751_00_ice3_256.ktx.png",
+  "image": "/pokemonmasters/sites/pokemonmasters/files/styles/55x55/public/2019-08/pm0751_00_ice3_256.ktx.png",
   "stats": {
     "base": {
       "attack": 17,
@@ -91,6 +91,24 @@
         "Training Machine x30",
         "Super Training Machine x5"
       ]
+    }
+  ],
+  "syncMove": {
+    "name": "Unstoppable Avalanche",
+    "type": " Ice",
+    "category": "Physical",
+    "power": {
+      "min_power": 250,
+      "max_power": 300
+    },
+    "target": "An opponent",
+    "effect_tag": "-",
+    "description": "No additional effect."
+  },
+  "passives": [
+    {
+      "name": "Clearheaded",
+      "description": "Prevents the Pokémon from becoming confused."
     }
   ]
 }

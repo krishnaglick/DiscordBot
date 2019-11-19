@@ -3,9 +3,9 @@ module.exports = {
     description: 'flip a coin.',
     execute(message, args) {
         var random = Math.random();
-        if(random > 0.5){
+        if (random > 0.5) {
             message.channel.send("Heads.")
-        }else{
+        } else {
             message.channel.send("Tails.")
         }
     },

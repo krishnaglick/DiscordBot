@@ -4,14 +4,8 @@
   "base_potential": 5,
   "recruit_method": "",
   "pokemon_list": [
-    "Bayleef",
-    "Chikorita",
-    "Meganium"
-  ],
-  "image": "Lyra_1",
-  "sync_pair_story": [
-    "A Day with Lyra",
-    "Chikorita’s Evolution",
-    "Bayleef’s Evolution"
+    "Lyra & Chikorita",
+    "Lyra & Bayleef",
+    "Lyra & Meganium"
   ]
 }

@@ -4,14 +4,8 @@
   "base_potential": 3,
   "recruit_method": "Story Progression",
   "pokemon_list": [
-    "Empoleon",
-    "Piplup",
-    "Prinplup"
-  ],
-  "image": "Barry_1",
-  "sync_pair_story": [
-    "A Day with Barry",
-    "Piplup’s Evolution",
-    "Prinplup’s Evolution"
+    "Barry & Empoleon",
+    "Barry & Piplup",
+    "Barry & Prinplup"
   ]
 }

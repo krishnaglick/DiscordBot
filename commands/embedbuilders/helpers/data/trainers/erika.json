@@ -4,10 +4,6 @@
   "base_potential": 3,
   "recruit_method": "Story Progression",
   "pokemon_list": [
-    "Vileplume"
-  ],
-  "image": "Erika_1",
-  "sync_pair_story": [
-    "A Day with Erika"
+    "Erika & Vileplume"
   ]
 }

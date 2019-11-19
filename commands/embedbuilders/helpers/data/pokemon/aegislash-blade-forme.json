@@ -4,7 +4,7 @@
   "type2": "",
   "weakness": "Fire",
   "role": "Tech",
-  "image": "pm0746_12_sword3_256.ktx.png",
+  "image": "/pokemonmasters/sites/pokemonmasters/files/styles/55x55/public/2019-08/pm0746_12_sword3_256.ktx.png",
   "stats": {
     "base": {
       "attack": 24,
@@ -41,18 +41,18 @@
       "unlock_requirements": []
     },
     {
-      "name": "King's Shield",
+      "name": "King’s Shield",
       "type": "Steel",
       "category": "Status Effect",
       "power": {
-        "min_power": null,
-        "max_power": null
+        "min_power": 0,
+        "max_power": 0
       },
-      "accuracy": null,
+      "accuracy": 0,
       "target": "Self",
       "cost": 2,
       "uses": 2,
-      "effect": "The user takes up a defensive posture. Using this move again will make the user leave this defensive posture. No other actions can be taken when in this defensive posture. Nullifies attacks that target the user while it is in this defensive posture. Sharply lowers the Attack of the opponents that use physical attacks against the user while it is in this defensive posture.",
+      "effect": "The user takes up a defensive posture. Using this move again will make the user leave this defensive posture. No other actions can be taken when in this defensive posture. Nullifies attacks that target the user while it is in this defensive posture. Sharply lowers the Attack of opponents that use physical attacks against the user while it is in this defensive posture.",
       "unlock_requirements": []
     },
     {
@@ -91,6 +91,28 @@
         "Training Machine x30",
         "Super Training Machine x5"
       ]
+    }
+  ],
+  "syncMove": {
+    "name": "Shining Knight Iron Head",
+    "type": " Steel",
+    "category": "Physical",
+    "power": {
+      "min_power": 200,
+      "max_power": 240
+    },
+    "target": "An opponent",
+    "effect_tag": "-",
+    "description": "The more the opponent’s Attack is lowered, the greater the power of this move."
+  },
+  "passives": [
+    {
+      "name": "Stance Change",
+      "description": "Changes to Blade Forme when the Pokémon attacks. Changes to Shield Forme when the Pokémon uses King’s Shield or switches out."
+    },
+    {
+      "name": "Vigilance",
+      "description": "The Pokémon is protected against critical hits."
     }
   ]
 }

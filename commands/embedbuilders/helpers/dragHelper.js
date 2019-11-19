@@ -119,18 +119,18 @@ module.exports = {
         }
     },
     generateSkillOutput: async function (unitName, matching, data) {
-        let skillData = [[],[]];
-        for(let unit of matching){
-            if(unit.title.toUpperCase() === unitName.toUpperCase()){
+        let skillData = [[], []];
+        for (let unit of matching) {
+            if (unit.title.toUpperCase() === unitName.toUpperCase()) {
                 skillData[0].push(unit.skill1);
                 skillData[1].push(unit.skill2);
             }
         }
-        for(let skill of data){
-            if(skill.Name.includes(skillData[0][0])){
+        for (let skill of data) {
+            if (skill.Name.includes(skillData[0][0])) {
                 skillData[0].push(await formatSkillDesc(skill.Description2));
             }
-            if(skill.Name.includes(skillData[1][0])){
+            if (skill.Name.includes(skillData[1][0])) {
                 skillData[1].push(await formatSkillDesc(skill.Description2));
             }
         }
@@ -213,14 +213,14 @@ module.exports = {
     }
 };
 
-async function formatSkillDesc(desc){
+async function formatSkillDesc(desc) {
     let out = desc;
     let styleCount = (desc.match(/&lt;span/g) || []).length;
     let quoteCount = (desc.match(/&quot;/g) || []).length;
-    for(let i = 0; i < styleCount; i++){
+    for (let i = 0; i < styleCount; i++) {
         out = out.substring(0, out.indexOf("&lt;span")) + out.substring(out.indexOf("/span&gt;") + "/span&gt;".length);
     }
-    for(let i = 0; i < quoteCount; i++){
+    for (let i = 0; i < quoteCount; i++) {
         out = out.substring(0, out.indexOf("&quot;")) + out.substring(out.indexOf("&quot;") + "&quot;".length)
     }
     return out;

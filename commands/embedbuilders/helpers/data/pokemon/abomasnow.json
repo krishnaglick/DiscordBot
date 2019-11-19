@@ -4,7 +4,7 @@
   "type2": "",
   "weakness": "Fire",
   "role": "Tech",
-  "image": "pm0460_01_yukinooh_256.ktx.png",
+  "image": "/pokemonmasters/sites/pokemonmasters/files/styles/55x55/public/2019-08/pm0460_01_yukinooh_256.ktx.png",
   "stats": {
     "base": {
       "attack": 16,
@@ -84,13 +84,35 @@
       "target": "Self",
       "cost": "",
       "uses": 2,
-      "effect": "Uses a maximum of three of the user’s move gauge. Based on the amount used, this move raises the user’s Attack and Sp. Def to a maximum of four.",
+      "effect": "Uses a maximum of three slots of the user’s move gauge. Based on the amount used, this move raises both the user’s Attack and Sp. Def by up to four stat ranks.",
       "unlock_requirements": [
         "Great Tech Tonic x10",
         "Ultra Tech Tonic x3",
         "Training Machine x30",
         "Super Training Machine x5"
       ]
+    }
+  ],
+  "syncMove": {
+    "name": "All-about-Focus Avalanche",
+    "type": " Ice",
+    "category": "Physical",
+    "power": {
+      "min_power": 200,
+      "max_power": 240
+    },
+    "target": "An opponent",
+    "effect_tag": "-",
+    "description": "The power of this move is increased during a hailstorm."
+  },
+  "passives": [
+    {
+      "name": "Antifreeze",
+      "description": "Prevents the Pokémon from becoming frozen."
+    },
+    {
+      "name": "Snow Shelter",
+      "description": "Protects the Pokémon from damage from a hailstorm."
     }
   ]
 }

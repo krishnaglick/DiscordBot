@@ -4,7 +4,7 @@
   "type2": "",
   "weakness": "Water",
   "role": "Strike (Physical)",
-  "image": "pm0408_00_zugaidos_256.ktx.png",
+  "image": "/pokemonmasters/sites/pokemonmasters/files/styles/55x55/public/2019-08/pm0408_00_zugaidos_256.ktx.png",
   "stats": {
     "base": {
       "attack": 21,
@@ -91,6 +91,24 @@
         "Training Machine x30",
         "Super Training Machine x5"
       ]
+    }
+  ],
+  "syncMove": {
+    "name": "Rock Sync Impact",
+    "type": " Rock",
+    "category": "Physical",
+    "power": {
+      "min_power": 200,
+      "max_power": 240
+    },
+    "target": "An opponent",
+    "effect_tag": "-",
+    "description": "No additional effect."
+  },
+  "passives": [
+    {
+      "name": "Headstrong",
+      "description": "Attack cannot be lowered."
     }
   ]
 }

@@ -4,10 +4,6 @@
   "base_potential": 3,
   "recruit_method": "Sync Pair Scout",
   "pokemon_list": [
-    "Pelipper"
-  ],
-  "image": "Winona_1",
-  "sync_pair_story": [
-    "A Day with Winona"
+    "Winona & Pelipper"
   ]
 }

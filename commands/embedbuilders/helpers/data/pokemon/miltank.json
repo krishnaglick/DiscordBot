@@ -4,7 +4,7 @@
   "type2": "",
   "weakness": "Fighting",
   "role": "Tech",
-  "image": "pm0241_00_miltank_256.ktx.png",
+  "image": "/pokemonmasters/sites/pokemonmasters/files/styles/55x55/public/2019-08/pm0241_00_miltank_256.ktx.png",
   "stats": {
     "base": {
       "attack": 12,
@@ -91,6 +91,24 @@
         "Training Machine x30",
         "Super Training Machine x5"
       ]
+    }
+  ],
+  "syncMove": {
+    "name": "Supercute Rolling Tackle",
+    "type": " Normal",
+    "category": "Physical",
+    "power": {
+      "min_power": 250,
+      "max_power": 300
+    },
+    "target": "An opponent",
+    "effect_tag": "-",
+    "description": "Its power increases if the target is paralyzed."
+  },
+  "passives": [
+    {
+      "name": "Mad Strength 2",
+      "description": "Occasionally raises the Pokémon’s Attack when one of its attacks is successful."
     }
   ]
 }

@@ -4,11 +4,7 @@
   "base_potential": 5,
   "recruit_method": "",
   "pokemon_list": [
-    "Pidgeot",
-    "Mega Pidgeot"
-  ],
-  "image": "Blue_1",
-  "sync_pair_story": [
-    "A Day with Blue"
+    "Blue & Pidgeot",
+    "Blue & Mega Pidgeot"
   ]
 }

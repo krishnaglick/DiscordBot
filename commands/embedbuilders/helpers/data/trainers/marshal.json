@@ -4,10 +4,6 @@
   "base_potential": 4,
   "recruit_method": "Sync Pair Scout",
   "pokemon_list": [
-    "Conkeldurr"
-  ],
-  "image": "Marshal_1",
-  "sync_pair_story": [
-    "A Day with Marshal"
+    "Marshal & Conkeldurr"
   ]
 }
