@@ -4,6 +4,7 @@ const AsciiTable = require('ascii-table');
 const resourcePath = './commands/embedbuilders/helpers/data/';
 const GENERAL = require('./general');
 const iconUrl = 'https://gamepress.gg/sites/default/files/aggregatedjson/TrainersList.json?15813222081239323912';
+const util = require('util');
 module.exports = {
     findJSON: async function (arg, seek) {
         const trainerFiles = await fs.readdirSync(resourcePath + seek).filter(file => file.endsWith('.json'));
@@ -22,6 +23,16 @@ module.exports = {
                 }
             }
         }
+    },
+    compileJson: async function (seek) {
+        const trainerFiles = await fs.readdirSync(resourcePath + seek).filter(file => file.endsWith('.json'));
+        let store = [];
+        for (const file of trainerFiles) {
+            let rawData = await fs.readFileSync(resourcePath + seek + "/" + file);
+            let data = await JSON.parse(rawData);
+            store.push(data);
+        }
+        console.log(util.inspect(store, false, null, true));
     },
     getPKMNIcon: async function (name) {
         if (name.includes('Mega ')) {
@@ -45,7 +56,7 @@ module.exports = {
             + sync.name + " "
             + (isStatus
                     ? ""
-                    : await GENERAL.getEmoji(sync.type.toLowerCase().replace(" ",""), client)
+                    : await GENERAL.getEmoji(sync.type.toLowerCase().replace(" ", ""), client)
             )
             + " ・ "
             + "PWR:** " + sync.power.min_power + "→" + sync.power.max_power

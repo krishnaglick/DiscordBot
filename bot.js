@@ -81,6 +81,10 @@ client.on('message', message => {
         }
     }
      */
+    if (message.content === 'thanks bud') {
+        message.reply("no problem fam")
+        return;
+    }
     if (message.content === '>debug') {
         var guilds = client.guilds.array();
         for (var guild of guilds) {

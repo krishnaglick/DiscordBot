@@ -14,6 +14,7 @@
     "fetch": "^1.1.0",
     "node-fetch": "^2.6.0",
     "request": "^2.88.0",
+    "util": "^0.12.1",
     "winston": "^3.2.1"
   },
   "devDependencies": {

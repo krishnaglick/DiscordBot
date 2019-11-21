@@ -30,6 +30,9 @@ module.exports = {
             .setColor(color);
         embedArr.push(baseEmbed);
         return embedArr;
+    },
+    joinJSON: async function(seek){
+        await HELPER.compileJson(seek);
     }
 };
 
