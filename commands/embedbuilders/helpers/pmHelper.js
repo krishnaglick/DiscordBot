@@ -87,18 +87,22 @@ module.exports = {
     //ToDo: hard code this
     getUnitIcon: async function (unit) {
         let icon;
-        if (unit.name === "Main Character") {
-            await fetch(iconUrl)
-                .then(response => response.json())
-                .then(iconsUrl => icon = iconsUrl.find(function (curUnit) {
-                    return curUnit.title === "Player"
-                }).icon);
-        } else {
-            await fetch(iconUrl)
-                .then(response => response.json())
-                .then(iconsUrl => icon = iconsUrl.find(function (curUnit) {
-                    return curUnit.title === unit.name
-                }).icon);
+        try {
+            if (unit.name === "Main Character") {
+                await fetch(iconUrl)
+                    .then(response => response.json())
+                    .then(iconsUrl => icon = iconsUrl.find(function (curUnit) {
+                        return curUnit.title === "Player"
+                    }).icon);
+            } else {
+                await fetch(iconUrl)
+                    .then(response => response.json())
+                    .then(iconsUrl => icon = iconsUrl.find(function (curUnit) {
+                        return curUnit.title === unit.name
+                    }).icon);
+            }
+        }catch (e) {
+            icon = ""
         }
         return 'https://pokemonmasters.gamepress.gg' + icon.substring(icon.indexOf('<img src="') + 10, icon.indexOf('" width'));
     },

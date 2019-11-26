@@ -2,11 +2,11 @@ const HELPER = require('./helpers/pmHelper');
 const GENERAL = require('./helpers/general');
 const Discord = require('discord.js');
 module.exports = {
-    pairSearchEmbed: async function (arg, client) {
+    pairSearchEmbed: async function (args, client) {
         let embedArr = [];
         let PKMNList = [];
 
-        const unit = await HELPER.findJSON(arg, "trainers");
+        const unit = await HELPER.findJSON(args.join(" "), "trainers");
         const rarity = await GENERAL.generateStars(unit.base_potential);
         const icon = await HELPER.getUnitIcon(unit);
 

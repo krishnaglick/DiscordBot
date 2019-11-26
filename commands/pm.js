@@ -21,7 +21,7 @@ module.exports = {
         }else{
             GENERAL.startTypingAlert(message);
             //message.channel.send(await BUILDER.pairSearchEmbed(args[0], client));
-            await paginationEmbed(message, await BUILDER.pairSearchEmbed(args[0], client), GENERAL.nextButtons, GENERAL.paginationTimeOut);
+            await paginationEmbed(message, await BUILDER.pairSearchEmbed(args, client), GENERAL.nextButtons, GENERAL.paginationTimeOut);
             GENERAL.stopTypingAlert(message);
         }
 
