@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 module.exports = {
-    name: 'helpt',
+    name: 'help',
     Display: 'Help',
     description: 'help',
     execute(message, args, client) {
