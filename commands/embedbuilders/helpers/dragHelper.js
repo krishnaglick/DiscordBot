@@ -28,7 +28,7 @@ module.exports = {
     searchCollectionSingle: async function (desired, collection, message) {
         try {
             for (const goal of collection) {
-                if (goal.FullName.toUpperCase() === desired.toUpperCase()) {
+                if (goal.name.toUpperCase() === desired.toUpperCase()) {
                     return goal;
                 }
             }
@@ -118,98 +118,42 @@ module.exports = {
                 return "#ffff66";
         }
     },
-    generateSkillOutput: async function (unitName, matching, data) {
-        let skillData = [[], []];
-        for (let unit of matching) {
-            if (unit.title.toUpperCase() === unitName.toUpperCase()) {
-                skillData[0].push(unit.skill1);
-                skillData[1].push(unit.skill2);
-            }
+    generateSkillOutput: async function (skills) {
+        let skillOut = "";
+        for (const skill of skills) {
+            skillOut += "**" + skill.name + "** ・ " + skill.cost + " SP ・ ";
+            skillOut += (skill.regen !== "None")
+                ? skill.regen + " ・ " + skill.iframe + " I-Frames"
+                : skill.iframe + " I-Frames";
+            skillOut += '\n';
+            skillOut += skill.levels[skill.levels.length - 1].description;
+            skillOut += '\n';
         }
-        for (let skill of data) {
-            if (skill.Name.includes(skillData[0][0])) {
-                skillData[0].push(await formatSkillDesc(skill.Description2));
-            }
-            if (skill.Name.includes(skillData[1][0])) {
-                skillData[1].push(await formatSkillDesc(skill.Description2));
-            }
-        }
-        console.log(skillData);
-        return skillData;
+        return skillOut
     },
     /**
      *
      * @param skills
      * @returns {Promise<string>}
      */
-    generateAbilityOutput: async function (skills) {
-        let output = "";
-        let formattedSkills = [
-            {levels: []},
-            {levels: []},
-            {levels: []}
-        ];
-        for (let i = 0; i < formattedSkills.length; i++) {
-            for (let j = i * 2; j < i * 2 + 2; j++) {
-                if (skills[j] !== undefined) {
-                    formattedSkills[i].levels.push(skills[j]);
-                }
-            }
+    generateAbilityOutput: async function (abilities) {
+        let abilitiesOut = "";
+        for(const ability of abilities){
+            abilitiesOut += "**" + ability[ability.length - 1].name + "**\n";
+            abilitiesOut += ability[ability.length - 1].effect + "\n";
         }
-        for (let skill of formattedSkills) {
-            let skillDesc = "";
-            if (skill.levels.length > 1) {
-                skill.levels.sort((a, b) => {
-                        if (a.Id > b.Id) {
-                            return 1;
-                        } else {
-                            return 0;
-                        }
-                    }
-                );
-                skillDesc = skill.levels[1].Details.replace("\'\'\'", "").replace("\'\'\'", "");
-            } else {
-                skillDesc = skill.levels[0].Details.replace("\'\'\'", "").replace("\'\'\'", "");
-            }
-            let thisOutName = "**" + skill.levels[0].GenericName;
-            for (let tier of skill.levels) {
-                thisOutName += " " + tier.Name.replace(tier.GenericName, " ") + " /";
-            }
-            let nameFinal = thisOutName.substring(0, thisOutName.length - 1) + "**\n";
-            output += nameFinal + skillDesc + "\n";
-        }
-        return output;
+        return abilitiesOut;
     },
     /**
      *
-     * @param unit
-     * @param weapon
      * @returns {Promise<string>}
+     * @param coab
      */
-    generateCoAb: async function (unit, weapon) {
-        switch (unit.Name) {
-            case "Euden":
-                return "Dragon Form = damage +6/7/8/9/10%, Shapeshift Time +10/15/20%";
-            default:
-                switch (weapon) {
-                    case "Sword":
-                        return "Dragon gauge fill rate +5/6/8/11/15%";
-                    case "Dagger":
-                        return "Crit Rate +5/6/7/8/10%";
-                    case "Blade":
-                        return "Strength +5/6/7/8/10%";
-                    case "Axe":
-                        return "Defense +9/10/11/12/15%";
-                    case "Lance":
-                        return "HP +7/8/9/12/15%";
-                    case "Bow":
-                        return "Skill gauge fill rate +8/9/11/12/15%";
-                    case "Wand":
-                        return "Skill Damage +8/9/11/12/15%";
-                    case "Staff":
-                        return "Recovery Potency +10/12/14/16/20%"
-                }
-        }
+    generateCoAb: async function (coab) {
+        return (
+            "**Base:** " + coab.baseEffect + "\n"
+            + "**Max:** " + coab.upgrades[coab.upgrades.length - 1]
+        )
     }
 };
 
