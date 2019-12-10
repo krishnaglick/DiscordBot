@@ -9,14 +9,12 @@ const helper = require('./general');
 module.exports = {
     /**
      *
-     * @param source - JSON url
-     * @returns {Promise<*>}
+     * @returns {Promise<string>}
      */
-    getData: async function (source) {
-        var data = await fetch(source)
-            .then(response => response.json())
-            .then(JSON => data = JSON);
-        return data;
+    getEmbedType: async function(desired, units){
+        if(await helper.isInCollection(desired, units)){
+            return "unit";
+        }
     },
     /**
      *
@@ -36,29 +34,6 @@ module.exports = {
             await helper.errorSend("You've entered the command without a unit/print/weapon/dragon name.",
                 "Try redoing the command properly: `>drag [unit/dragon/weapon/print]`", message);
         }
-    },
-    /**
-     *
-     * @param desired
-     * @param collection
-     * @param message
-     * @returns {Promise<[]>}
-     */
-    searchCollectionMultiple: async function (desired, collection, message) {
-        let out = [];
-        try {
-            for (const element of collection) {
-                for (const any of desired) {
-                    if (element.Id === any) {
-                        out.push(element);
-                    }
-                }
-            }
-        } catch (e) {
-            await helper.errorSend("You've entered the command without a unit/print/weapon/dragon name.",
-                "Try redoing the command properly: `>drag [unit/dragon/weapon/print]`", message);
-        }
-        return out;
     },
     /**
      *
@@ -118,6 +93,11 @@ module.exports = {
                 return "#ffff66";
         }
     },
+    /**
+     *
+     * @param skills
+     * @returns {Promise<string>}
+     */
     generateSkillOutput: async function (skills) {
         let skillOut = "";
         for (const skill of skills) {
@@ -157,15 +137,3 @@ module.exports = {
     }
 };
 
-async function formatSkillDesc(desc) {
-    let out = desc;
-    let styleCount = (desc.match(/&lt;span/g) || []).length;
-    let quoteCount = (desc.match(/&quot;/g) || []).length;
-    for (let i = 0; i < styleCount; i++) {
-        out = out.substring(0, out.indexOf("&lt;span")) + out.substring(out.indexOf("/span&gt;") + "/span&gt;".length);
-    }
-    for (let i = 0; i < quoteCount; i++) {
-        out = out.substring(0, out.indexOf("&quot;")) + out.substring(out.indexOf("&quot;") + "&quot;".length)
-    }
-    return out;
-}

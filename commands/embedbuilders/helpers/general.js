@@ -5,8 +5,15 @@ const AsciiTable = require('ascii-table');
 module.exports = {
     nextButtons: ['⏪', '⏩'],
     paginationTimeOut: 60000,
+    isInCollection: async function (desired, collection) {
+        let found = false;
+        for (const data of collection) {
+            if (data.name.toUpperCase() === desired.toUpperCase()) found = true;
+        }
+        return found;
+    },
     errorSend: async function (problem, solution, message) {
-        var embed = new Discord.RichEmbed()
+        const embed = new Discord.RichEmbed()
             .setColor('RED')
             .setAuthor('ERROR')
             .addField('Cause:', problem)
@@ -35,10 +42,10 @@ module.exports = {
         append = append.replace('\'', '%27');
         return append;
     },
-    startTypingAlert: function (message) {
+    startTypingAlert: async function (message) {
         message.channel.startTyping();
     },
-    stopTypingAlert: function (message) {
+    stopTypingAlert: async function (message) {
         message.channel.stopTyping(true);
     },
     getEmoji: async function (string, client) {
