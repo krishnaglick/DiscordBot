@@ -1,10 +1,9 @@
-const ADV_DATA = require('./helpers/data/dragalia/units');
 const HELPER = require('./helpers/dragHelper');
 const Discord = require('discord.js');
 const GENERAL = require("./helpers/general");
 module.exports = {
-    unitEmbed: async function (message, args) {
-        let unit = await HELPER.searchCollectionSingle(args.join(" "), ADV_DATA.units, message);
+    unitEmbed: async function (message, args, units) {
+        let unit = await HELPER.searchCollectionSingle(args.join(" "), units, message);
         let abilitiesFinal = await HELPER.generateAbilityOutput(unit.abilities);
         let skillsFinal = await HELPER.generateSkillOutput(unit.skills);
         let nameFinal = unit.name + ": " + unit.title + " | " + await GENERAL.generateStars(unit.rarity);
@@ -28,4 +27,13 @@ module.exports = {
                 .setImage(unit.image),
         ];
     },
+    dragonEmbed: async function (message, args, dragons){
+
+    },
+    weaponEmbed: async function (message, args, weapons){
+
+    },
+    printEmbed: async function (message, args, prints){
+
+    }
 };

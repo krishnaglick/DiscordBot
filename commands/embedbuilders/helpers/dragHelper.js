@@ -11,11 +11,22 @@ module.exports = {
      *
      * @returns {Promise<string>}
      */
-    getEmbedType: async function(desired, units){
+    getEmbedType: async function(desired, units, dragons, weapons, prints){
         if(await helper.isInCollection(desired, units)){
             return "unit";
         }
-    },
+        if(await helper.isInCollection(desired, dragons)){
+            return "dragon";
+        }
+        if(await helper.isInCollection(desired, weapons)){
+            return "weapon";
+        }
+        if(await helper.isInCollection(desired, prints)){
+            return "print";
+        }
+        return('None')
+    }
+    ,
     /**
      *
      * @param desired
