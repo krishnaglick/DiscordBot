@@ -11,20 +11,20 @@ module.exports = {
      *
      * @returns {Promise<string>}
      */
-    getEmbedType: async function(desired, units, dragons, weapons, prints){
-        if(await helper.isInCollection(desired, units)){
+    getEmbedType: async function (desired, units, dragons, weapons, prints) {
+        if (await helper.isInCollection(desired, units)) {
             return "unit";
         }
-        if(await helper.isInCollection(desired, dragons)){
+        if (await helper.isInCollection(desired, dragons)) {
             return "dragon";
         }
-        if(await helper.isInCollection(desired, weapons)){
+        if (await helper.isInCollection(desired, weapons)) {
             return "weapon";
         }
-        if(await helper.isInCollection(desired, prints)){
+        if (await helper.isInCollection(desired, prints)) {
             return "print";
         }
-        return('None')
+        return ('None')
     }
     ,
     /**
@@ -129,7 +129,7 @@ module.exports = {
      */
     generateAbilityOutput: async function (abilities) {
         let abilitiesOut = "";
-        for(const ability of abilities){
+        for (const ability of abilities) {
             abilitiesOut += "**" + ability[ability.length - 1].name + "**\n";
             abilitiesOut += ability[ability.length - 1].effect + "\n";
         }

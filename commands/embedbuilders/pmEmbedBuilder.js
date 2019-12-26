@@ -11,7 +11,7 @@ module.exports = {
         const icon = await HELPER.getUnitIcon(unit);
 
         for (let PKMN of unit.pokemon_list) {
-            PKMNList.push(await HELPER.findJSON(PKMN.replace(unit.name + " & ",""), "pokemon"))
+            PKMNList.push(await HELPER.findJSON(PKMN.replace(unit.name + " & ", ""), "pokemon"))
         }
         const color = await GENERAL.getColor(PKMNList[0].type1);
 
@@ -31,7 +31,7 @@ module.exports = {
         embedArr.push(baseEmbed);
         return embedArr;
     },
-    joinJSON: async function(seek){
+    joinJSON: async function (seek) {
         await HELPER.compileJson(seek);
     }
 };

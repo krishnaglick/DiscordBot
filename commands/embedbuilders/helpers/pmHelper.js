@@ -101,7 +101,7 @@ module.exports = {
                         return curUnit.title === unit.name
                     }).icon);
             }
-        }catch (e) {
+        } catch (e) {
             icon = ""
         }
         return 'https://pokemonmasters.gamepress.gg' + icon.substring(icon.indexOf('<img src="') + 10, icon.indexOf('" width'));

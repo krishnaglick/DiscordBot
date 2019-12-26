@@ -27,13 +27,13 @@ module.exports = {
                 .setImage(unit.image),
         ];
     },
-    dragonEmbed: async function (message, args, dragons){
+    dragonEmbed: async function (message, args, dragons) {
 
     },
-    weaponEmbed: async function (message, args, weapons){
+    weaponEmbed: async function (message, args, weapons) {
 
     },
-    printEmbed: async function (message, args, prints){
+    printEmbed: async function (message, args, prints) {
 
     }
 };

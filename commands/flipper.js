@@ -37,13 +37,19 @@ module.exports = {
     }
 };
 
-async function getColor(element){
-    switch(element){
-        case "fire": return "#ff0000";
-        case "water": return "#4286f4";
-        case "wind": return "#1daf0f";
-        case "thunder": return "#fffa00";
-        case "light": return "#a2c1c1";
-        case "dark": return "#23021e";
+async function getColor(element) {
+    switch (element) {
+        case "fire":
+            return "#ff0000";
+        case "water":
+            return "#4286f4";
+        case "wind":
+            return "#1daf0f";
+        case "thunder":
+            return "#fffa00";
+        case "light":
+            return "#a2c1c1";
+        case "dark":
+            return "#23021e";
     }
 }
