@@ -2,6 +2,7 @@ module.exports = {
     dragons: [
         {
             name: 'Agni',
+            title: 'Rapacious Firelord',
             isLocked: false,
             image: 'https://gamepedia.cursecdn.com/dragalialost_gamepedia_en/thumb/4/49/210016_01_portrait.png/400px-210016_01_portrait.png?version=5c886bdc6b813aaa246800c2fc1de4e3',
             str: '12 - 127',
@@ -35,6 +36,7 @@ module.exports = {
         ,
         {
             name: 'Apollo',
+            title: 'Burning Sun',
             isLocked: false,
             image: 'https://gamepedia.cursecdn.com/dragalialost_gamepedia_en/thumb/a/a1/210103_01_portrait.png/400px-210103_01_portrait.png?version=c9167abb4e56f3579efb3be04b2eddcb',
             str: '12 - 127',
@@ -75,6 +77,7 @@ module.exports = {
         ,
         {
             name: 'Arctos',
+            title: 'Fiery Coach',
             isLocked: false,
             image: 'https://gamepedia.cursecdn.com/dragalialost_gamepedia_en/thumb/b/bf/210030_01_portrait.png/400px-210030_01_portrait.png?version=6464153f1e398727116b888f7603a058',
             str: '12 - 121',
@@ -108,6 +111,7 @@ module.exports = {
         ,
         {
             name: 'Astral Imp',
+            title: '',
             isLocked: false,
             image: 'https://gamepedia.cursecdn.com/dragalialost_gamepedia_en/thumb/c/c2/210069_01_portrait.png/400px-210069_01_portrait.png?version=7990e653507284a00bd14c0a39317511',
             str: '5 - 59',
@@ -141,6 +145,7 @@ module.exports = {
         ,
         {
             name: 'Bronze Fafnir (Dragon)',
+            title: 'Bronze Buddy',
             isLocked: false,
             image: 'https://gamepedia.cursecdn.com/dragalialost_gamepedia_en/thumb/0/0a/210089_01_portrait.png/400px-210089_01_portrait.png?version=e50c964f74aff559b7c731d0b7ae6311',
             str: '6 - 63',
@@ -174,6 +179,7 @@ module.exports = {
         ,
         {
             name: 'Brunhilda',
+            title: 'Crimson Sweetheart',
             isLocked: false,
             image: 'https://gamepedia.cursecdn.com/dragalialost_gamepedia_en/thumb/c/ca/210002_01_portrait.png/400px-210002_01_portrait.png?version=9bc3a91b37f9397c3834f1c7c8a1c35a',
             str: '7 - 70',
@@ -207,8 +213,9 @@ module.exports = {
         ,
         {
             name: 'Brunhilda (Halloween)',
+            title: 'Crimson Sweetheart',
             isLocked: true,
-            image: 'https://gamepedia.cursecdn.com/dragalialost_gamepedia_en/thumb/c/ca/210002_01_portrait.png/400px-210002_01_portrait.png?version=9bc3a91b37f9397c3834f1c7c8a1c35a',
+            image: 'https://gamepedia.cursecdn.com/dragalialost_gamepedia_en/thumb/2/2b/210113_01_portrait.png/400px-210113_01_portrait.png?version=27e9ff2dcf6d959f6bcdf39e8933f4d9',
             str: '',
             hp: '',
             element: 'Flame',
@@ -232,6 +239,7 @@ module.exports = {
         ,
         {
             name: 'Brunhilda (Mym)',
+            title: 'Crimson Sweetheart',
             isLocked: true,
             image: 'https://gamepedia.cursecdn.com/dragalialost_gamepedia_en/thumb/c/ca/210002_01_portrait.png/400px-210002_01_portrait.png?version=9bc3a91b37f9397c3834f1c7c8a1c35a',
             str: '',
@@ -254,6 +262,7 @@ module.exports = {
         ,
         {
             name: 'Cerberus',
+            title: 'Underworld Gatekeeper',
             isLocked: false,
             image: 'https://gamepedia.cursecdn.com/dragalialost_gamepedia_en/thumb/c/cf/210024_01_portrait.png/400px-210024_01_portrait.png?version=325efd993631306021e3002e3fa81394',
             str: '12 - 127',
@@ -287,6 +296,7 @@ module.exports = {
         ,
         {
             name: 'Chthonius',
+            title: 'Devoted Dragon',
             isLocked: false,
             image: 'https://gamepedia.cursecdn.com/dragalialost_gamepedia_en/thumb/7/7c/200010_01_portrait.png/400px-200010_01_portrait.png?version=0841960d8748d25ea9d931bd57f3a596',
             str: '12 - 128',
@@ -320,6 +330,7 @@ module.exports = {
         ,
         {
             name: 'Cinder Drake',
+            title: '',
             isLocked: false,
             image: 'https://gamepedia.cursecdn.com/dragalialost_gamepedia_en/thumb/8/81/210022_01_portrait.png/400px-210022_01_portrait.png?version=db4f98098036ecb8e903449368e2461b',
             str: '5 - 57',
@@ -353,6 +364,7 @@ module.exports = {
         ,
         {
             name: 'Corsaint Phoenix',
+            title: 'Holy Regenerant',
             isLocked: false,
             image: 'https://gamepedia.cursecdn.com/dragalialost_gamepedia_en/thumb/2/27/210056_01_portrait.png/400px-210056_01_portrait.png?version=6cb70bb5bd71f627b5e0f7e00dac872f',
             str: '12 - 124',
@@ -394,6 +406,7 @@ module.exports = {
         ,
         {
             name: 'Cupid',
+            title: "Love's Messenger",
             isLocked: false,
             image: 'https://gamepedia.cursecdn.com/dragalialost_gamepedia_en/thumb/0/04/210049_01_portrait.png/400px-210049_01_portrait.png?version=ad005aef5b6042d5919fe528309f1cd0',
             str: '11 - 119',
@@ -427,6 +440,7 @@ module.exports = {
         ,
         {
             name: 'Dragonyule Jeanne',
+            title: 'Defender of Dragonyule',
             isLocked: false,
             image: 'https://gamepedia.cursecdn.com/dragalialost_gamepedia_en/thumb/b/b5/210076_01_portrait.png/400px-210076_01_portrait.png?version=55443bcf2cbc091b743d0b0449c38509',
             str: '12 - 125',
@@ -460,6 +474,7 @@ module.exports = {
         ,
         {
             name: 'Erasmus',
+            title: 'Azure Beacon',
             isLocked: false,
             image: 'https://gamepedia.cursecdn.com/dragalialost_gamepedia_en/thumb/b/b9/210055_01_portrait.png/400px-210055_01_portrait.png?version=947b0036ddc11f4b89a885924c6ab7a0',
             str: '7 - 76',
@@ -493,6 +508,7 @@ module.exports = {
         ,
         {
             name: 'Freyja',
+            title: 'Harvest Goddess',
             isLocked: false,
             image: 'https://gamepedia.cursecdn.com/dragalialost_gamepedia_en/thumb/f/f1/210084_01_portrait.png/400px-210084_01_portrait.png?version=23f435c656ca7c94469e793009e678b9',
             str: '12 - 120',
@@ -533,6 +549,7 @@ module.exports = {
         ,
         {
             name: 'Fubuki',
+            title: '',
             isLocked: false,
             image: 'https://gamepedia.cursecdn.com/dragalialost_gamepedia_en/thumb/6/6d/210059_01_portrait.png/400px-210059_01_portrait.png?version=7066cf11417d0a567771366a582f2b10',
             str: '6 - 63',
@@ -567,6 +584,7 @@ module.exports = {
         ,
         {
             name: 'Garuda',
+            title: 'Prideful Gale',
             isLocked: false,
             image: 'https://gamepedia.cursecdn.com/dragalialost_gamepedia_en/thumb/c/c4/210036_01_portrait.png/400px-210036_01_portrait.png?version=4be8a978fc1d1b43e13c4acc1c410628',
             str: '11 - 114',
@@ -601,6 +619,7 @@ module.exports = {
         ,
         {
             name: 'Gilgamesh',
+            title: 'Supreme Ruler',
             isLocked: false,
             image: 'https://gamepedia.cursecdn.com/dragalialost_gamepedia_en/thumb/2/2f/210048_01_portrait.png/400px-210048_01_portrait.png?version=5e7eb36e8df44dc0ac2fdf188035c9cf',
             str: '12 - 124',
@@ -634,6 +653,7 @@ module.exports = {
         ,
         {
             name: 'Gloom Drake',
+            title: '',
             isLocked: false,
             image: 'https://gamepedia.cursecdn.com/dragalialost_gamepedia_en/thumb/f/f7/210066_01_portrait.png/400px-210066_01_portrait.png?version=981dcb3a5f8bb9bd7328594aae200d0e',
             str: '5 - 58',
@@ -667,6 +687,7 @@ module.exports = {
         ,
         {
             name: 'Gold Fafnir (Dragon)',
+            title: 'Gold Gentleman',
             isLocked: false,
             image: 'https://gamepedia.cursecdn.com/dragalialost_gamepedia_en/thumb/8/81/210091_01_portrait.png/400px-210091_01_portrait.png?version=51b555a5427b574aef4260951c9fd6bf',
             str: '6 - 69',
@@ -700,6 +721,7 @@ module.exports = {
         ,
         {
             name: 'Gust Drake',
+            title: '',
             isLocked: false,
             image: 'https://gamepedia.cursecdn.com/dragalialost_gamepedia_en/thumb/6/6e/210064_01_portrait.png/400px-210064_01_portrait.png?version=4be2f774e7d23cbf7b22f792ebfc109f',
             str: '5 - 57',
@@ -733,6 +755,7 @@ module.exports = {
         ,
         {
             name: 'Halloween Maritimus',
+            title: "The People's Magician",
             isLocked: false,
             image: 'https://gamepedia.cursecdn.com/dragalialost_gamepedia_en/thumb/e/ee/210097_01_portrait.png/400px-210097_01_portrait.png?version=a72037a3c80a253b117eef78b655c2f4',
             str: '11 - 119',
@@ -773,6 +796,7 @@ module.exports = {
         ,
         {
             name: 'Halloween Silke',
+            title: 'Festive Prankster',
             isLocked: false,
             image: 'https://gamepedia.cursecdn.com/dragalialost_gamepedia_en/thumb/7/71/210075_01_portrait.png/400px-210075_01_portrait.png?version=adb9177e502f1afbfc7a1d405c57f407',
             str: '9 - 95',
@@ -809,6 +833,7 @@ module.exports = {
         ,
         {
             name: 'Hastur',
+            title: 'The Whisperer in Darkness',
             isLocked: false,
             image: 'https://gamepedia.cursecdn.com/dragalialost_gamepedia_en/thumb/6/63/210105_01_portrait.png/400px-210105_01_portrait.png?version=f7c49db4d252505e9972dd93bbe8d30e',
             str: '12 - 126',
@@ -849,6 +874,7 @@ module.exports = {
         ,
         {
             name: 'High Brunhilda',
+            title: 'Crimson Companion',
             isLocked: false,
             image: 'https://gamepedia.cursecdn.com/dragalialost_gamepedia_en/thumb/c/c3/210039_01_portrait.png/400px-210039_01_portrait.png?version=11c292a61b045ed9aa8a1939146d05d8',
             str: '12 - 120',
@@ -889,6 +915,7 @@ module.exports = {
         ,
         {
             name: 'High Jupiter',
+            title: 'Radiant Hedonist',
             isLocked: false,
             image: 'https://gamepedia.cursecdn.com/dragalialost_gamepedia_en/thumb/4/4a/210041_01_portrait.png/400px-210041_01_portrait.png?version=3168db2abc64055f883319b7a10a7b15',
             str: '11 - 118',
@@ -929,6 +956,7 @@ module.exports = {
         ,
         {
             name: 'High Mercury',
+            title: 'Compassionate Soul',
             isLocked: false,
             image: 'https://gamepedia.cursecdn.com/dragalialost_gamepedia_en/thumb/7/76/210040_01_portrait.png/400px-210040_01_portrait.png?version=53014c159f2a276b555099f1d9c8c6ad',
             str: '11 - 113',
@@ -970,6 +998,7 @@ module.exports = {
         ,
         {
             name: 'High Midgardsormr',
+            title: 'Conductor of Storms',
             isLocked: false,
             image: 'https://gamepedia.cursecdn.com/dragalialost_gamepedia_en/thumb/e/ec/210038_01_portrait.png/400px-210038_01_portrait.png?version=044fc866c75f38eea475301cdf77acf4',
             str: '11 - 114',
@@ -1010,6 +1039,7 @@ module.exports = {
         ,
         {
             name: 'High Zodiark',
+            title: 'Lord of Shadow',
             isLocked: false,
             image: 'https://gamepedia.cursecdn.com/dragalialost_gamepedia_en/thumb/6/63/210042_01_portrait.png/400px-210042_01_portrait.png?version=7a1a737a2a9951a58c8ae02670c21404',
             str: '12 - 120',
@@ -1051,6 +1081,7 @@ module.exports = {
         ,
         {
             name: 'Hikage',
+            title: '',
             isLocked: false,
             image: 'https://gamepedia.cursecdn.com/dragalialost_gamepedia_en/thumb/7/79/210062_01_portrait.png/400px-210062_01_portrait.png?version=4c296c1d9e7dd0058ff23b85c6ebd08d',
             str: '6 - 64',
@@ -1085,6 +1116,7 @@ module.exports = {
         ,
         {
             name: 'Hinata',
+            title: '',
             isLocked: false,
             image: 'https://gamepedia.cursecdn.com/dragalialost_gamepedia_en/thumb/b/bc/210061_01_portrait.png/400px-210061_01_portrait.png?version=948eddc458a50a0fc4199b88a8f22f42',
             str: '6 - 62',
@@ -1119,6 +1151,7 @@ module.exports = {
         ,
         {
             name: 'Homura',
+            title: '',
             isLocked: false,
             image: 'https://gamepedia.cursecdn.com/dragalialost_gamepedia_en/thumb/2/25/210021_01_portrait.png/400px-210021_01_portrait.png?version=2cb4be33d4e89becfb5979f3b2b46c17',
             str: '6 - 63',
@@ -1153,6 +1186,7 @@ module.exports = {
         ,
         {
             name: 'Ifrit',
+            title: 'Ferocious Fighter',
             isLocked: false,
             image: 'https://gamepedia.cursecdn.com/dragalialost_gamepedia_en/thumb/a/a2/210007_01_portrait.png/400px-210007_01_portrait.png?version=a7238d1cf9d27060b039dfab51e62b71',
             str: '10 - 101',
@@ -1186,6 +1220,7 @@ module.exports = {
         ,
         {
             name: "Jeanne d'Arc",
+            title: 'Standard Bearer',
             isLocked: false,
             image: 'https://gamepedia.cursecdn.com/dragalialost_gamepedia_en/thumb/8/85/210020_01_portrait.png/400px-210020_01_portrait.png?version=e0c03fe70b346b4cf4bb618972e8b5a5',
             str: '11 - 113',
@@ -1219,6 +1254,7 @@ module.exports = {
         ,
         {
             name: 'Juggernaut (Dragon)',
+            title: 'Violent Brute',
             isLocked: false,
             image: 'https://gamepedia.cursecdn.com/dragalialost_gamepedia_en/thumb/4/48/210014_01_portrait.png/400px-210014_01_portrait.png?version=70dbb939a49a87c2bd8a5f5ea6fadf11',
             str: '10 - 102',
@@ -1252,6 +1288,7 @@ module.exports = {
         ,
         {
             name: 'Jupiter',
+            title: 'Capricious Scamp',
             isLocked: false,
             image: 'https://gamepedia.cursecdn.com/dragalialost_gamepedia_en/thumb/6/61/210004_01_portrait.png/400px-210004_01_portrait.png?version=9c1149f05ef4035725d679dbdc453706',
             str: '6 - 65',
@@ -1285,6 +1322,7 @@ module.exports = {
         ,
         {
             name: 'Kagutsuchi',
+            title: 'Incandescent General',
             isLocked: false,
             image: 'https://gamepedia.cursecdn.com/dragalialost_gamepedia_en/thumb/3/3b/210107_01_portrait.png/400px-210107_01_portrait.png?version=a111de2c226055ccf63f03763583d5ec',
             str: '12 - 127',
@@ -1326,6 +1364,7 @@ module.exports = {
         ,
         {
             name: 'Kamuy',
+            title: 'Guardian Wolf',
             isLocked: false,
             image: 'https://gamepedia.cursecdn.com/dragalialost_gamepedia_en/thumb/4/41/210109_01_portrait.png/400px-210109_01_portrait.png?version=759d48ba6b4e2c7314861ee9757b359e',
             str: '12 - 125',
@@ -1366,6 +1405,7 @@ module.exports = {
         ,
         {
             name: 'Kindling Imp',
+            title: '',
             isLocked: false,
             image: 'https://gamepedia.cursecdn.com/dragalialost_gamepedia_en/thumb/1/16/210023_01_portrait.png/400px-210023_01_portrait.png?version=5fdc78c725507aa64543aa50779777bc',
             str: '6 - 60',
@@ -1399,6 +1439,7 @@ module.exports = {
         ,
         {
             name: 'Konohana Sakuya',
+            title: 'Blossoming Beauty',
             isLocked: false,
             image: 'https://gamepedia.cursecdn.com/dragalialost_gamepedia_en/thumb/7/79/210082_01_portrait.png/400px-210082_01_portrait.png?version=8a58914b1139e25c36efe90028b8c657',
             str: '12 - 121',
@@ -1439,6 +1480,7 @@ module.exports = {
         ,
         {
             name: 'Leviathan',
+            title: 'Ruler of the Seas',
             isLocked: false,
             image: 'https://gamepedia.cursecdn.com/dragalialost_gamepedia_en/thumb/4/4f/210017_01_portrait.png/400px-210017_01_portrait.png?version=1046a53d4b68550ecdbf6cd40b9a609f',
             str: '12 - 125',
@@ -1473,6 +1515,7 @@ module.exports = {
         ,
         {
             name: 'Liger',
+            title: 'King of the Big Top',
             isLocked: false,
             image: 'https://gamepedia.cursecdn.com/dragalialost_gamepedia_en/thumb/c/cc/210043_01_portrait.png/400px-210043_01_portrait.png?version=ee4e3a113fb6ebe2b75736a8af7830d9',
             str: '11 - 119',
@@ -1506,6 +1549,7 @@ module.exports = {
         ,
         {
             name: 'Lindworm',
+            title: 'Seeker of Beauty',
             isLocked: false,
             image: 'https://gamepedia.cursecdn.com/dragalialost_gamepedia_en/thumb/1/16/210013_01_portrait.png/400px-210013_01_portrait.png?version=a4cb8361a0506840e81f62905f4336d2',
             str: '10 - 100',
@@ -1540,6 +1584,7 @@ module.exports = {
         ,
         {
             name: 'Long Long',
+            title: 'Kung-Fu Master',
             isLocked: false,
             image: 'https://gamepedia.cursecdn.com/dragalialost_gamepedia_en/thumb/0/00/210080_01_portrait.png/400px-210080_01_portrait.png?version=386d96e87f9d26081a2cea4f0c69c0b7',
             str: '12 - 126',
@@ -1575,6 +1620,7 @@ module.exports = {
         ,
         {
             name: 'Marishiten',
+            title: 'Dawning Dragon',
             isLocked: false,
             image: 'https://gamepedia.cursecdn.com/dragalialost_gamepedia_en/thumb/e/e1/210077_01_portrait.png/400px-210077_01_portrait.png?version=03a1c70cdcbfe0fdbe3bd84c6ec06305',
             str: '12 - 121',
@@ -1610,6 +1656,7 @@ module.exports = {
         ,
         {
             name: 'Maritimus',
+            title: 'Beloved Mascot',
             isLocked: false,
             image: 'https://gamepedia.cursecdn.com/dragalialost_gamepedia_en/thumb/7/7b/210072_01_portrait.png/400px-210072_01_portrait.png?version=05882ae27a679ea4dea25cb4d16eb845',
             str: '7 - 73',
@@ -1643,6 +1690,7 @@ module.exports = {
         ,
         {
             name: 'Mercury',
+            title: 'Aquatic Guardian',
             isLocked: false,
             image: 'https://gamepedia.cursecdn.com/dragalialost_gamepedia_en/thumb/5/5c/210003_01_portrait.png/400px-210003_01_portrait.png?version=489ebeeb36829173cb74caf3dc1a9e80',
             str: '6 - 62',
@@ -1677,6 +1725,7 @@ module.exports = {
         ,
         {
             name: 'Midgardsormr',
+            title: 'Stormbound Ally',
             isLocked: false,
             image: 'https://gamepedia.cursecdn.com/dragalialost_gamepedia_en/thumb/3/38/210001_01_portrait.png/400px-210001_01_portrait.png?version=0ba5c1361d83f7e01734a8202f4b1016',
             str: '6 - 66',
@@ -1710,6 +1759,7 @@ module.exports = {
         ,
         {
             name: 'Mini Mids',
+            title: 'Tiny Typhoon',
             isLocked: false,
             image: 'https://gamepedia.cursecdn.com/dragalialost_gamepedia_en/thumb/8/81/210111_01_portrait.png/400px-210111_01_portrait.png?version=1daa45e0c3a7808ee2902f2f8ecd4d0a',
             str: '7 - 72',
@@ -1743,6 +1793,7 @@ module.exports = {
         ,
         {
             name: 'Moon Drake',
+            title: '',
             isLocked: false,
             image: 'https://gamepedia.cursecdn.com/dragalialost_gamepedia_en/thumb/2/25/210065_01_portrait.png/400px-210065_01_portrait.png?version=5f242233358be6269d1102e59130f104',
             str: '5 - 56',
@@ -1776,6 +1827,7 @@ module.exports = {
         ,
         {
             name: 'Nidhogg',
+            title: "Death's Reveler",
             isLocked: false,
             image: 'https://gamepedia.cursecdn.com/dragalialost_gamepedia_en/thumb/2/23/210019_01_portrait.png/400px-210019_01_portrait.png?version=176d0783a276da083b30484d2a503260',
             str: '12 - 121',
@@ -1810,6 +1862,7 @@ module.exports = {
         ,
         {
             name: 'Nyarlathotep',
+            title: 'Crawling Chaos',
             isLocked: false,
             image: 'https://gamepedia.cursecdn.com/dragalialost_gamepedia_en/thumb/c/c8/210046_01_portrait.png/400px-210046_01_portrait.png?version=d166f768f6ef2a6249b2c86b9ce2099a',
             str: '12 - 128',
@@ -1850,6 +1903,7 @@ module.exports = {
         ,
         {
             name: 'Nyarlathotep (Lathna)',
+            title: 'Crawling Chaos',
             isLocked: true,
             image: 'https://gamepedia.cursecdn.com/dragalialost_gamepedia_en/thumb/1/1a/210071_01_portrait.png/400px-210071_01_portrait.png?version=9e1532f48b13346f850b409bc190eaed',
             str: '',
@@ -1875,6 +1929,7 @@ module.exports = {
         ,
         {
             name: 'Pallid Imp',
+            title: '',
             isLocked: false,
             image: 'https://gamepedia.cursecdn.com/dragalialost_gamepedia_en/thumb/e/e3/210070_01_portrait.png/400px-210070_01_portrait.png?version=3a0066a7e46e4a9645b4c4722469baa1',
             str: '6 - 61',
@@ -1908,6 +1963,7 @@ module.exports = {
         ,
         {
             name: 'Parallel Zodiark',
+            title: 'Aberrant Shadow',
             isLocked: false,
             image: 'https://gamepedia.cursecdn.com/dragalialost_gamepedia_en/thumb/f/fc/210095_01_portrait.png/400px-210095_01_portrait.png?version=03f6a07156ebe4b6924d76babedd592d',
             str: '7 - 77',
@@ -1949,6 +2005,7 @@ module.exports = {
         ,
         {
             name: 'Pazuzu',
+            title: 'Calamitous Typhoon',
             isLocked: false,
             image: 'https://gamepedia.cursecdn.com/dragalialost_gamepedia_en/thumb/9/97/210026_01_portrait.png/400px-210026_01_portrait.png?version=51f42dbd79407798d40ca78b5fc93318',
             str: '12 - 126',
@@ -1989,6 +2046,7 @@ module.exports = {
         ,
         {
             name: 'Pele',
+            title: 'Faithful Vassal',
             isLocked: false,
             image: 'https://gamepedia.cursecdn.com/dragalialost_gamepedia_en/thumb/2/2d/210057_01_portrait.png/400px-210057_01_portrait.png?version=51aa31d6583598e8540e86d165ef6e3a',
             str: '7 - 76',
@@ -2022,6 +2080,7 @@ module.exports = {
         ,
         {
             name: 'Peng Lai',
+            title: 'Earthen Emancipator',
             isLocked: false,
             image: 'https://gamepedia.cursecdn.com/dragalialost_gamepedia_en/thumb/c/c1/210079_01_portrait.png/400px-210079_01_portrait.png?version=c4893dd834360aa37bd0aee0d284dd88',
             str: '7 - 75',
@@ -2056,6 +2115,7 @@ module.exports = {
         ,
         {
             name: 'Phantom',
+            title: 'Gruesome Specter',
             isLocked: false,
             image: 'https://gamepedia.cursecdn.com/dragalialost_gamepedia_en/thumb/1/1a/210045_01_portrait.png/400px-210045_01_portrait.png?version=25e4f6bec13b7be9f8e8ef22b588c923',
             str: '7 - 73',
@@ -2089,6 +2149,7 @@ module.exports = {
         ,
         {
             name: 'Phoenix',
+            title: 'Bewitching Immortal',
             isLocked: false,
             image: 'https://gamepedia.cursecdn.com/dragalialost_gamepedia_en/thumb/7/72/210006_01_portrait.png/400px-210006_01_portrait.png?version=5e5ca76982984075d1ca72ecd572e9bd',
             str: '9 - 97',
@@ -2123,6 +2184,7 @@ module.exports = {
         ,
         {
             name: 'Poliʻahu',
+            title: 'Placid Guide',
             isLocked: false,
             image: 'https://gamepedia.cursecdn.com/dragalialost_gamepedia_en/thumb/6/64/210008_01_portrait.png/400px-210008_01_portrait.png?version=93e2f5cb59652b1c86d155eb815abf7b',
             str: '9 - 95',
@@ -2157,6 +2219,7 @@ module.exports = {
         ,
         {
             name: 'Pop-Star Siren',
+            title: 'Seaside Songstress',
             isLocked: false,
             image: 'https://gamepedia.cursecdn.com/dragalialost_gamepedia_en/thumb/c/c2/210094_01_portrait.png/400px-210094_01_portrait.png?version=bf5a24617e9b53bbf9f8cd714b9f56ad',
             str: '12 - 124',
@@ -2197,6 +2260,7 @@ module.exports = {
         ,
         {
             name: 'Poseidon',
+            title: 'Ocean Voyager',
             isLocked: false,
             image: 'https://gamepedia.cursecdn.com/dragalialost_gamepedia_en/thumb/7/73/210025_01_portrait.png/400px-210025_01_portrait.png?version=3f5afc8c1525e6287c4471d6539f9ebb',
             str: '11 - 119',
@@ -2230,6 +2294,7 @@ module.exports = {
         ,
         {
             name: 'Prometheus',
+            title: 'Reclusive Flame',
             isLocked: false,
             image: 'https://gamepedia.cursecdn.com/dragalialost_gamepedia_en/thumb/d/da/210052_01_portrait.png/400px-210052_01_portrait.png?version=c0c92df8a9c1d0e3fb9781a76c34c7a0',
             str: '12 - 121',
@@ -2263,6 +2328,7 @@ module.exports = {
         ,
         {
             name: 'Roc',
+            title: 'Grand Mercenary',
             isLocked: false,
             image: 'https://gamepedia.cursecdn.com/dragalialost_gamepedia_en/thumb/4/44/210050_01_portrait.png/400px-210050_01_portrait.png?version=f2a96b6f284b74d117651d19b8e94977',
             str: '10 - 101',
@@ -2296,6 +2362,7 @@ module.exports = {
         ,
         {
             name: 'Rush',
+            title: 'Kindly Android',
             isLocked: true,
             image: 'https://gamepedia.cursecdn.com/dragalialost_gamepedia_en/thumb/0/03/210118_01_portrait.png/400px-210118_01_portrait.png?version=bee75893c96e219e9e54b0de59c527f0',
             str: '',
@@ -2333,6 +2400,7 @@ module.exports = {
         ,
         {
             name: 'Shinobi',
+            title: 'Ancestral Ninja',
             isLocked: false,
             image: 'https://gamepedia.cursecdn.com/dragalialost_gamepedia_en/thumb/d/d7/210087_01_portrait.png/400px-210087_01_portrait.png?version=9218adef7570eb15fae254267809eb6c',
             str: '12 - 128',
@@ -2373,6 +2441,7 @@ module.exports = {
         ,
         {
             name: 'Shishimai (Dragon)',
+            title: 'Fortune Bringer',
             isLocked: false,
             image: 'https://gamepedia.cursecdn.com/dragalialost_gamepedia_en/thumb/8/81/210078_01_portrait.png/400px-210078_01_portrait.png?version=06e7450aa25d930ace2e3c0dc593ed00',
             str: '7 - 75',
@@ -2406,6 +2475,7 @@ module.exports = {
         ,
         {
             name: 'Silke',
+            title: 'Friend Eternal',
             isLocked: false,
             image: 'https://gamepedia.cursecdn.com/dragalialost_gamepedia_en/thumb/8/80/210015_01_portrait.png/400px-210015_01_portrait.png?version=aa8d2ecb1cdf84de298f87c5deabc305',
             str: '9 - 97',
@@ -2442,6 +2512,7 @@ module.exports = {
         ,
         {
             name: 'Silver Fafnir (Dragon)',
+            title: 'Silver Sidekick',
             isLocked: false,
             image: 'https://gamepedia.cursecdn.com/dragalialost_gamepedia_en/thumb/5/5e/210090_01_portrait.png/400px-210090_01_portrait.png?version=7e21d9e4fdb7d274b55d0b99873f6a5b',
             str: '6 - 63',
@@ -2475,6 +2546,7 @@ module.exports = {
         ,
         {
             name: 'Simurgh',
+            title: 'Caring Mother',
             isLocked: false,
             image: 'https://gamepedia.cursecdn.com/dragalialost_gamepedia_en/thumb/e/e3/210081_01_portrait.png/400px-210081_01_portrait.png?version=31fba3b662c907eb48de8bc6d7d4ee74',
             str: '11 - 113',
@@ -2515,6 +2587,7 @@ module.exports = {
         ,
         {
             name: 'Siren',
+            title: 'Spellbinding Singer',
             isLocked: false,
             image: 'https://gamepedia.cursecdn.com/dragalialost_gamepedia_en/thumb/9/95/210054_01_portrait.png/400px-210054_01_portrait.png?version=3d280c21239b0023055fc6e9b5002d48',
             str: '12 - 125',
@@ -2555,6 +2628,7 @@ module.exports = {
         ,
         {
             name: 'Snow Drake',
+            title: '',
             isLocked: false,
             image: 'https://gamepedia.cursecdn.com/dragalialost_gamepedia_en/thumb/8/83/210063_01_portrait.png/400px-210063_01_portrait.png?version=9829229d9df276b44fbcd93c0dc4d512',
             str: '5 - 57',
@@ -2588,6 +2662,7 @@ module.exports = {
         ,
         {
             name: 'Stribog',
+            title: 'Ancient Knight',
             isLocked: false,
             image: 'https://gamepedia.cursecdn.com/dragalialost_gamepedia_en/thumb/6/6c/210011_01_portrait.png/400px-210011_01_portrait.png?version=f4fa05de4d96fff26bb6ba65af314001',
             str: '9 - 91',
@@ -2621,6 +2696,7 @@ module.exports = {
         ,
         {
             name: 'Sylvia',
+            title: 'Guardian of the Wood',
             isLocked: false,
             image: 'https://gamepedia.cursecdn.com/dragalialost_gamepedia_en/thumb/4/4b/210010_01_portrait.png/400px-210010_01_portrait.png?version=7e737ccebfed928dd0690b9a5fc72873',
             str: '7 - 72',
@@ -2654,6 +2730,7 @@ module.exports = {
         ,
         {
             name: 'Takemikazuchi',
+            title: 'Unrivaled Wrestler',
             isLocked: false,
             image: 'https://gamepedia.cursecdn.com/dragalialost_gamepedia_en/thumb/7/7e/210051_01_portrait.png/400px-210051_01_portrait.png?version=e75c943a68c80abf63b700c8fad591a3',
             str: '12 - 124',
@@ -2694,6 +2771,7 @@ module.exports = {
         ,
         {
             name: 'Tsukuyomi',
+            title: '',
             isLocked: false,
             image: 'https://gamepedia.cursecdn.com/dragalialost_gamepedia_en/thumb/d/d5/210028_01_portrait.png/400px-210028_01_portrait.png?version=5d146b670532ab27bbf21a7252049b80',
             str: ' - ',
@@ -2713,6 +2791,7 @@ module.exports = {
         ,
         {
             name: 'Tsumuji',
+            title: '',
             isLocked: false,
             image: 'https://gamepedia.cursecdn.com/dragalialost_gamepedia_en/thumb/8/8a/210060_01_portrait.png/400px-210060_01_portrait.png?version=65dfa908c12c38bb5fb6e900b3789d88',
             str: '6 - 63',
@@ -2747,6 +2826,7 @@ module.exports = {
         ,
         {
             name: 'Unicorn',
+            title: 'Arbiter of Purity',
             isLocked: false,
             image: 'https://gamepedia.cursecdn.com/dragalialost_gamepedia_en/thumb/5/5a/210012_01_portrait.png/400px-210012_01_portrait.png?version=f9af2babe43ad37a58d82b089dc28154',
             str: '9 - 95',
@@ -2780,6 +2860,7 @@ module.exports = {
         ,
         {
             name: 'Vayu',
+            title: 'Violent Gale',
             isLocked: false,
             image: 'https://gamepedia.cursecdn.com/dragalialost_gamepedia_en/thumb/a/ab/210098_01_portrait.png/400px-210098_01_portrait.png?version=020db22e4489f88714bd471dfeb61192',
             str: '12 - 126',
@@ -2820,6 +2901,7 @@ module.exports = {
         ,
         {
             name: 'Vodyanoy',
+            title: 'Ephemeral One',
             isLocked: false,
             image: 'https://gamepedia.cursecdn.com/dragalialost_gamepedia_en/thumb/3/39/210058_01_portrait.png/400px-210058_01_portrait.png?version=6cc34e1d261a13c5de3dd99a71bd6073',
             str: '10 - 100',
@@ -2853,6 +2935,7 @@ module.exports = {
         ,
         {
             name: 'Wellspring Imp',
+            title: '',
             isLocked: false,
             image: 'https://gamepedia.cursecdn.com/dragalialost_gamepedia_en/thumb/6/6d/210067_01_portrait.png/400px-210067_01_portrait.png?version=58659e4619e598b056d43b08e8f3f8a2',
             str: '6 - 60',
@@ -2886,6 +2969,7 @@ module.exports = {
         ,
         {
             name: 'Yulong',
+            title: 'Celestial Steed',
             isLocked: false,
             image: 'https://gamepedia.cursecdn.com/dragalialost_gamepedia_en/thumb/6/64/210074_01_portrait.png/400px-210074_01_portrait.png?version=558ded7de7f02d84cbba1838d0e76c0e',
             str: '7 - 72',
@@ -2919,6 +3003,7 @@ module.exports = {
         ,
         {
             name: 'Zephyr',
+            title: 'Adulated Protector',
             isLocked: false,
             image: 'https://gamepedia.cursecdn.com/dragalialost_gamepedia_en/thumb/4/4e/210018_01_portrait.png/400px-210018_01_portrait.png?version=a5b944ccc2d2c7193ae8fd8f39b4c068',
             str: '12 - 126',
@@ -2952,6 +3037,7 @@ module.exports = {
         ,
         {
             name: 'Zephyr Imp',
+            title: '',
             isLocked: false,
             image: 'https://gamepedia.cursecdn.com/dragalialost_gamepedia_en/thumb/f/f1/210068_01_portrait.png/400px-210068_01_portrait.png?version=7733fa01ca2fbcf82ce195dc1f5bc375',
             str: '6 - 60',
@@ -2985,6 +3071,7 @@ module.exports = {
         ,
         {
             name: 'Zodiark',
+            title: 'Accursed Vessel',
             isLocked: false,
             image: 'https://gamepedia.cursecdn.com/dragalialost_gamepedia_en/thumb/0/05/210005_01_portrait.png/400px-210005_01_portrait.png?version=4db3e3cfcb1cc9e5ac8794d8299cb088',
             str: '7 - 70',
@@ -2996,8 +3083,8 @@ module.exports = {
             skill: {
                 name: 'Accursed Venom',
                 levels: [
-                    'Deals 1 hit of 529.2% shadow damage to enemies directly ahead.',
-                    'Deals 1 hit of 588% shadow damage to enemies directly ahead.'
+                    'Deals 1 hit of 529.2% shadow damage to enemies directly ahead and inflicts poison for 15 seconds - dealing 39.6% damage every 2.99 seconds - with 100% base chance.',
+                    'Deals 1 hit of 588% shadow damage to enemies directly ahead and inflicts poison for 15 seconds - dealing 53% damage every 2.99 seconds - with 110% base chance.'
                 ]
             },
             abilities: [

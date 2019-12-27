@@ -109,7 +109,7 @@ module.exports = {
      * @param skills
      * @returns {Promise<string>}
      */
-    generateSkillOutput: async function (skills) {
+    generateSkillsOutput: async function (skills) {
         let skillOut = "";
         for (const skill of skills) {
             skillOut += "**" + skill.name + "** ・ " + skill.cost + " SP ・ ";
@@ -121,6 +121,19 @@ module.exports = {
             skillOut += '\n';
         }
         return skillOut
+    },
+    /**
+     *
+     * @param skill
+     * @returns {Promise<string>}
+     */
+    generateSkillOutput: async function (skill) {
+        let skillOut = "";
+        skillOut += "**" + skill.name + "**\n";
+        (skill.levels[skill.levels.levels - 1] === '')
+            ? skillOut += '-'
+            : skillOut += skill.levels[skill.levels.levels - 1];
+        return skillOut;
     },
     /**
      *

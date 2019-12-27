@@ -5,7 +5,7 @@ module.exports = {
     unitEmbed: async function (message, args, units) {
         let unit = await HELPER.searchCollectionSingle(args.join(" "), units, message);
         let abilitiesFinal = await HELPER.generateAbilityOutput(unit.abilities);
-        let skillsFinal = await HELPER.generateSkillOutput(unit.skills);
+        let skillsFinal = await HELPER.generateSkillsOutput(unit.skills);
         let nameFinal = unit.name + ": " + unit.title + " | " + await GENERAL.generateStars(unit.rarity);
         let iconFinal = await HELPER.getElementImage(unit.element);
         let colorFinal = await HELPER.getEmbedColor(unit.element);
@@ -28,12 +28,47 @@ module.exports = {
         ];
     },
     dragonEmbed: async function (message, args, dragons) {
+        let dragon = await HELPER.searchCollectionSingle(args.join(" "), dragons, message);
+        let nameFinal = dragon.name.substring(0, dragon.name.indexOf('(')-1) + ": " + dragon.title + " | " + await GENERAL.generateStars(dragon.rarity);
+        let skillOutFinal = await HELPER.generateSkillOutput(dragon.skill);
+        let colorFinal = await HELPER.getEmbedColor(dragon.element);
+        if(!dragon.isLocked){
+            return [
+                new Discord.RichEmbed()
+                    .setAuthor(nameFinal)
+                    .addField('HP', dragon.hp, true)
+                    .addField('ATK', dragon.str, true)
+                    .addField('Skill', skillOutFinal)
+                    .setColor(colorFinal)
+                    .setImage(dragon.image),
+            ]
+        }else{
+            return [
+                new Discord.RichEmbed()
+                    .setAuthor(nameFinal)
+                    .addField('HP', '-', true)
+                    .addField('ATK', '-', true)
+                    .addField('Skill', skillOutFinal)
+                    .setColor(colorFinal)
+                    .setImage(dragon.image)
+                //todo: add skill output and combo chart here when you make it for the real dragon output
+            ]
+        }
 
     },
     weaponEmbed: async function (message, args, weapons) {
-
+        let weapon = await HELPER.searchCollectionSingle(args.join(" "), weapons, message);
+        return [
+            new Discord.RichEmbed()
+                .setAuthor(weapon.name)
+        ]
     },
     printEmbed: async function (message, args, prints) {
-
+        let print = await HELPER.searchCollectionSingle(args.join(" "), prints, message);
+        return [
+            new Discord.RichEmbed()
+                .setAuthor(print.name)
+        ]
     }
+
 };
