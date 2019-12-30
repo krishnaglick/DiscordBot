@@ -18,7 +18,14 @@ module.exports = {
         PKMNList.sort((a, b) => b.stats.max.hp - a.stats.max.hp);
 
         for (let PKMNJson of PKMNList) {
-            embedArr.push(await generateIndividualPKMNEmbed(PKMNJson, unit, rarity, icon, client))
+            //Todo: find a better solution to situations like solgaleo rarity
+            let solgaleoRarity;
+            if(PKMNJson.name === 'Solgaleo'){
+                solgaleoRarity = await GENERAL.generateStars('5');
+                embedArr.push(await generateIndividualPKMNEmbed(PKMNJson, unit, solgaleoRarity, icon, client))
+            }else{
+                embedArr.push(await generateIndividualPKMNEmbed(PKMNJson, unit, rarity, icon, client))
+            }
         }
 
         const baseEmbed = new Discord.RichEmbed()
