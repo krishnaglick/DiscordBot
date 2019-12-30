@@ -19,6 +19,7 @@ module.exports = {
 
         for (let PKMNJson of PKMNList) {
             //Todo: find a better solution to situations like solgaleo rarity
+            //*
             let solgaleoRarity;
             if(PKMNJson.name === 'Solgaleo'){
                 solgaleoRarity = await GENERAL.generateStars('5');
@@ -26,6 +27,7 @@ module.exports = {
             }else{
                 embedArr.push(await generateIndividualPKMNEmbed(PKMNJson, unit, rarity, icon, client))
             }
+            //*
         }
 
         const baseEmbed = new Discord.RichEmbed()

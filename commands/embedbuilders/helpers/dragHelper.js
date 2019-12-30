@@ -132,7 +132,7 @@ module.exports = {
         skillOut += "**" + skill.name + "**\n";
         (skill.levels[skill.levels.levels - 1] === '')
             ? skillOut += '-'
-            : skillOut += skill.levels[skill.levels.levels - 1];
+            : skillOut += skill.levels[skill.levels.length - 1];
         return skillOut;
     },
     /**
@@ -150,6 +150,20 @@ module.exports = {
     },
     /**
      *
+     * @param skills
+     * @returns {Promise<string>}
+     */
+    generateDragonAuraOutput: async function (abilities) {
+        let abilitiesOut = "";
+        if(abilities.length !== 0){
+            for(const ability of abilities){
+                abilitiesOut += "**" + ability.name + ":** \n" + ability.levels[ability.levels.length - 1];
+            }
+        }
+        return abilitiesOut;
+    },
+    /**
+     *
      * @returns {Promise<string>}
      * @param coab
      */
@@ -158,6 +172,21 @@ module.exports = {
             "**Base:** " + coab.baseEffect + "\n"
             + "**Max:** " + coab.upgrades[coab.upgrades.length - 1]
         )
-    }
+    },
+    /**
+     *
+     * @returns {Promise<string>}
+     * @param comboTable
+     */
+    generateComboTable: async function (comboTable) {
+        let table = new AsciiTable();
+        table
+            .setBorder('|', '-', '■', '■')
+            .setHeading('Hit', 'Multiplier', 'hitCount');
+        for(const row of comboTable){
+            table.addRow(row.name.replace('Combo ', ''), row. multiplier, row.hitCount)
+        }
+        return "```" + table.toString() + "```";
+    },
 };
 
