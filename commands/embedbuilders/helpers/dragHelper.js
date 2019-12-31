@@ -106,6 +106,25 @@ module.exports = {
     },
     /**
      *
+     * @param rarity
+     * @returns {Promise<string>}
+     */
+    getRarityColor: async function (rarity) {
+        switch (parseInt(rarity)) {
+            case 3:
+                return "#cd7f32";
+            case 4:
+                return "#C0C0C0";
+            case 5:
+                return "#D4AF37";
+            case 6:
+                return "#ba00ba";
+            default:
+                return "#3e3e3e"
+        }
+    },
+    /**
+     *
      * @param skills
      * @returns {Promise<string>}
      */

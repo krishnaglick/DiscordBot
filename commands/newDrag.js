@@ -1,8 +1,5 @@
 const BUILDER = require('./embedbuilders/dragEmbedBuilder');
 const HELPER = require('./embedbuilders/helpers/dragHelper');
-const Discord = require('discord.js');
-const {MessageEmbed} = require('discord.js');
-const paginationEmbed = require('discord.js-pagination');
 const GENERAL = require('./embedbuilders/helpers/general');
 const ADV_DATA = require('./embedbuilders/helpers/data/dragalia/units');
 const DRG_DATA = require('./embedbuilders/helpers/data/dragalia/dragons');
@@ -16,7 +13,7 @@ module.exports = {
         await GENERAL.startTypingAlert(message);
         switch (await HELPER.getEmbedType(args.join(" "), ADV_DATA.units, DRG_DATA.dragons, WPN_DATA.weapons, PNT_DATA.prints)) {
             case "unit":
-                await paginationEmbed(
+                await GENERAL.paginationEmbed(
                     message,
                     await BUILDER.unitEmbed(message, args, ADV_DATA.units),
                     GENERAL.nextButtons,
@@ -24,7 +21,7 @@ module.exports = {
                 );
                 break;
             case "dragon":
-                await paginationEmbed(
+                await GENERAL.paginationEmbed(
                     message,
                     await BUILDER.dragonEmbed(message, args, DRG_DATA.dragons),
                     GENERAL.nextButtons,
@@ -32,15 +29,10 @@ module.exports = {
                 );
                 break;
             case "weapon":
-                await paginationEmbed(
-                    message,
-                    await BUILDER.weaponEmbed(message, args, WPN_DATA.weapons),
-                    GENERAL.nextButtons,
-                    GENERAL.paginationTimeOut
-                );
+                message.channel.send(await BUILDER.weaponEmbed(message, args, WPN_DATA.weapons));
                 break;
             case "print":
-                await paginationEmbed(
+                await GENERAL.paginationEmbed(
                     message,
                     await BUILDER.printEmbed(message, args, PNT_DATA.prints),
                     GENERAL.nextButtons,

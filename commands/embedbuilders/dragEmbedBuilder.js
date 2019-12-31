@@ -29,10 +29,10 @@ module.exports = {
     },
     dragonEmbed: async function (message, args, dragons) {
         let dragon = await HELPER.searchCollectionSingle(args.join(" "), dragons, message);
-        let nameFinal = dragon.name.substring(0, dragon.name.indexOf('(')-1) + ": " + dragon.title + " | " + await GENERAL.generateStars(dragon.rarity);
+        let nameFinal = dragon.name.substring(0, dragon.name.indexOf('(') - 1) + ": " + dragon.title + " | " + await GENERAL.generateStars(dragon.rarity);
         let skillOutFinal = await HELPER.generateSkillOutput(dragon.skill);
         let colorFinal = await HELPER.getEmbedColor(dragon.element);
-        if(!dragon.isLocked){
+        if (!dragon.isLocked) {
             return [
                 new Discord.RichEmbed()
                     .setAuthor(nameFinal)
@@ -41,8 +41,12 @@ module.exports = {
                     .addField('Skill', skillOutFinal)
                     .setColor(colorFinal)
                     .setImage(dragon.image),
+                new Discord.RichEmbed()
+                    .setAuthor(nameFinal)
+                    .setColor(colorFinal)
+                    .setImage(dragon.image),
             ]
-        }else{
+        } else {
             return [
                 new Discord.RichEmbed()
                     .setAuthor(nameFinal)
@@ -50,18 +54,20 @@ module.exports = {
                     .addField('ATK', '-', true)
                     .addField('Skill', skillOutFinal)
                     .setColor(colorFinal)
-                    .setImage(dragon.image)
-                //todo: add skill output and combo chart here when you make it for the real dragon output
+                    .setImage(dragon.image),
+                new Discord.RichEmbed()
+                    .setAuthor(nameFinal)
+                    .setColor(colorFinal)
+                    .setImage(dragon.image),
             ]
         }
 
     },
     weaponEmbed: async function (message, args, weapons) {
         let weapon = await HELPER.searchCollectionSingle(args.join(" "), weapons, message);
-        return [
-            new Discord.RichEmbed()
-                .setAuthor(weapon.name)
-        ]
+        return new Discord.RichEmbed()
+            .setAuthor(weapon.name)
+
     },
     printEmbed: async function (message, args, prints) {
         let print = await HELPER.searchCollectionSingle(args.join(" "), prints, message);
@@ -70,5 +76,4 @@ module.exports = {
                 .setAuthor(print.name)
         ]
     }
-
 };

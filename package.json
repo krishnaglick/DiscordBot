@@ -18,6 +18,7 @@
     "winston": "^3.2.1"
   },
   "devDependencies": {
-    "ascii-table": "0.0.9"
+    "ascii-table": "0.0.9",
+    "axios": "^0.19.0"
   }
 }

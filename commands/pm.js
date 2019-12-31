@@ -1,6 +1,5 @@
 const BUILDER = require('./embedbuilders/pmEmbedBuilder');
 const GENERAL = require("./embedbuilders/helpers/general");
-const paginationEmbed = require('discord.js-pagination');
 module.exports = {
     name: 'ms',
     display: 'Pokemon Masters New!',
@@ -21,7 +20,7 @@ module.exports = {
         } else {
             GENERAL.startTypingAlert(message);
             //message.channel.send(await BUILDER.pairSearchEmbed(args[0], client));
-            await paginationEmbed(message, await BUILDER.pairSearchEmbed(args, client), GENERAL.nextButtons, GENERAL.paginationTimeOut);
+            await GENERAL.paginationEmbed(message, await BUILDER.pairSearchEmbed(args, client), GENERAL.nextButtons, GENERAL.paginationTimeOut);
             GENERAL.stopTypingAlert(message);
         }
 
