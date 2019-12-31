@@ -1,6 +1,6 @@
 const HELPER = require('./helpers/dragHelper');
+const GENERAL = require("./helpers/generalHelper");
 const Discord = require('discord.js');
-const GENERAL = require("./helpers/general");
 module.exports = {
     unitEmbed: async function (message, args, units) {
         let unit = await HELPER.searchCollectionSingle(args.join(" "), units, message);
@@ -30,7 +30,7 @@ module.exports = {
     dragonEmbed: async function (message, args, dragons) {
         let dragon = await HELPER.searchCollectionSingle(args.join(" "), dragons, message);
         let nameFinal = (dragon.name.includes('('))
-            ? dragon.name.substring(0, dragon.name.indexOf('(')-1) + ": " + dragon.title + " | " + await GENERAL.generateStars(dragon.rarity)
+            ? dragon.name.substring(0, dragon.name.indexOf('(') - 1) + ": " + dragon.title + " | " + await GENERAL.generateStars(dragon.rarity)
             : dragon.name + ": " + dragon.title + " | " + await GENERAL.generateStars(dragon.rarity);
         let skillOutFinal = await HELPER.generateSkillOutput(dragon.skill);
         let auraOutFinal = await HELPER.generateDragonAuraOutput(dragon.abilities);
@@ -86,9 +86,29 @@ module.exports = {
     },
     printEmbed: async function (message, args, prints) {
         let print = await HELPER.searchCollectionSingle(args.join(" "), prints, message);
+        const nameFinal = print.name + ' | ' + print.type + ' | ' + await GENERAL.generateStars(print.rarity);
+        const storyOut = [];
+        print.descriptions.map(elem => storyOut.push(elem + '\n'));
+        const colorFinal = await HELPER.getRarityColor(print.rarity);
         return [
             new Discord.RichEmbed()
-                .setAuthor(print.name)
+                .setAuthor(nameFinal)
+                .addField('HP', print.hp, true)
+                .addField('ATK', print.atk, true)
+                .addField('Abilities', await HELPER.generatePrintSkillOutput(print.skills, false))
+                .setColor(colorFinal)
+                .setImage(print.images[0]),
+            new Discord.RichEmbed()
+                .setAuthor(nameFinal)
+                .addField('HP', print.hp, true)
+                .addField('ATK', print.atk, true)
+                .addField('Abilities', await HELPER.generatePrintSkillOutput(print.skills, true))
+                .setColor(colorFinal)
+                .setImage(print.images[1]),
+            new Discord.RichEmbed()
+                .setAuthor(nameFinal)
+                .addField('Story', storyOut)
+                .setColor(colorFinal)
         ]
     }
 };

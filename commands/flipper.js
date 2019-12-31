@@ -3,7 +3,7 @@ const fetch = require("node-fetch");
 const AsciiTable = require('ascii-table');
 const Discord = require('discord.js');
 const paginationEmbed = require('discord.js-pagination');
-const GENERAL = require('./embedbuilders/helpers/general');
+const GENERAL = require('./embedbuilders/helpers/generalHelper');
 const data = require('./embedbuilders/helpers/data/flipper/flipperData');
 
 module.exports = {

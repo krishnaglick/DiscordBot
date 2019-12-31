@@ -5,7 +5,7 @@ const Discord = require('discord.js');
 const paginationEmbed = require('discord.js-pagination');
 const {MessageEmbed} = require('discord.js');
 const AsciiTable = require('ascii-table');
-const helper = require('./general');
+const helper = require('./generalHelper');
 module.exports = {
     /**
      *
@@ -174,8 +174,8 @@ module.exports = {
      */
     generateDragonAuraOutput: async function (abilities) {
         let abilitiesOut = "";
-        if(abilities.length !== 0){
-            for(const ability of abilities){
+        if (abilities.length !== 0) {
+            for (const ability of abilities) {
                 abilitiesOut += "**" + ability.name + ":** \n" + ability.levels[ability.levels.length - 1];
             }
         }
@@ -188,16 +188,29 @@ module.exports = {
      */
     generateWeaponSkillOutput: async function (abilities) {
         let abilitiesOut = "";
-        if(abilities.length !== 0){
-            for(const ability of abilities){
-                if(ability.name === 'None'){
+        if (abilities.length !== 0) {
+            for (const ability of abilities) {
+                if (ability.name === 'None') {
                     abilitiesOut += "**None**";
-                }else{
+                } else {
                     abilitiesOut += "**" + ability.name + ":** \n" + ability.effect;
                 }
             }
         }
         return abilitiesOut;
+    },
+    /**
+     *
+     * @param skills
+     * @returns {Promise<string>}
+     */
+    generatePrintSkillOutput: async function (skills, isMax) {
+        let skillsOut = "";
+        for (const skill of skills) {
+            const index = (isMax) ? skill.length - 1 : 0;
+            skillsOut += '**' + skill[index].name + '**:\n' + skill[index].description + '\n';
+        }
+        return skillsOut;
     },
     /**
      *
@@ -220,8 +233,8 @@ module.exports = {
         table
             .setBorder('|', '-', '■', '■')
             .setHeading('Hit', 'Multiplier', 'hitCount');
-        for(const row of comboTable){
-            table.addRow(row.name.replace('Combo ', ''), row. multiplier, row.hitCount)
+        for (const row of comboTable) {
+            table.addRow(row.name.replace('Combo ', ''), row.multiplier, row.hitCount)
         }
         return "```" + table.toString() + "```";
     },

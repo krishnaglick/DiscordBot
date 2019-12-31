@@ -1,5 +1,5 @@
 const HELPER = require('./helpers/pmHelper');
-const GENERAL = require('./helpers/general');
+const GENERAL = require('./helpers/generalHelper');
 const Discord = require('discord.js');
 module.exports = {
     pairSearchEmbed: async function (args, client) {

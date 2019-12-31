@@ -2,7 +2,7 @@ const fs = require('fs');
 const fetch = require("node-fetch");
 const AsciiTable = require('ascii-table');
 const resourcePath = './commands/embedbuilders/helpers/data/';
-const GENERAL = require('./general');
+const GENERAL = require('./generalHelper');
 const iconUrl = 'https://gamepress.gg/sites/default/files/aggregatedjson/TrainersList.json?15813222081239323912';
 const util = require('util');
 module.exports = {
@@ -32,7 +32,10 @@ module.exports = {
             let data = await JSON.parse(rawData);
             store.push(data);
         }
-        console.log(util.inspect(store, false, null, true));
+        for(const data of store){
+            console.dir(data, {depth: 10, colors: true});
+            console.log(',')
+        }
     },
     getPKMNIcon: async function (name) {
         if (name.includes('Mega ')) {
