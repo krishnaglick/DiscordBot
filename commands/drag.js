@@ -6,7 +6,7 @@ const DRG_DATA = require('./embedbuilders/helpers/data/dragalia/dragons');
 const PNT_DATA = require('./embedbuilders/helpers/data/dragalia/prints');
 const WPN_DATA = require('./embedbuilders/helpers/data/dragalia/weapons');
 module.exports = {
-    name: 'dragt',
+    name: 'drag',
     display: 'Dragalia Lost',
     description: '`>drag [unit/dragon/weapon/print]` will return information on (mostly) anything in Dragalia Lost.',
     async execute(message, args) {

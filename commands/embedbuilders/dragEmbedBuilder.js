@@ -68,13 +68,21 @@ module.exports = {
                     .setImage(dragon.image),
             ]
         }
-
     },
     weaponEmbed: async function (message, args, weapons) {
         let weapon = await HELPER.searchCollectionSingle(args.join(" "), weapons, message);
+        const nameFinal = weapon.name + " | " + weapon.element + " " + weapon.type + ' | ' + await GENERAL.generateStars(weapon.rarity);
+        const colorFinal = await HELPER.getRarityColor(weapon.rarity);
+        const skillOut = await HELPER.generateSkillOutput(weapon.skill);
+        const abilitiesOut = await HELPER.generateWeaponSkillOutput(weapon.abilities);
         return new Discord.RichEmbed()
-            .setAuthor(weapon.name)
-
+            .setAuthor(nameFinal)
+            .addField('ATK', weapon.atk, true)
+            .addField('HP', weapon.hp, true)
+            .addField('Skill', skillOut)
+            .addField('Abilities', abilitiesOut)
+            .setImage(weapon.image)
+            .setColor(colorFinal)
     },
     printEmbed: async function (message, args, prints) {
         let print = await HELPER.searchCollectionSingle(args.join(" "), prints, message);

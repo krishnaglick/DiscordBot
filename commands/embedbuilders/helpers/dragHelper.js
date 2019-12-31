@@ -183,6 +183,24 @@ module.exports = {
     },
     /**
      *
+     * @param abilities
+     * @returns {Promise<string>}
+     */
+    generateWeaponSkillOutput: async function (abilities) {
+        let abilitiesOut = "";
+        if(abilities.length !== 0){
+            for(const ability of abilities){
+                if(ability.name === 'None'){
+                    abilitiesOut += "**None**";
+                }else{
+                    abilitiesOut += "**" + ability.name + ":** \n" + ability.effect;
+                }
+            }
+        }
+        return abilitiesOut;
+    },
+    /**
+     *
      * @returns {Promise<string>}
      * @param coab
      */
