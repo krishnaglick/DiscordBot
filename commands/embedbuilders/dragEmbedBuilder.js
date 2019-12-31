@@ -29,8 +29,12 @@ module.exports = {
     },
     dragonEmbed: async function (message, args, dragons) {
         let dragon = await HELPER.searchCollectionSingle(args.join(" "), dragons, message);
-        let nameFinal = dragon.name.substring(0, dragon.name.indexOf('(') - 1) + ": " + dragon.title + " | " + await GENERAL.generateStars(dragon.rarity);
+        let nameFinal = (dragon.name.includes('('))
+            ? dragon.name.substring(0, dragon.name.indexOf('(')-1) + ": " + dragon.title + " | " + await GENERAL.generateStars(dragon.rarity)
+            : dragon.name + ": " + dragon.title + " | " + await GENERAL.generateStars(dragon.rarity);
         let skillOutFinal = await HELPER.generateSkillOutput(dragon.skill);
+        let auraOutFinal = await HELPER.generateDragonAuraOutput(dragon.abilities);
+        let comboTable = await HELPER.generateComboTable(dragon.comboTable);
         let colorFinal = await HELPER.getEmbedColor(dragon.element);
         if (!dragon.isLocked) {
             return [
@@ -39,6 +43,8 @@ module.exports = {
                     .addField('HP', dragon.hp, true)
                     .addField('ATK', dragon.str, true)
                     .addField('Skill', skillOutFinal)
+                    .addField('Ability', auraOutFinal)
+                    .addField('Combo', comboTable)
                     .setColor(colorFinal)
                     .setImage(dragon.image),
                 new Discord.RichEmbed()
@@ -53,6 +59,7 @@ module.exports = {
                     .addField('HP', '-', true)
                     .addField('ATK', '-', true)
                     .addField('Skill', skillOutFinal)
+                    .addField('Combo', comboTable)
                     .setColor(colorFinal)
                     .setImage(dragon.image),
                 new Discord.RichEmbed()
