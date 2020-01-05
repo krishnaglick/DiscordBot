@@ -29,6 +29,7 @@ module.exports = {
     },
     dragonEmbed: async function (message, args, dragons) {
         let dragon = await HELPER.searchCollectionSingle(args.join(" "), dragons, message);
+        let iconFinal = await HELPER.getElementImage(dragon.element);
         let nameFinal = (dragon.name.includes('('))
             ? dragon.name.substring(0, dragon.name.indexOf('(') - 1) + ": " + dragon.title + " | " + await GENERAL.generateStars(dragon.rarity)
             : dragon.name + ": " + dragon.title + " | " + await GENERAL.generateStars(dragon.rarity);
@@ -39,7 +40,7 @@ module.exports = {
         if (!dragon.isLocked) {
             return [
                 new Discord.RichEmbed()
-                    .setAuthor(nameFinal)
+                    .setAuthor(nameFinal, iconFinal)
                     .addField('HP', dragon.hp, true)
                     .addField('ATK', dragon.str, true)
                     .addField('Skill', skillOutFinal)
@@ -48,14 +49,14 @@ module.exports = {
                     .setColor(colorFinal)
                     .setImage(dragon.image),
                 new Discord.RichEmbed()
-                    .setAuthor(nameFinal)
+                    .setAuthor(nameFinal, iconFinal)
                     .setColor(colorFinal)
                     .setImage(dragon.image),
             ]
         } else {
             return [
                 new Discord.RichEmbed()
-                    .setAuthor(nameFinal)
+                    .setAuthor(nameFinal, iconFinal)
                     .addField('HP', '-', true)
                     .addField('ATK', '-', true)
                     .addField('Skill', skillOutFinal)
@@ -63,7 +64,7 @@ module.exports = {
                     .setColor(colorFinal)
                     .setImage(dragon.image),
                 new Discord.RichEmbed()
-                    .setAuthor(nameFinal)
+                    .setAuthor(nameFinal, iconFinal)
                     .setColor(colorFinal)
                     .setImage(dragon.image),
             ]

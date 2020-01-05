@@ -1,22 +1,32 @@
-//mandatory imports
 const fs = require('fs');
 const Discord = require('discord.js');
 const {prefix, prodToken, stagingToken, environment} = require('./auth.json');
-
-//setup for discord client reference. Used as the basis for the bot.
 const client = new Discord.Client();
-//setup for commands collection.
+
 client.commands = new Discord.Collection();
 const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
+const scraperFiles = fs.readdirSync('./Scripts').filter(file => file.endsWith('.js')).map((file) => {
+    return require(`./Scripts/${file}`);
+});
 var timedMessage;
 for (const file of commandFiles) {
     const command = require(`./commands/${file}`);
     client.commands.set(command.name, command);
 }
-//code which is done on bot's start up. As of now only logs that the bot is running and sets the activty.
-client.once('ready', () => {
+
+let dataStore = {
+    dragalia: {
+        weapons: [],
+        dragons: [],
+        units: [],
+        prints: []
+    }
+};
+
+client.once('ready', async () => {
     console.log(`Bot is running on ${client.guilds.size} servers`);
     client.user.setActivity('>help');
+    await runUpdates(scraperFiles);
 });
 
 client.on('messageReactionAdd', (reaction, user) => {
@@ -54,7 +64,7 @@ client.on('messageReactionRemove', (reaction, user) => {
         }
     }
 });
-//Discord Raw event handler. Current impplementation takes in only raw events it detects are reaction events. this is done to get reacts from old messages.
+
 client.on('raw', packet => {
     if (!['MESSAGE_REACTION_ADD', 'MESSAGE_REACTION_REMOVE'].includes(packet.t)) return;
     const channel = client.channels.get(packet.d.channel_id);
@@ -72,17 +82,11 @@ client.on('raw', packet => {
     });
 });
 var antnee = '115270563349528579';
-//code which is done whenever a message is sent in a discord the bot exists in.
-client.on('message', message => {
-    /*
-    if (message.channel.id === "626538160330899476" || message.channel.id === "620714509862174720" || message.channel.id === "453736163187097601") {
-        if (message.content.startsWith('99')) {
-            message.channel.send("100 suckers, yo shouts out to my boy blade for getting cucked.");
-        }
-    }
-     */
+
+client.on('message', async (message) => {
+
     if (message.content === 'thanks bud') {
-        message.reply("no problem fam")
+        message.reply("no problem fam");
         return;
     }
     if (message.content === '>debug') {
@@ -96,6 +100,21 @@ client.on('message', message => {
         }
         return;
     }
+
+    if (message.content === '>debug update') {
+        message.reply('Starting Data Update');
+        await runUpdates(scraperFiles);
+        message.reply('Data Update Done');
+    }
+
+    if (message.content === '>debug data') {
+        //console.dir(dataStore.dragalia.weapons.length, {depth: 5, colors: true});
+        console.log('Dragons: ' + dataStore.dragalia.dragons.length + '\n' +
+        'Units: ' + dataStore.dragalia.units.length + '\n' +
+        'Weapons: ' + dataStore.dragalia.weapons.length + '\n' +
+        'Prints: ' + dataStore.dragalia.prints.length)
+    }
+
     try {
         if (message.content === '>start alerts') {
             var channel = message.channel.guild.channels.get('597471505571381272');
@@ -118,7 +137,7 @@ client.on('message', message => {
     } catch (e) {
         //
     }
-    //handles >enter command
+
     try {
         if (message.channel.id === '611678630925565972') {
             if (message.channel.guild.id !== '583120259708616715') return;
@@ -135,17 +154,14 @@ client.on('message', message => {
     } catch (e) {
         //
     }
-    //if the message is sent by a bot, ignore it.
+
     if (message.author.bot) return;
-    //checks the message's first character for the > prefix, if the prefix isnt found the function returns.
     if (!message.content.startsWith(prefix) || message.author.bot) return;
-    //if the prefix IS found, the command call is split with the word immediately following the prefix becoming command and everything after it becoming the space delimitted args array
     const args = message.content.slice(prefix.length).split(/ +/);
     const command = args.shift().toLowerCase();
-    //if the commaand is not found within the commands collection (ie. it doesnt exist) then the function returns. otherwise it will execute the function defined in the commands specific .js file in the commands folder
     if (!client.commands.has(command)) return;
     try {
-        client.commands.get(command).execute(message, args, client);
+        client.commands.get(command).execute(message, args, client, dataStore);
     } catch (error) {
         console.error(error);
         message.reply('Cannot run command!');
@@ -179,5 +195,48 @@ function settime(messageToSend, channel) {
         channel.send(messageToSend);
         settime(messageToSend, channel)
     }, 10800000);
+}
+
+
+//ToDo: something is FUCKY with the prod version of this runs fine on staging
+async function runUpdates(scripts) {
+    console.log('Starting data update');
+    for (script of scripts) {
+        switch (script.key) {
+            case 'dragalia-units':
+                await script.getUnitData().then(async (data) => {
+                    for (const unit of data) {
+                        dataStore.dragalia.units.push(await unit)
+                    }
+                    console.log("Units updated.")
+                });
+                break;
+            case 'dragalia-weapons':
+                await script.getWeaponData().then(async (data) => {
+                    for (const weapon of data) {
+                        dataStore.dragalia.weapons.push(await weapon);
+                    }
+                    console.log("Weapons updated.")
+                });
+                break;
+            case 'dragalia-dragons':
+                await script.getDragonData(await script.getDragonLinks()).then(async (data) => {
+                    for (const dragon of data) {
+                        dataStore.dragalia.dragons.push(await dragon);
+                    }
+                    console.log("Dragons updated.")
+                });
+                break;
+            case 'dragalia-prints':
+                await script.getPrintData().then(async (data) => {
+                    for (const print of data) {
+                        dataStore.dragalia.prints.push(await print);
+                    }
+                    console.log("Prints updated.")
+                });
+                break;
+        }
+    }
+    console.log('Data Update Done');
 }
 

@@ -176,7 +176,7 @@ module.exports = {
         let abilitiesOut = "";
         if (abilities.length !== 0) {
             for (const ability of abilities) {
-                abilitiesOut += "**" + ability.name + ":** \n" + ability.levels[ability.levels.length - 1];
+                abilitiesOut += "**" + ability.name + ":** \n" + ability.levels[ability.levels.length - 1] + '\n';
             }
         }
         return abilitiesOut;
