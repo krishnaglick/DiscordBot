@@ -110,9 +110,9 @@ client.on('message', async (message) => {
     if (message.content === '>debug data') {
         //console.dir(dataStore.dragalia.weapons.length, {depth: 5, colors: true});
         console.log('Dragons: ' + dataStore.dragalia.dragons.length + '\n' +
-        'Units: ' + dataStore.dragalia.units.length + '\n' +
-        'Weapons: ' + dataStore.dragalia.weapons.length + '\n' +
-        'Prints: ' + dataStore.dragalia.prints.length)
+            'Units: ' + dataStore.dragalia.units.length + '\n' +
+            'Weapons: ' + dataStore.dragalia.weapons.length + '\n' +
+            'Prints: ' + dataStore.dragalia.prints.length)
     }
 
     try {
