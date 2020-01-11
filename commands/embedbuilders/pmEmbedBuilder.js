@@ -33,6 +33,8 @@ module.exports = {
         const baseEmbed = new Discord.RichEmbed()
             .setAuthor(unit.name + " " + rarity)
             .setThumbnail(icon)
+            .setTitle('View This Info In Your Browser')
+            .setURL("https://www.antnee.net/#/pm/pair/" + unit.name)
             .addField("Obtain Method", unit.recruit_method === "" ? "TELL ANTNEE TO FIX THIS" : unit.recruit_method)
             .addField("Background", unit.info)
             .setImage('https://www.serebii.net/pokemonmasters/syncpairs/' + unit.name.replace("Synga Suit ", "").toLowerCase().replace(" ", "") + '.png')
@@ -47,16 +49,22 @@ module.exports = {
 
 async function generateIndividualPKMNEmbed(PKMN, trainer, rarity, icon, client) {
     let isTwoTyped = PKMN.type2 === "";
+    let movesOut = await HELPER.generateMovesOut(PKMN.moves, client);
+    if(movesOut.length > 1024){
+        movesOut = "Sorry, this sync pair's moves descriptions are too long to display here, you can see their information here: https://www.antnee.net/#/pm/pair/" + trainer.name + '\n'
+    }
     return new Discord.RichEmbed()
         .setAuthor(trainer.name + " & " + PKMN.name + " ・ " + PKMN.role + " " + rarity, await HELPER.getPKMNIcon(PKMN.name))
         .setThumbnail(icon)
+        .setTitle('View This Info In Your Browser')
+        .setURL("https://www.antnee.net/#/pm/pair/" + trainer.name)
         .addField("**〜 Typing 〜**", "**Type: ** " + await GENERAL.getEmoji(PKMN.type1.toLowerCase(), client)
             + (isTwoTyped ? " " : await GENERAL.getEmoji(PKMN.type2.toLowerCase(), client))
             + " ・ **Weakness:** " + await GENERAL.getEmoji(PKMN.weakness.toLowerCase(), client)
         )
         .addField("**〜 Stats 〜**", await HELPER.generateStatTable(PKMN.stats))
         .addField("**〜 Passives 〜**", await HELPER.generatePassivesOut(PKMN.passives))
-        .addField("**〜 Moves 〜**", await HELPER.generateMovesOut(PKMN.moves, client) + await HELPER.generateSyncOut(PKMN.syncMove, client))
+        .addField("**〜 Moves 〜**", movesOut + await HELPER.generateSyncOut(PKMN.syncMove, client))
         .setColor(await GENERAL.getColor(PKMN.type1));
     //ToDo: move out and stats table, also passives, also type and weakness emoji
 }

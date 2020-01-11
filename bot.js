@@ -23,6 +23,10 @@ let dataStore = {
     }
 };
 
+const requests = {
+
+};
+
 client.once('ready', async () => {
     console.log(`Bot is running on ${client.guilds.size} servers`);
     client.user.setActivity('>help');
@@ -161,7 +165,7 @@ client.on('message', async (message) => {
     const command = args.shift().toLowerCase();
     if (!client.commands.has(command)) return;
     try {
-        client.commands.get(command).execute(message, args, client, dataStore);
+        client.commands.get(command).execute(message, args, client, dataStore, requests);
     } catch (error) {
         console.error(error);
         message.reply('Cannot run command!');

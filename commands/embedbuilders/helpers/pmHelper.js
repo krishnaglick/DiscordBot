@@ -9,6 +9,9 @@ module.exports = {
     findJSON: async function (arg, seek) {
         const trainerFiles = await fs.readdirSync(resourcePath + seek).filter(file => file.endsWith('.json'));
         for (const file of trainerFiles) {
+            if(arg.toUpperCase() === 'AEGISLASH'){
+                arg = 'aegislash (blade forme)';
+            }
             let rawData = await fs.readFileSync(resourcePath + seek + "/" + file);
             let data = await JSON.parse(rawData);
             if (data.name.toUpperCase() === arg.toUpperCase()) {
@@ -17,7 +20,6 @@ module.exports = {
             if (seek === "trainers") {
                 for (const pkmn of data.pokemon_list) {
                     if ((pkmn.replace(data.name + " & ", "").toUpperCase()) === arg.toUpperCase()) {
-                        console.log(pkmn.replace(data.name + " & ", "").toUpperCase());
                         return data;
                     }
                 }
