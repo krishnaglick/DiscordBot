@@ -1,13 +1,7 @@
 const fs = require("fs");
 const Discord = require("discord.js");
-// const { prefix, prodToken, stagingToken, environment } = require("./auth.json");
+const { prefix, prodToken, stagingToken, environment } = require("./auth.json");
 const client = new Discord.Client();
-
-const prefix = "--";
-// const prodToken = "NTc3ODUzODczMDg4MTAyNDAw.XZ-LyQ.zdj4iUjzCURcjyIPKiEaFc3VRJ8";
-const prodToken = "NjExOTE5MzExMjcxMTAwNDE2.XVa2Kw.Zuvh3N_ODeRZmPLS8aZnx-jGfDQ";
-const stagingToken = "NjIwNzczMDQ2MDAwNjgwOTYx.XYrfLw.H9MyX41hmIneOdmquB5GsQvtja8";
-const environment = "production";
 
 client.commands = new Discord.Collection();
 const commandFiles = fs.readdirSync("./commands").filter(file => file.endsWith(".js"));
@@ -77,10 +71,8 @@ client.on("messageReactionRemove", (reaction, user) => {
 });
 
 client.on("raw", packet => {
-    console.log("raw");
     if (!["MESSAGE_REACTION_ADD", "MESSAGE_REACTION_REMOVE"].includes(packet.t)) return;
     const channel = client.channels.get(packet.d.channel_id);
-    console.log("channel.messages: ", channel.messages);
     if (channel.messages.has(packet.d.message_id)) return;
     channel.fetchMessage(packet.d.message_id).then(message => {
         const emoji = packet.d.emoji.id ? `${packet.d.emoji.name}:${packet.d.emoji.id}` : packet.d.emoji.name;
@@ -94,13 +86,6 @@ client.on("raw", packet => {
         }
     });
 });
-
-client.on("message", async message => {
-    if (message.content.includes("typescript")) {
-        return message.reply("Typescript!");
-    }
-});
-
 var antnee = "115270563349528579";
 
 client.on("message", async message => {
