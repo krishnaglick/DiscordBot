@@ -15,7 +15,7 @@
         "forceConsistentCasingInFileNames": true,
         "downlevelIteration": true,
         "baseUrl": ".",
-        "outDir": "dist",
+        "outDir": ".",
         "plugins": [
             {
                 "name": "typescript-tslint-plugin",
@@ -27,5 +27,6 @@
             }
         ]
     },
-    "include": ["./types/*.d.ts", "**/*.ts"]
+    "include": ["./types/*.d.ts", "**/*.ts", "./*.ts"],
+    "exclude": []
 }
