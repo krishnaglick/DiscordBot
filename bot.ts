@@ -1,13 +1,10 @@
-const fs = require("fs");
-const Discord = require("discord.js");
-// const { prefix, prodToken, stagingToken, environment } = require("./auth.json");
+import fs from "fs";
+import Discord from "discord.js";
+import { prefix, prodToken, stagingToken } from "./auth.json";
+
 const client = new Discord.Client();
 
-const prefix = "--";
-// const prodToken = "NTc3ODUzODczMDg4MTAyNDAw.XZ-LyQ.zdj4iUjzCURcjyIPKiEaFc3VRJ8";
-const prodToken = "NjExOTE5MzExMjcxMTAwNDE2.XVa2Kw.Zuvh3N_ODeRZmPLS8aZnx-jGfDQ";
-const stagingToken = "NjIwNzczMDQ2MDAwNjgwOTYx.XYrfLw.H9MyX41hmIneOdmquB5GsQvtja8";
-const environment = "production";
+const environment = process.env.ENV || "stage";
 
 client.commands = new Discord.Collection();
 const commandFiles = fs.readdirSync("./commands").filter(file => file.endsWith(".js"));
@@ -17,13 +14,15 @@ const scraperFiles = fs
     .map(file => {
         return require(`./Scripts/${file}`);
     });
-var timedMessage;
+let timedMessage: NodeJS.Timeout;
 for (const file of commandFiles) {
+    // TODO: Not use require here
+    // tslint:disable-next-line
     const command = require(`./commands/${file}`);
     client.commands.set(command.name, command);
 }
 
-let dataStore = {
+const dataStore = {
     dragalia: {
         weapons: [],
         dragons: [],
@@ -32,7 +31,8 @@ let dataStore = {
     },
 };
 
-let requests = [];
+// TODO: Type me
+const requests: any[] = [];
 
 client.once("ready", async () => {
     console.log(`Bot is running on ${client.guilds.size} servers`);
@@ -43,16 +43,19 @@ client.once("ready", async () => {
 client.on("messageReactionAdd", (reaction, user) => {
     if (reaction.emoji.name === "🤝" && reaction.message.id === "606589614123384843") {
         try {
-            let role = reaction.message.guild.roles.get("606594867136823316");
-            let member = reaction.message.guild.members.find(member => member.user.id === user.id);
+            const role = reaction.message.guild.roles.get("606594867136823316");
+            const member = reaction.message.guild.members.find(({ user: { id } }) => id === user.id);
             console.log(`CO-OP || ${user.username} has requested the Co-op Role.`);
-            if (member !== null && role !== null) {
+            if (member && role) {
                 if (!member.roles.has(role.id)) {
                     member.addRole(role).catch(console.error);
                 }
             }
         } catch (e) {
-            //ToDo: Figure somethin out.
+            console.error("Error adding role");
+            console.debug("reaction: ", reaction);
+            console.debug("user: ", user);
+            // ToDo: Figure somethin out.
         }
     }
     if (reaction.message.id === "622649753121062912") {
@@ -62,35 +65,43 @@ client.on("messageReactionAdd", (reaction, user) => {
 client.on("messageReactionRemove", (reaction, user) => {
     if (reaction.emoji.name === "🤝" && reaction.message.id === "606589614123384843") {
         try {
-            let role = reaction.message.guild.roles.get("606594867136823316");
-            let member = reaction.message.guild.members.find(member => member.user.id === user.id);
+            const role = reaction.message.guild.roles.get("606594867136823316");
+            const member = reaction.message.guild.members.find(({ user: { id } }) => id === user.id);
             console.log(`CO-OP || ${user.username} has un-requested the Co-op Role.`);
-            if (member !== null && role !== null) {
+            if (member && role) {
                 if (member.roles.has(role.id)) {
                     member.removeRole(role).catch(console.error);
                 }
             }
         } catch (e) {
-            //ToDo: Figure somethin out.
+            console.error("Error removing role");
+            console.debug("reaction: ", reaction);
+            console.debug("user: ", user);
+            // ToDo: Figure somethin out.
         }
     }
 });
 
-client.on("raw", packet => {
-    console.log("raw");
-    if (!["MESSAGE_REACTION_ADD", "MESSAGE_REACTION_REMOVE"].includes(packet.t)) return;
+client.on("raw", (packet: any) => {
+    if (!["MESSAGE_REACTION_ADD", "MESSAGE_REACTION_REMOVE"].includes(packet.t)) {
+        return;
+    }
     const channel = client.channels.get(packet.d.channel_id);
-    console.log("channel.messages: ", channel.messages);
-    if (channel.messages.has(packet.d.message_id)) return;
+    if (!channel || channel.messages.has(packet.d.message_id)) {
+        return;
+    }
     channel.fetchMessage(packet.d.message_id).then(message => {
         const emoji = packet.d.emoji.id ? `${packet.d.emoji.name}:${packet.d.emoji.id}` : packet.d.emoji.name;
         const reaction = message.reactions.get(emoji);
-        if (reaction) reaction.users.set(packet.d.user_id, client.users.get(packet.d.user_id));
+        const user = client.users.get(packet.d.user_id);
+        if (reaction && user) {
+            reaction.users.set(packet.d.user_id, user);
+        }
         if (packet.t === "MESSAGE_REACTION_ADD") {
-            client.emit("messageReactionAdd", reaction, client.users.get(packet.d.user_id));
+            client.emit("messageReactionAdd", reaction, user);
         }
         if (packet.t === "MESSAGE_REACTION_REMOVE") {
-            client.emit("messageReactionRemove", reaction, client.users.get(packet.d.user_id));
+            client.emit("messageReactionRemove", reaction, user);
         }
     });
 });
@@ -101,7 +112,7 @@ client.on("message", async message => {
     }
 });
 
-var antnee = "115270563349528579";
+const antnee = "115270563349528579";
 
 client.on("message", async message => {
     if (message.content === "thanks bud" && message.author.id === antnee) {
@@ -109,8 +120,8 @@ client.on("message", async message => {
         return;
     }
     if (message.content === ">debug") {
-        var guilds = client.guilds.array();
-        for (var guild of guilds) {
+        const guilds = client.guilds.array();
+        for (const guild of guilds) {
             if (guild.owner) {
                 console.log(guild.name + " : " + guild.id + " : " + guild.owner.user.username);
             } else {
@@ -133,7 +144,7 @@ client.on("message", async message => {
     }
 
     if (message.content === ">debug data") {
-        //console.dir(dataStore.dragalia.weapons.length, {depth: 5, colors: true});
+        // console.dir(dataStore.dragalia.weapons.length, {depth: 5, colors: true});
         console.log(
             "Dragons: " +
                 dataStore.dragalia.dragons.length +
@@ -151,8 +162,11 @@ client.on("message", async message => {
 
     try {
         if (message.content === ">start alerts") {
-            var channel = message.channel.guild.channels.get("597471505571381272");
-            var messageToSend =
+            const channel = message.channel.guild.channels.get("597471505571381272");
+            if (!channel) {
+                return;
+            }
+            const messageToSend =
                 "```md\nALERT\n===========\nPlease refrain from making general discussion in this channel. Individuals chatting in here are expected to either be posting gacha/scouting results or salt about these posts. Anyone who is caught utilizing #gacha-results as a second #pm-chat will receive a warning or mute with no verbal warning beforehand. Any selling or trading is strictly prohibited on the pokemon masters discord, and anyone suspected of trying to initiate an account exchange with other users will be immediately banned. Remember to spend your money wisely, gacha is gambling.```";
             channel.send(messageToSend);
             settime(messageToSend, channel);
@@ -175,12 +189,14 @@ client.on("message", async message => {
 
     try {
         if (message.channel.id === "611678630925565972") {
-            if (message.channel.guild.id !== "583120259708616715") return;
+            if (message.channel.guild.id !== "583120259708616715") {
+                return;
+            }
             addTrainerRole(message);
         }
         if (message.channel.guild.id === "259802877269245952") {
-            if (message.attachments != null) {
-                var img = message.attachments.first().url;
+            if (message.attachments !== null) {
+                const img = message.attachments.first().url;
                 console.log("SNOOP || " + message.author.username + " => " + img);
             } else {
                 console.log("SNOOP || " + message.author.username + " => " + message.content);
@@ -190,13 +206,23 @@ client.on("message", async message => {
         //
     }
 
-    if (message.author.bot) return;
-    if (!message.content.startsWith(prefix) || message.author.bot) return;
+    if (message.author.bot) {
+        return;
+    }
+    if (!message.content.startsWith(prefix) || message.author.bot) {
+        return;
+    }
     const args = message.content.slice(prefix.length).split(/ +/);
-    const command = args.shift().toLowerCase();
-    if (!client.commands.has(command)) return;
+    // TODO: Bother to fix the use of "!" here
+    const command = args.shift()!.toLowerCase();
+    if (!client.commands.has(command)) {
+        return;
+    }
     try {
-        client.commands.get(command).execute(message, args, client, dataStore, requests);
+        const clientCommand = client.commands.get(command);
+        if (clientCommand) {
+            clientCommand.execute(message, args, client, dataStore, requests);
+        }
     } catch (error) {
         console.error(error);
         message.reply("Cannot run command!");
@@ -205,12 +231,12 @@ client.on("message", async message => {
 
 client.login(environment === "production" ? prodToken : stagingToken);
 
-async function addTrainerRole(message) {
+async function addTrainerRole(message: Discord.Message) {
     if (message.content === ">enter") {
         try {
-            let member = message.member;
-            let trainerRole = message.guild.roles.get("611638752015679596");
-            if (member !== null && trainerRole !== null) {
+            const { member } = message;
+            const trainerRole = message.guild.roles.get("611638752015679596");
+            if (member && trainerRole) {
                 if (!member.roles.has(trainerRole.id)) {
                     await member.addRole(trainerRole).catch(console.error);
                 }
@@ -225,51 +251,51 @@ async function addTrainerRole(message) {
     }
 }
 
-function settime(messageToSend, channel) {
+function settime(messageToSend: string, channel: Discord.Channel) {
     timedMessage = setTimeout(() => {
         channel.send(messageToSend);
         settime(messageToSend, channel);
     }, 10800000);
 }
 
-//ToDo: something is FUCKY with the prod version of this runs fine on staging
-async function runUpdates(scripts) {
+// ToDo: something is FUCKY with the prod version of this runs fine on staging
+async function runUpdates(scripts: any[]) {
     console.log("Starting data update");
-    for (script of scripts) {
-        switch (script.key) {
-            case "dragalia-units":
-                await script.getUnitData().then(async data => {
-                    for (const unit of data) {
-                        dataStore.dragalia.units.push(await unit);
-                    }
-                    console.log("Units updated.");
-                });
-                break;
-            case "dragalia-weapons":
-                await script.getWeaponData().then(async data => {
-                    for (const weapon of data) {
-                        dataStore.dragalia.weapons.push(await weapon);
-                    }
-                    console.log("Weapons updated.");
-                });
-                break;
-            case "dragalia-dragons":
-                await script.getDragonData(await script.getDragonLinks()).then(async data => {
-                    for (const dragon of data) {
-                        dataStore.dragalia.dragons.push(await dragon);
-                    }
-                    console.log("Dragons updated.");
-                });
-                break;
-            case "dragalia-prints":
-                await script.getPrintData().then(async data => {
-                    for (const print of data) {
-                        dataStore.dragalia.prints.push(await print);
-                    }
-                    console.log("Prints updated.");
-                });
-                break;
-        }
-    }
+    // for (const script of scripts) {
+    //     switch (script.key) {
+    //         case "dragalia-units":
+    //             await script.getUnitData().then(async (data: Promise<any>[]) => {
+    //                 for (const unit of data) {
+    //                     dataStore.dragalia.units.push(await unit);
+    //                 }
+    //                 console.log("Units updated.");
+    //             });
+    //             break;
+    //         case "dragalia-weapons":
+    //             await script.getWeaponData().then(async (data: Promise<any>[]) => {
+    //                 for (const weapon of data) {
+    //                     dataStore.dragalia.weapons.push(await weapon);
+    //                 }
+    //                 console.log("Weapons updated.");
+    //             });
+    //             break;
+    //         case "dragalia-dragons":
+    //             await script.getDragonData(await script.getDragonLinks()).then(async (data: Promise<any>[]) => {
+    //                 for (const dragon of data) {
+    //                     dataStore.dragalia.dragons.push(await dragon);
+    //                 }
+    //                 console.log("Dragons updated.");
+    //             });
+    //             break;
+    //         case "dragalia-prints":
+    //             await script.getPrintData().then(async (data: Promise<any>[]) => {
+    //                 for (const print of data) {
+    //                     dataStore.dragalia.prints.push(await print);
+    //                 }
+    //                 console.log("Prints updated.");
+    //             });
+    //             break;
+    //     }
+    // }
     console.log("Data Update Done");
 }
