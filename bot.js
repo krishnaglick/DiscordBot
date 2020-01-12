@@ -23,9 +23,7 @@ let dataStore = {
     }
 };
 
-const requests = {
-
-};
+let requests = [];
 
 client.once('ready', async () => {
     console.log(`Bot is running on ${client.guilds.size} servers`);
@@ -89,7 +87,7 @@ var antnee = '115270563349528579';
 
 client.on('message', async (message) => {
 
-    if (message.content === 'thanks bud') {
+    if (message.content === 'thanks bud' && message.author.id === antnee) {
         message.reply("no problem fam");
         return;
     }
@@ -109,6 +107,12 @@ client.on('message', async (message) => {
         message.reply('Starting Data Update');
         await runUpdates(scraperFiles);
         message.reply('Data Update Done');
+    }
+
+    if(message.content === '>debug carries'){
+        for(const carry of requests){
+            console.dir(carry,{depth: 1, color: true})
+        }
     }
 
     if (message.content === '>debug data') {

@@ -66,5 +66,4 @@ async function generateIndividualPKMNEmbed(PKMN, trainer, rarity, icon, client) 
         .addField("**〜 Passives 〜**", await HELPER.generatePassivesOut(PKMN.passives))
         .addField("**〜 Moves 〜**", movesOut + await HELPER.generateSyncOut(PKMN.syncMove, client))
         .setColor(await GENERAL.getColor(PKMN.type1));
-    //ToDo: move out and stats table, also passives, also type and weakness emoji
 }
