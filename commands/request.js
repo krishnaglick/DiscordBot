@@ -18,13 +18,13 @@ module.exports = {
                             .addField('Description', `<@${message.author.id}> has successfully carried <@${toRemoveId}>.`)
                             .setColor('#4286f4')
                         );
-                        if(carry.status.count === 1){
+                        if (carry.status.count === 1) {
                             client.channels.get('665772841714581505').send(new Discord.RichEmbed()
                                 .setTitle(`Carry Success!`)
                                 .addField('Description', `<@${message.author.id}> has successfully carried <@${toRemoveId}>.`)
                                 .setColor('#4286f4')
                             );
-                        }else if(carry.status.count === 2){
+                        } else if (carry.status.count === 2) {
                             client.channels.get('665772841714581505').send(new Discord.RichEmbed()
                                 .setTitle(`Carry Success!`)
                                 .addField('Description', `<@${carry.status.id[0]}> and <@${carry.status.id[1]}> have successfully carried <@${toRemoveId}>.`)
@@ -36,7 +36,7 @@ module.exports = {
                 }
                 return;
             case 'view':
-                if(requests.length > 0){
+                if (requests.length > 0) {
                     if (message.channel.id === '620714509862174720' || message.channel.id === '665358096725704733') {
                         await GENERAL.paginationEmbed(message, requests.map((elem) => {
                             const claimedOut = (elem.status.count > 0) ? `Claimed by ${(elem.status.count === 1) ? elem.status.by[0] : elem.status.by[0] + ' | ' + elem.status.by[1]}` : 'Unclaimed';
@@ -52,7 +52,7 @@ module.exports = {
                                 .addField('Submitted On', elem.submittedOn)
                         }), GENERAL.nextButtons, GENERAL.paginationTimeOut);
                     }
-                }else{
+                } else {
                     if (message.channel.id === '620714509862174720' || message.channel.id === '665358096725704733') {
                         message.channel.send(new Discord.RichEmbed()
                             .setTitle(`Error`)
@@ -61,7 +61,6 @@ module.exports = {
                         );
                     }
                 }
-
                 return;
             case 'claim':
                 if (message.member.roles.find(r => r.name === "任せて") && (message.channel.id === '620714509862174720' || message.channel.id === '665718303045582868' || message.channel.id === '665358096725704733')) {
@@ -109,65 +108,66 @@ module.exports = {
                         }
                     }
                 }
-        }
-        if (message.channel.guild.id === '591387128701780085' || message.channel.id === '665718303045582868') {
-            let hasCarry = false;
-            for (const carry of requests) {
-                if (carry.requestee.id === message.author.id) {
-                    hasCarry = true;
-                    message.channel.send(new Discord.RichEmbed()
-                        .setTitle(`Error`)
-                        .addField('Description', `sorry <@${message.author.id}>, but you already have a request, wait for your request to be resolved or use \`>carry resolve\` to remove your current request.`)
-                        .setColor('#ff0000')
-                    );
-                    return;
-                }
-            }
-            if (!hasCarry) {
-                const score = args[0];
-                const ex = args[1];
-                let carryMessage = '';
-                let count = 0;
-                for (const elem of args) {
-                    if (count === 0 || count === 1) {/**/
-                    } else {
-                        carryMessage += (elem + ' ');
+                break;
+            default:
+                if (message.channel.guild.id === '591387128701780085' || message.channel.id === '665718303045582868') {
+                    let hasCarry = false;
+                    for (const carry of requests) {
+                        if (carry.requestee.id === message.author.id) {
+                            hasCarry = true;
+                            message.channel.send(new Discord.RichEmbed()
+                                .setTitle(`Error`)
+                                .addField('Description', `sorry <@${message.author.id}>, but you already have a request, wait for your request to be resolved or use \`>carry resolve\` to remove your current request.`)
+                                .setColor('#ff0000')
+                            );
+                            return;
+                        }
                     }
-                    count++;
+                    if (!hasCarry) {
+                        const score = args[0];
+                        const ex = args[1];
+                        let carryMessage = '';
+                        let count = 0;
+                        for (const elem of args) {
+                            if (count === 0 || count === 1) {/**/
+                            } else {
+                                carryMessage += (elem + ' ');
+                            }
+                            count++;
+                        }
+                        var date = new Date();
+                        var timestamp = date.getDay() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear() + ' | ' + date.getHours() + ':' + date.getSeconds();
+                        requests.unshift({
+                            requestee: {
+                                id: message.author.id,
+                                username: message.author.username,
+                                avatar: message.author.avatarURL
+                            },
+                            score: score,
+                            ex: ex,
+                            carryMessage: carryMessage,
+                            status: {
+                                count: 0,
+                                occupied: false,
+                                by: [],
+                                id: [],
+                            },
+                            submittedOn: timestamp
+                        });
+                        message.channel.send(`User <@${message.author.id}> has requested a carry. A Carry will @ you in a Co-op channel ASAP!`);
+                        //client.channels.get('665772841714581505').send('<@&665606175974490119>');
+                        client.channels.get('665772841714581505').send(new Discord.RichEmbed()
+                            .setTitle(`New Carry Request From ${message.author.username}`)
+                            .setColor('#4286f4')
+                            .setThumbnail(message.author.avatarURL)
+                            .addField('Team Power', score, true)
+                            .addField('Needs Help With', ex)
+                            .addField('Other Notes', carryMessage)
+                            .addField('User', `<@${message.author.id}>`)
+                            .addField('Submitted On', timestamp)
+                        );
+                    }
                 }
-
-                var date = new Date();
-                var timestamp = date.getDay() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear() + ' | ' + date.getHours() + ':' + date.getSeconds();
-                requests.unshift({
-                    requestee: {
-                        id: message.author.id,
-                        username: message.author.username,
-                        avatar: message.author.avatarURL
-                    },
-                    score: score,
-                    ex: ex,
-                    carryMessage: carryMessage,
-                    status: {
-                        count: 0,
-                        occupied: false,
-                        by: [],
-                        id: [],
-                    },
-                    submittedOn: timestamp
-                });
-                message.channel.send(`User <@${message.author.id}> has requested a carry. A Carry will @ you in a Co-op channel ASAP!`);
-                client.channels.get('665772841714581505').send('<@&665606175974490119>');
-                client.channels.get('665772841714581505').send(new Discord.RichEmbed()
-                    .setTitle(`New Carry Request From ${message.author.username}`)
-                    .setColor('#4286f4')
-                    .setThumbnail(message.author.avatarURL)
-                    .addField('Team Power', score, true)
-                    .addField('Needs Help With', ex)
-                    .addField('Other Notes', carryMessage)
-                    .addField('User', `<@${message.author.id}>`)
-                    .addField('Submitted On', timestamp)
-                );
-            }
         }
     }
 };
