@@ -64,7 +64,7 @@ module.exports = {
 
                 return;
             case 'claim':
-                if (message.member.rolesfind(r => r.name === "任せて") && (message.channel.id === '620714509862174720' || message.channel.id === '665718303045582868' || message.channel.id === '665358096725704733')) {
+                if (message.member.roles.find(r => r.name === "任せて") && (message.channel.id === '620714509862174720' || message.channel.id === '665718303045582868' || message.channel.id === '665358096725704733')) {
                     let matches = args[1].match(/^<@!?(\d+)>$/);
                     if (!matches) return;
                     const id = matches[1];
