@@ -6,7 +6,27 @@ const paginationEmbed = require('discord.js-pagination');
 const {MessageEmbed} = require('discord.js');
 const AsciiTable = require('ascii-table');
 const helper = require('./generalHelper');
+const {PythonShell} = require("python-shell");
 module.exports = {
+    runDPSCalc: async function(message, unitName){
+        const options = {
+            mode: 'text',
+            pythonOptions: ['-u'],
+            pythonPath: "/usr/bin/python2.7",
+            scriptPath: __dirname + '/dl/adv',
+            args: "-2"
+        };
+        let output;
+        PythonShell.run(`${unitName[0]}.py`, options, function (err, results) {
+            if (err) {
+                output = 'No Damage Calc Available'
+            }
+            results.forEach((elem) => {
+                output += elem + '\n';
+            });
+            return output;
+        });
+    },
     /**
      *
      * @returns {Promise<string>}

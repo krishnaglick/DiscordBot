@@ -15,7 +15,7 @@ module.exports = {
             .setAuthor('ERROR')
             .addField('Cause:', problem)
             .addField('Solution:', solution);
-        message.channel.send({embed});
+        await message.channel.send({embed});
     },
     stringEdgeCase: async function (args) {
         var append = "";

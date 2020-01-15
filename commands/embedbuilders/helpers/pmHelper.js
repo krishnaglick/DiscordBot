@@ -9,7 +9,7 @@ module.exports = {
     findJSON: async function (arg, seek) {
         const trainerFiles = await fs.readdirSync(resourcePath + seek).filter(file => file.endsWith('.json'));
         for (const file of trainerFiles) {
-            if(arg.toUpperCase() === 'AEGISLASH'){
+            if (arg.toUpperCase() === 'AEGISLASH') {
                 arg = 'aegislash (blade forme)';
             }
             let rawData = await fs.readFileSync(resourcePath + seek + "/" + file);
@@ -34,7 +34,7 @@ module.exports = {
             let data = await JSON.parse(rawData);
             store.push(data);
         }
-        for(const data of store){
+        for (const data of store) {
             console.dir(data, {depth: 10, colors: true});
             console.log(',')
         }
@@ -126,7 +126,9 @@ module.exports = {
                 + " ・ **"
                 + (isStatus
                         ? " **Uses:** " + move.uses + " **Target:** " + move.target
-                        : " **Cost:** " + move.cost + " **PWR:** " + move.power.min_power + "→" + move.power.max_power + " **ACC:** " + move.accuracy + ((move.target === "All opponents") ? " **AOE**" : "")
+                        : " **Cost:** " + move.cost + " **PWR:** " + move.power.min_power + "→" + move.power.max_power + " **ACC:** " + move.accuracy + ((move.target === "All opponents")
+                            ? " **AOE**"
+                            : "")
                 )
                 + "\n"
                 + move.effect
