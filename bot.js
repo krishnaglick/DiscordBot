@@ -28,7 +28,7 @@ let requests = [];
 client.once('ready', async () => {
     console.log(`Bot is running on ${client.guilds.size} servers`);
     client.user.setActivity('>help');
-    await runUpdates(scraperFiles);
+    //await runUpdates(scraperFiles);
 });
 
 client.on('messageReactionAdd', (reaction, user) => {

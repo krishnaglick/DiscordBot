@@ -7,4 +7,5 @@ commands/fortune.js
 *.css
 *.info
 auth.txt
-
+/commands/dl/
+commands/dl

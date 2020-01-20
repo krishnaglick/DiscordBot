@@ -13,7 +13,7 @@ module.exports = {
                 for (const carry of requests) {
                     if (carry.status.id.indexOf(message.author.id) !== -1 && carry.requestee.id === toRemoveId) {
                         const index = requests.indexOf(carry);
-                        message.channel.send(new Discord.RichEmbed()
+                        await message.channel.send(new Discord.RichEmbed()
                             .setTitle(`Carry Success!`)
                             .addField('Description', `<@${message.author.id}> has successfully carried <@${toRemoveId}>.`)
                             .setColor('#4286f4')
@@ -54,7 +54,7 @@ module.exports = {
                     }
                 } else {
                     if (message.channel.id === '620714509862174720' || message.channel.id === '665358096725704733') {
-                        message.channel.send(new Discord.RichEmbed()
+                        await message.channel.send(new Discord.RichEmbed()
                             .setTitle(`Error`)
                             .addField('Description', `sorry <@${message.author.id}>, but there are currently no requests to view.`)
                             .setColor('#ff0000')
@@ -78,13 +78,13 @@ module.exports = {
                                 requests[requests.indexOf(carry)].status.by.push(message.author.username);
                                 requests[requests.indexOf(carry)].status.id.push(message.author.id);
                             }
-                            message.channel.send(new Discord.RichEmbed()
+                            await message.channel.send(new Discord.RichEmbed()
                                 .setTitle(`Carry Claimed`)
                                 .addField('Description', `<@${message.author.id}> has claimed the carry request by <@${id}>.`)
                                 .setColor('#4286f4')
                             );
                         } else if (id === carry.requestee.id && carry.status.occupied) {
-                            message.channel.send(new Discord.RichEmbed()
+                            await message.channel.send(new Discord.RichEmbed()
                                 .setTitle(`Error`)
                                 .addField('Description', `sorry <@${message.author.id}>, but that carry is already claimed by <@${carry.status.id}>`)
                                 .setColor('#ff0000')
@@ -99,7 +99,7 @@ module.exports = {
                         if (carry.requestee.id === message.author.id) {
                             const index = requests.indexOf(carry);
                             requests.splice(index, 1);
-                            message.channel.send(new Discord.RichEmbed()
+                            await message.channel.send(new Discord.RichEmbed()
                                 .setTitle(`Request Deleted`)
                                 .addField('Description', `<@${message.author.id}>, your carry request has been deleted.`)
                                 .setColor('#4286f4')
@@ -115,7 +115,7 @@ module.exports = {
                     for (const carry of requests) {
                         if (carry.requestee.id === message.author.id) {
                             hasCarry = true;
-                            message.channel.send(new Discord.RichEmbed()
+                            await message.channel.send(new Discord.RichEmbed()
                                 .setTitle(`Error`)
                                 .addField('Description', `sorry <@${message.author.id}>, but you already have a request, wait for your request to be resolved or use \`>carry resolve\` to remove your current request.`)
                                 .setColor('#ff0000')
@@ -135,8 +135,8 @@ module.exports = {
                             }
                             count++;
                         }
-                        var date = new Date();
-                        var timestamp = date.getDay() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear() + ' | ' + date.getHours() + ':' + date.getSeconds();
+                        const date = new Date();
+                        let timestamp = date.getDay() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear() + ' | ' + date.getHours() + ':' + date.getSeconds();
                         requests.unshift({
                             requestee: {
                                 id: message.author.id,
