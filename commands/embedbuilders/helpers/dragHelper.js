@@ -176,16 +176,18 @@ module.exports = {
     },
     /**
      *
-     * @param skills
-     * @returns {Promise<string>}
+     * @param abilities
+     * @returns {Promise<[]>}
      */
     generateAbilityOutput: async function (abilities) {
-        let abilitiesOut = "";
+        let abilitiesArr = [];
         for (const ability of abilities) {
+            let abilitiesOut = '';
             abilitiesOut += "**" + ability[ability.length - 1].name + "**\n";
             abilitiesOut += ability[ability.length - 1].effect + "\n";
+            abilitiesArr.push(abilitiesOut)
         }
-        return abilitiesOut;
+        return abilitiesArr;
     },
     /**
      *

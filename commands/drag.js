@@ -2,7 +2,7 @@ const BUILDER = require('./embedbuilders/dragEmbedBuilder');
 const HELPER = require('./embedbuilders/helpers/dragHelper');
 const GENERAL = require('./embedbuilders/helpers/generalHelper');
 module.exports = {
-    name: 'drag',
+    name: 'dragt',
     display: 'Dragalia Lost',
     description: '`>drag [unit/dragon/weapon/print]`\nWill return information on (mostly) anything in Dragalia Lost.',
     async execute(message, args, client, data) {

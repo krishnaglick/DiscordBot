@@ -9,16 +9,21 @@ module.exports = {
         let nameFinal = unit.name + ": " + unit.title + " | " + await GENERAL.generateStars(unit.rarity);
         let iconFinal = await HELPER.getElementImage(unit.element);
         let colorFinal = await HELPER.getEmbedColor(unit.element);
+        const baseEmbed = new Discord.RichEmbed();
+        baseEmbed
+            .setAuthor(nameFinal, iconFinal)
+            .addField("Weapon", unit.weapon, true)
+            .addField("HP", unit.hp, true)
+            .addField("ATK", unit.atk, true)
+            .addField("Co-Ab", await HELPER.generateCoAb(unit.coability));
+        for(const ability of abilitiesFinal){
+            baseEmbed.addField("Abilities", ability, true);
+        }
+        baseEmbed
+            .addField("Skills", skillsFinal)
+            .setColor(colorFinal);
         return [
-            new Discord.RichEmbed()
-                .setAuthor(nameFinal, iconFinal)
-                .addField("Weapon", unit.weapon, true)
-                .addField("HP", unit.hp, true)
-                .addField("ATK", unit.atk, true)
-                .addField("Co-Ab", await HELPER.generateCoAb(unit.coability))
-                .addField("Abilities", abilitiesFinal)
-                .addField("Skills", skillsFinal)
-                .setColor(colorFinal),
+            baseEmbed,
             new Discord.RichEmbed()
                 .setAuthor(nameFinal, iconFinal)
                 .addField("VA", unit.cv[0] + " | " + unit.cv[1])
@@ -113,3 +118,4 @@ module.exports = {
         ]
     }
 };
+
