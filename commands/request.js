@@ -5,6 +5,8 @@ module.exports = {
     display: 'Carry',
     description: 'Get carried in pokemon masters',
     async execute(message, args, client, dataStore, requests) {
+        let queueRole = message.guild.roles.get('667559290424393739');
+        let member = message.member;
         switch (args[0]) {
             case 'resolve':
                 let match = args[1].match(/^<@!?(\d+)>$/);
@@ -32,6 +34,12 @@ module.exports = {
                             );
                         }
                         requests.splice(index, 1);
+                        let toRemoveMember = message.guild.members.get(toRemoveId);
+                        if (toRemoveMember !== null && queueRole !== null) {
+                            if (toRemoveMember.roles.has(queueRole.id)) {
+                                await toRemoveMember.removeRole(queueRole).catch(console.error);
+                            }
+                        }
                     }
                 }
                 return;
@@ -104,6 +112,11 @@ module.exports = {
                                 .addField('Description', `<@${message.author.id}>, your carry request has been deleted.`)
                                 .setColor('#4286f4')
                             );
+                            if (member !== null && queueRole !== null) {
+                                if (member.roles.has(queueRole.id)) {
+                                    await member.removeRole(queueRole).catch(console.error);
+                                }
+                            }
                             return;
                         }
                     }
@@ -166,6 +179,11 @@ module.exports = {
                             .addField('User', `<@${message.author.id}>`)
                             .addField('Submitted On', timestamp)
                         );
+                    }
+                    if (member !== null && queueRole !== null) {
+                        if (!member.roles.has(queueRole.id)) {
+                            await member.addRole(queueRole).catch(console.error);
+                        }
                     }
                 }
         }
