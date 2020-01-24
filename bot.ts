@@ -1,6 +1,6 @@
 import fs from "fs";
 import Discord from "discord.js";
-import { prefix, prodToken, stagingToken } from "./auth.json";
+import { prefix, prodToken, stagingToken } from "./getAuth";
 
 const client = new Discord.Client();
 
@@ -261,41 +261,37 @@ function settime(messageToSend: string, channel: Discord.Channel) {
 // ToDo: something is FUCKY with the prod version of this runs fine on staging
 async function runUpdates(scripts: any[]) {
     console.log("Starting data update");
-    // for (const script of scripts) {
-    //     switch (script.key) {
-    //         case "dragalia-units":
-    //             await script.getUnitData().then(async (data: Promise<any>[]) => {
-    //                 for (const unit of data) {
-    //                     dataStore.dragalia.units.push(await unit);
-    //                 }
-    //                 console.log("Units updated.");
-    //             });
-    //             break;
-    //         case "dragalia-weapons":
-    //             await script.getWeaponData().then(async (data: Promise<any>[]) => {
-    //                 for (const weapon of data) {
-    //                     dataStore.dragalia.weapons.push(await weapon);
-    //                 }
-    //                 console.log("Weapons updated.");
-    //             });
-    //             break;
-    //         case "dragalia-dragons":
-    //             await script.getDragonData(await script.getDragonLinks()).then(async (data: Promise<any>[]) => {
-    //                 for (const dragon of data) {
-    //                     dataStore.dragalia.dragons.push(await dragon);
-    //                 }
-    //                 console.log("Dragons updated.");
-    //             });
-    //             break;
-    //         case "dragalia-prints":
-    //             await script.getPrintData().then(async (data: Promise<any>[]) => {
-    //                 for (const print of data) {
-    //                     dataStore.dragalia.prints.push(await print);
-    //                 }
-    //                 console.log("Prints updated.");
-    //             });
-    //             break;
-    //     }
-    // }
+    for (const script of scripts) {
+        switch (script.key) {
+            case "dragalia-units":
+                const unitData: Promise<never>[] = await script.getUnitData();
+                for (const unit of unitData) {
+                    dataStore.dragalia.units.push(await unit);
+                }
+                console.log("Units updated.");
+                break;
+            case "dragalia-weapons":
+                const weaponData: Promise<never>[] = await script.getWeaponData();
+                for (const weapon of weaponData) {
+                    dataStore.dragalia.weapons.push(await weapon);
+                }
+                console.log("Weapons updated.");
+                break;
+            case "dragalia-dragons":
+                const dragonData: Promise<never>[] = await script.getDragonData(await script.getDragonLinks());
+                for (const dragon of dragonData) {
+                    dataStore.dragalia.dragons.push(await dragon);
+                }
+                console.log("Dragons updated.");
+                break;
+            case "dragalia-prints":
+                const printData: Promise<never>[] = await script.getPrintData();
+                for (const print of printData) {
+                    dataStore.dragalia.prints.push(await print);
+                }
+                console.log("Prints updated.");
+                break;
+        }
+    }
     console.log("Data Update Done");
 }
