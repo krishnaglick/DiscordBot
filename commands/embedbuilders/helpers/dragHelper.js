@@ -6,7 +6,27 @@ const paginationEmbed = require('discord.js-pagination');
 const {MessageEmbed} = require('discord.js');
 const AsciiTable = require('ascii-table');
 const helper = require('./generalHelper');
+const {PythonShell} = require("python-shell");
 module.exports = {
+    runDPSCalc: async function(message, unitName){
+        const options = {
+            mode: 'text',
+            pythonOptions: ['-u'],
+            pythonPath: "/usr/bin/python2.7",
+            scriptPath: __dirname + '/dl/adv',
+            args: "-2"
+        };
+        let output;
+        PythonShell.run(`${unitName[0]}.py`, options, function (err, results) {
+            if (err) {
+                output = 'No Damage Calc Available'
+            }
+            results.forEach((elem) => {
+                output += elem + '\n';
+            });
+            return output;
+        });
+    },
     /**
      *
      * @returns {Promise<string>}
@@ -156,16 +176,18 @@ module.exports = {
     },
     /**
      *
-     * @param skills
-     * @returns {Promise<string>}
+     * @param abilities
+     * @returns {Promise<[]>}
      */
     generateAbilityOutput: async function (abilities) {
-        let abilitiesOut = "";
+        let abilitiesArr = [];
         for (const ability of abilities) {
+            let abilitiesOut = '';
             abilitiesOut += "**" + ability[ability.length - 1].name + "**\n";
             abilitiesOut += ability[ability.length - 1].effect + "\n";
+            abilitiesArr.push(abilitiesOut)
         }
-        return abilitiesOut;
+        return abilitiesArr;
     },
     /**
      *

@@ -6,12 +6,12 @@ module.exports = {
     getPrintData: async function () {
         let json = await axios.get(
             "https://gamepress.gg/sites/default/files/aggregatedjson/DragaliaLostWyrmpintsList.json?314012807818294637"
-        ).catch(error => console.log(error));
+        ).catch(error => error.ignoreError);
 
         return await json.data.map(async (data) => {
-            let html = await axios.get(
+            const html = await axios.get(
                 'https://gamepress.gg/dragalialost' + data.icon.substring(11, data.icon.indexOf('"><img src'))
-            ).catch(error => console.log(error));
+            ).catch(error => error.ignoreError);
             const $ = cheerio.load(html.data);
             const name = $("h1").text();
             const atk = data.max_atk;
