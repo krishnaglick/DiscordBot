@@ -90,6 +90,7 @@ client.on('message', message => {
     }
 });
 client.login(token);
+
 async function addTrainerRole(message) {
     if (message.content === ">enter") {
         try {

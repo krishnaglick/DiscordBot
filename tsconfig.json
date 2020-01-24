@@ -1,0 +1,32 @@
+{
+    "compilerOptions": {
+        "declaration": false,
+        "module": "commonjs",
+        "lib": ["es2015", "es2017", "dom"],
+        "moduleResolution": "node",
+        "sourceMap": false,
+        "target": "es5",
+        "allowJs": false,
+        "strict": true,
+        "noUnusedLocals": true,
+        "resolveJsonModule": true,
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true,
+        "downlevelIteration": true,
+        "baseUrl": ".",
+        "outDir": ".",
+        "plugins": [
+            {
+                "name": "typescript-tslint-plugin",
+                "alwaysShowRuleFailuresAsWarnings": true,
+                "ignoreDefinitionFiles": true,
+                "configFile": "./tslint.json",
+                "suppressWhileTypeErrorsPresent": true,
+                "mockTypeScriptVersion": false
+            }
+        ]
+    },
+    "include": ["./types/*.d.ts", "**/*.ts", "./*.ts"],
+    "exclude": []
+}

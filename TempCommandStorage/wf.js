@@ -10,30 +10,30 @@ module.exports = {
     description: 'Find weapons',
     execute(message, args) {
 
-    const url = 'https://warframe.fandom.com/wiki/'+ args[0];
+        const url = 'https://warframe.fandom.com/wiki/' + args[0];
 
-request(url, (error, response, html) => {
-    if (!error && response.statusCode == 200) {
-        const $ = cheerio.load(html);
-        const gunName = $('h1').html()
-        const body = $('body')
-        const labelArr = {}
-        const valueArr = {}
-        const value = body.find($('.pi-data-value')).each(function (i, elem) {
-            valueArr[i] = $(this).text()
-        })
-        const label = body.find($('.pi-data-label')).each(function (i, elem) {
-            labelArr[i] = $(this).text()
-        })
-        console.log(labelArr[6]);
-        const embed = new Discord.RichEmbed()
-            .addField("Some bullshit",valueArr[1],true)
-            .addField("Another bullshit",labelArr[2],true)
-        message.channel.send({embed})
+        request(url, (error, response, html) => {
+            if (!error && response.statusCode == 200) {
+                const $ = cheerio.load(html);
+                const gunName = $('h1').html()
+                const body = $('body')
+                const labelArr = {}
+                const valueArr = {}
+                const value = body.find($('.pi-data-value')).each(function (i, elem) {
+                    valueArr[i] = $(this).text()
+                })
+                const label = body.find($('.pi-data-label')).each(function (i, elem) {
+                    labelArr[i] = $(this).text()
+                })
+                console.log(labelArr[6]);
+                const embed = new Discord.RichEmbed()
+                    .addField("Some bullshit", valueArr[1], true)
+                    .addField("Another bullshit", labelArr[2], true)
+                message.channel.send({embed})
 
-    }
-})
-},
+            }
+        })
+    },
 };
 
 

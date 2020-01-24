@@ -26,7 +26,7 @@ module.exports = {
                                 message.react(':two:')
                             })
                             .catch(() => console.error('One of the emojis failed to react.'));
-                })
+                    })
         }
     },
 };
