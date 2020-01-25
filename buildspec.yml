@@ -4,23 +4,9 @@ phases:
   install:
     runtime-versions:
       nodejs: 12
-#       runtime: version
-#     commands:
-#       - command
-#       - command
-#     finally:
-#       - command
-#       - command
   pre_build:
     commands:
       - yarn
   build:
     commands:
       - yarn build
-#   post_build:
-#     commands:
-#       - command
-#       - command
-#     finally:
-#       - command
-#       - command
