@@ -4,7 +4,7 @@ import { prefix, prodToken, stagingToken } from "./getAuth";
 
 const client = new Discord.Client();
 
-const environment = process.env.ENV || "stage";
+const environment = process.env.NODE_ENV || "stage";
 
 client.commands = new Discord.Collection();
 const commandFiles = fs.readdirSync("./commands").filter(file => file.endsWith(".js"));
